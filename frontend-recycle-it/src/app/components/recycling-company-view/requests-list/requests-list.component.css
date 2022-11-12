@@ -1,0 +1,33 @@
+.with-icon {
+  display: flex;
+  align-items: center;
+}
+
+mat-list {
+  max-height: 60vh;
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.requests-list {
+  padding-top: 4vh;
+}
+
+.requests-list-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(1, 1, 1, 0.8);
+  color: white;
+  font-size: 45px;
+  height: 12vh;
+  width: 30%;
+  border: 1px solid black;
+  border-radius: 60px;
+}
+
+.requests-list-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
