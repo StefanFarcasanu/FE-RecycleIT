@@ -3,16 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import {FormsModule} from "@angular/forms";
+import {MainPageOperationsService} from "./services/main-page-operations.service";
+import { HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [MainPageOperationsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
