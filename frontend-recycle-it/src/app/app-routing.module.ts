@@ -1,12 +1,12 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {LoginComponent} from "./login/login.component";
-import {MainViewComponent} from "./main-view/main-view.component";
+import {LoginComponent} from "./components/login/login.component";
+import {MainViewComponent} from "./components/main-view/main-view.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main-view',
+    redirectTo: 'login',
     pathMatch: 'full'
   },
 

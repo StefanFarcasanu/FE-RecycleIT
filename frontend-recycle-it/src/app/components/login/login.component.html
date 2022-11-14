@@ -9,22 +9,22 @@
 </head>
 <body class="body" class="d-flex flex-column">
 <header>
-  <img class="logo-img" src="assets/images/small-logo.png" alt="small-logo.png">
+  <img class="logo-img" src="../../../assets/images/small-logo.png" alt="small-logo.png">
   <h1>RecycleIT</h1>
   <p>Create an account and make your way towards <strong>helping the planet!</strong></p>
 </header>
-<form action="" method="post" class="form-login text-center">
+<form [formGroup]="loginForm" (submit)="onSubmit(loginForm)" action="" method="post" class="form-login text-center">
   <h2 style="color: white">Login</h2>
   <div class="form-floating mb-3">
     <input type="email" class="form-control" id="input-email" name="input-email"
-           placeholder="Enter your email address...">
+           placeholder="Enter your email address..." formControlName="email">
     <label for="input-email" class="form-label">Email address</label>
     <div id="email-tooltip">
     </div>
   </div>
   <div class="form-floating mb-3">
     <input type="password" class="form-control" id="input-password" name="input-password"
-           placeholder="Enter your password...">
+           placeholder="Enter your password..." formControlName="password">
     <label for="input-password">Password</label>
     <div id="password-tooltip">
     </div>
@@ -35,7 +35,7 @@
     </label>
   </div>
   <hr style="color: white">
-  <button type="button" class="btn btn-primary w-100 mb-2" id="login-button" onclick="sendLoginRequest()">Login</button>
+  <button type="submit" class="btn btn-primary w-100 mb-2" id="login-button">Login</button>
   <a class="btn btn-secondary w-100 mb-2" role="button" id="register-button">Create an account</a>
 </form>
 
