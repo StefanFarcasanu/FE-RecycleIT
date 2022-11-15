@@ -10,3 +10,7 @@ body {
   background-size: cover;
   background: url("./assets/images/main-background.jpg") no-repeat center;
 }
+
+mat-dialog-container {
+  background-color: black !important;
+}

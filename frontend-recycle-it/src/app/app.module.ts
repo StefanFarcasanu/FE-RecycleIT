@@ -11,6 +11,8 @@ import {MatListModule} from "@angular/material/list";
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import { LoadingSpinnerComponent } from './components/utils/loading-spinner/loading-spinner.component';
+import { RequestInfoDialogComponent } from './components/recycling-company-view/requests-list/request/request-info-dialog/request-info-dialog.component';
+import {MatDialogModule} from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -18,7 +20,8 @@ import { LoadingSpinnerComponent } from './components/utils/loading-spinner/load
     RoutingComponents,
     RequestsListComponent,
     RequestComponent,
-    LoadingSpinnerComponent
+    LoadingSpinnerComponent,
+    RequestInfoDialogComponent
   ],
     imports: [
         BrowserModule,
@@ -26,6 +29,7 @@ import { LoadingSpinnerComponent } from './components/utils/loading-spinner/load
         BrowserAnimationsModule,
         MatIconModule,
         MatListModule,
+        MatDialogModule,
         MatButtonModule,
         HttpClientModule
     ],

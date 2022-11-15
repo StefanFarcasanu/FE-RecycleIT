@@ -1,6 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {RequestService} from "../../../../services/request.service";
 import {RequestModel} from "../../../../models/request.model";
+import {RequestInfoDialogComponent} from "./request-info-dialog/request-info-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-request',
@@ -25,7 +27,7 @@ export class RequestComponent implements OnInit {
 
   public _isLoading = false;
 
-  constructor(private _requestService: RequestService) {
+  constructor(private _requestService: RequestService, private _requestInfoDialog: MatDialog) {
   }
 
   ngOnInit(): void {
@@ -64,5 +66,15 @@ export class RequestComponent implements OnInit {
 
   declineRequest(): void {
     this.updateRequest("DECLINED");
+  }
+
+  openRequestInfoDialog() {
+    this._requestInfoDialog.open(RequestInfoDialogComponent, {
+      minHeight: "300px",
+      width: "800px",
+      data: {
+        clientId: this._clientId
+      }
+    });
   }
 }
