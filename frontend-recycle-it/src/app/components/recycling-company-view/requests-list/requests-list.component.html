@@ -18,8 +18,11 @@
     <h1 class="requests-list-title">Manage requests</h1>
   </div>
   <div class="container-fluid">
-    <mat-list *ngFor="let request of requestsList">
-      <app-request
+    <mat-list>
+      <app-request *ngFor="let request of requestsList"
+        [_requestId]="request._id"
+        [_clientId]="request._clientId"
+        [_companyId]="request._companyId"
         [_wasteType]="request.type"
         [_wasteQuantity]="request.quantity"
         [_requestStatus]="request.status">

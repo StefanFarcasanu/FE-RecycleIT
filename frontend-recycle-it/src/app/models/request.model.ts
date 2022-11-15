@@ -8,4 +8,16 @@ export class RequestModel {
     public status: String
   ) {
   }
+
+  get _id() {
+    return this.id;
+  }
+
+  get _clientId() {
+    return this.clientId
+  }
+
+  get _companyId() {
+    return this.companyId;
+  }
 }

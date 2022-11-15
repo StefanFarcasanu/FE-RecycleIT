@@ -11,12 +11,12 @@
       {{ _requestStatus }}
     </div>
     <div class="col-md-1">
-      <button mat-fab color="success" [hidden]="_isPending" (click)="approveRequest()">
+      <button mat-fab color="success" [hidden]="!_isPending" (click)="approveRequest()">
         <mat-icon fontIcon="check"></mat-icon>
       </button>
     </div>
     <div class="col-md-1">
-      <button mat-fab color="warn" [hidden]="_isPending" (click)="declineRequest()">
+      <button mat-fab color="warn" [hidden]="!_isPending" (click)="declineRequest()">
         <mat-icon fontIcon="close"></mat-icon>
       </button>
     </div>
