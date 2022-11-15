@@ -31,4 +31,8 @@ export class RequestsListComponent implements OnInit {
         alert("There was an error fetching the requests!")
       });
   }
+
+  logout() {
+
+  }
 }
