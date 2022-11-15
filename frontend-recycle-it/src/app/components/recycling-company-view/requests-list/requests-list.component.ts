@@ -26,6 +26,9 @@ export class RequestsListComponent implements OnInit {
             requestJSON.status
           ))
         }
+      },
+        error => {
+        alert("There was an error fetching the requests!")
       });
   }
 }
