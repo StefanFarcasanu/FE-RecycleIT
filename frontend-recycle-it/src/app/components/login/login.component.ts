@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {LoginService} from "../../services/login-service";
 import {Router} from "@angular/router";
-import {FormControl, FormGroup, Validator, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import jwtDecode from "jwt-decode";
 
 export interface JWTPayload {
   exp: number;
@@ -60,7 +61,15 @@ export class LoginComponent {
       this.loginService.login(email, password).subscribe(() => {
           this.isLoading = false;
           this.responseError = null;
-          this.router.navigate(["/main-view"]);
+          const token = localStorage.getItem("token");
+          const payload = jwtDecode(token!) as JWTPayload;
+
+          if (payload.scope === "ROLE_CLIENT") {
+            this.router.navigate(["/main-view"]);
+          }
+          if (payload.scope === "ROLE_COMPANY") {
+            this.router.navigate(["/recycling-company-view/requests-list"]);
+          }
         },
         error => {
           this.responseError = error.error;

@@ -1,6 +1,5 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
-import {MatDialogRef} from "@angular/material/dialog";
-import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {RequestInfoService} from "../../../../../services/request-info.service";
 
 @Component({

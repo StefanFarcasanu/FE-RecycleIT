@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {RequestModel} from "../models/request.model";
 
@@ -9,7 +9,8 @@ export class RequestService {
 
   private _requestsUrl: string = "http://localhost:8080/requests/";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   updateRequest(updatedRequest: RequestModel) {
     const _token = localStorage.getItem("token")!;

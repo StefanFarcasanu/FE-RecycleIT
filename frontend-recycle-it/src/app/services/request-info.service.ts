@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 
 @Injectable({
@@ -8,7 +8,8 @@ export class RequestInfoService {
 
   private _usersUrl: string = "http://localhost:8080/users";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   getClientDetails() {
     const _token = localStorage.getItem("token")!;

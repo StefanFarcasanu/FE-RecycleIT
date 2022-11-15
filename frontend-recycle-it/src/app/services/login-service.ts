@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, tap} from "rxjs";
 import {LoggedUserModel} from "../models/logged-user.model";
-import {HttpClient, HttpHeaders, HttpRequest, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {JWTPayload} from "../components/login/login.component";
 import jwtDecode from "jwt-decode";
@@ -28,6 +28,7 @@ export class LoginService {
       }),
       observe: "response" as "body"
     };
+
     return this.http.post<HttpResponse<any>>(this.loginUrl, null, httpOptions).pipe(tap(responseData => {
       const authHeader = String(String(responseData.headers.get("Authorization")) || '');
 
@@ -67,7 +68,7 @@ export class LoginService {
     }
   }
 
-  private logout() {
+  logout() {
     this.loggedUser.next(null!);
     this.router.navigate(["/login"]);
     localStorage.removeItem("token");
@@ -78,7 +79,7 @@ export class LoginService {
     this.tokenExpirationTimer = null;
   }
 
-  private autoLogout(expirationDuration: number) {
+  autoLogout(expirationDuration: number) {
     this.tokenExpirationTimer = setTimeout(() => {
         this.logout();
       },

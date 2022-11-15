@@ -6,7 +6,7 @@ import jwtDecode from "jwt-decode";
 import {JWTPayload} from "./login.component";
 
 @Injectable({providedIn: 'root'})
-export class AuthGuard implements CanActivate {
+export class AuthRecyclingCompanyGuard implements CanActivate {
 
   constructor(private loginService: LoginService, private router: Router) {
   }
@@ -18,7 +18,7 @@ export class AuthGuard implements CanActivate {
       if (isAuth) {
         const payload = jwtDecode(user.token!) as JWTPayload;
 
-        if (payload.scope === "ROLE_CLIENT") {
+        if (payload.scope === "ROLE_COMPANY") {
           return true;
         }
       }
