@@ -1,12 +1,27 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import {RequestsListComponent} from "./components/recycling-company-view/requests-list/requests-list.component";
+import {LoginComponent} from "./components/login/login.component";
+import {MainViewComponent} from "./components/main-view/main-view.component";
 
 const routes: Routes = [
   {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    component: LoginComponent
+  },
+  {
+    path: 'main-view',
+    component: MainViewComponent
+  },
+  {
     path: "requests-list",
     component: RequestsListComponent,
-  }
+  },
 ];
 
 @NgModule({
@@ -15,4 +30,4 @@ const routes: Routes = [
 })
 export class AppRoutingModule { }
 
-export const RoutingComponents = [RequestsListComponent];
+export const RoutingComponents = [LoginComponent, MainViewComponent, RequestsListComponent];

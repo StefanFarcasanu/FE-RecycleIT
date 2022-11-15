@@ -13,6 +13,10 @@ import {HttpClientModule} from "@angular/common/http";
 import { LoadingSpinnerComponent } from './components/utils/loading-spinner/loading-spinner.component';
 import { RequestInfoDialogComponent } from './components/recycling-company-view/requests-list/request/request-info-dialog/request-info-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { LoginComponent } from './components/login/login.component';
+import { MainViewComponent } from './components/main-view/main-view.component';
+import {LoginService} from "./services/login-service";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -21,18 +25,22 @@ import {MatDialogModule} from "@angular/material/dialog";
     RequestsListComponent,
     RequestComponent,
     LoadingSpinnerComponent,
-    RequestInfoDialogComponent
+    RequestInfoDialogComponent,
+    LoginComponent,
+    MainViewComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatListModule,
-        MatDialogModule,
-        MatButtonModule,
-        HttpClientModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatListModule,
+    MatDialogModule,
+    MatButtonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
