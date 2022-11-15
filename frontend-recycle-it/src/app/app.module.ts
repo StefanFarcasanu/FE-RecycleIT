@@ -17,6 +17,8 @@ import { LoginComponent } from './components/login/login.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import {LoginService} from "./services/login-service";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { LoadingSpinnerLoginComponent } from './components/utils/loading-spinner-login/loading-spinner-login.component';
+import { RecyclingCompanyViewComponent } from './components/recycling-company-view/recycling-company-view.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     LoadingSpinnerComponent,
     RequestInfoDialogComponent,
     LoginComponent,
-    MainViewComponent
+    MainViewComponent,
+    LoadingSpinnerLoginComponent,
+    RecyclingCompanyViewComponent
   ],
   imports: [
     BrowserModule,

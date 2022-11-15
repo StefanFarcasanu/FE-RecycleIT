@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import {RequestsListComponent} from "./components/recycling-company-view/requests-list/requests-list.component";
 import {LoginComponent} from "./components/login/login.component";
 import {MainViewComponent} from "./components/main-view/main-view.component";
+import {AuthGuard} from "./components/login/auth.guard";
+import {RecyclingCompanyViewComponent} from "./components/recycling-company-view/recycling-company-view.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'main-view',
     pathMatch: 'full'
   },
   {
@@ -16,11 +18,19 @@ const routes: Routes = [
   },
   {
     path: 'main-view',
-    component: MainViewComponent
+    component: MainViewComponent,
+    canActivate: [AuthGuard]
   },
   {
-    path: "requests-list",
-    component: RequestsListComponent,
+    path: "recycling-company-view",
+    component: RecyclingCompanyViewComponent,
+    canActivate: [AuthGuard],
+    children: [
+      {
+        path: "requests-list",
+        component: RequestsListComponent
+      }
+    ]
   },
 ];
 

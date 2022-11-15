@@ -43,8 +43,6 @@ export class LoginComponent {
   onSubmit(form: FormGroup) {
     const email = form.value.email;
     const password = form.value.password;
-    console.log(email);
-    console.log(password);
     this.showEmailError = false;
     this.showPasswordError = false;
     this.responseError = null;
