@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from "./components/login/login.component";
-import {MainViewComponent} from "./components/main-view/main-view.component";
 import {MainPageComponent} from "./components/main-page/main-page.component";
 
 const routes: Routes = [
@@ -17,13 +16,10 @@ const routes: Routes = [
   },
 
   {
-    path: 'main-view',
-    component: MainViewComponent
+    path: 'main-page',
+    component: MainPageComponent
   },
 
-  { path: 'main-page',
-    component: MainPageComponent
-  }
 ];
 
 @NgModule({
@@ -33,4 +29,4 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 
-export const RoutingComponents = [LoginComponent, MainViewComponent]
+export const RoutingComponents = [LoginComponent, MainPageComponent]

@@ -62,7 +62,7 @@ export class LoginComponent {
       this.loginService.login(email, password).subscribe(() => {
           this.isLoading = false;
           this.responseError = null;
-          this.router.navigate(["/main-view"]);
+          this.router.navigate(["/main-page"]);
         },
         error => {
           this.responseError = error.error;
