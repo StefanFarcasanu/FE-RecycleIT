@@ -1,0 +1,45 @@
+.col {
+  font-size: 40px;
+  color: white;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  height: 20vh;
+  border: 1px solid white;
+  background: rgba(1, 1, 1, 0.8);
+}
+
+.icon-display {
+  transform: scale(2);
+  color: green;
+}
+
+.mat-success {
+  background-color: green;
+  color: #fff;
+}
+
+.mat-info {
+  background-color: white;
+  color: black;
+}
+
+.info-button-text {
+  font-size: 30px;
+}
+
+.buttons-container {
+  padding: 20px 20px 20px 20px;
+  margin: 20px;
+  gap: 10px;
+}
+
+.request {
+  grid-template-columns: auto auto auto auto 40px 40px 40px;
+}
+
+.icon-info {
+  transform: scale(2);
+}
