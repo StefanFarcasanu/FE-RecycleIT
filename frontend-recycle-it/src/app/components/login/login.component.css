@@ -23,6 +23,10 @@ header img {
   margin-top: 3%;
 }
 
+.error-message {
+  color: red;
+}
+
 #login-button, #signup-button, #update-account-button {
   background-color: forestgreen;
   border-color: forestgreen;

@@ -13,20 +13,33 @@
 </div>
 <form [formGroup]="loginForm" (submit)="onSubmit(loginForm)" action="" method="post" class="form-login text-center"
       *ngIf="!isLoading">
+  <div class="form-group"></div>
   <h2 style="color: white">Login</h2>
   <div class="form-floating mb-3">
     <input type="email" class="form-control" id="input-email" name="input-email"
            placeholder="Enter your email address..." formControlName="email">
+
     <label for="input-email" class="form-label">Email address</label>
-    <div id="email-tooltip">
-    </div>
+    <div id="email-tooltip"></div>
+    <small class="error-message"
+           *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.['required']">
+      Please enter email address!
+    </small>
   </div>
   <div class="form-floating mb-3">
     <input type="password" class="form-control" id="input-password" name="input-password"
-           placeholder="Enter your password..." formControlName="password">
+           placeholder="Enter your password..." formControlName="password" minlength="8">
     <label for="input-password">Password</label>
     <div id="password-tooltip">
+      <small class="error-message"
+             *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['required']">
+        Please enter the password!
+      </small>
     </div>
+    <small class="error-message"
+           *ngIf=responseError>
+      Invalid credentials!
+    </small>
   </div>
   <hr style="color: white">
   <button type="submit" class="btn btn-primary w-100 mb-2" id="login-button">Login</button>
