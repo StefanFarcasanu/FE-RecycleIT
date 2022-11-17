@@ -4,7 +4,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
-import { MainViewComponent } from './components/main-view/main-view.component';
 import {LoginService} from "./services/login-service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -33,7 +32,6 @@ import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loadin
     LoadingSpinnerComponent,
     RequestInfoDialogComponent,
     LoginComponent,
-    MainViewComponent,
     MainPageComponent,
     LoadingSpinnerLoginComponent,
     RecyclingCompanyViewComponent

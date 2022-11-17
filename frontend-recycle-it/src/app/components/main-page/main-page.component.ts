@@ -6,6 +6,7 @@ import {RecycleRequestDto} from "../../models/recycleRequestDto";
 import {UserDto} from "../../models/userDto";
 import jwtDecode from "jwt-decode";
 import {HttpErrorResponse} from "@angular/common/http";
+import {LoginService} from "../../services/login-service";
 
 export interface JWTPayload {
   sub: number,
@@ -30,7 +31,7 @@ export class MainPageComponent implements OnInit {
   severity: string = "";
   success: boolean = false;
 
-  constructor(private router: Router, private mainService: MainPageOperationsService) { }
+  constructor(private router: Router, private mainService: MainPageOperationsService, private loginService: LoginService) { }
 
   ngOnInit(): void {
     this.token = (localStorage.getItem("token")) ? localStorage.getItem("token") : "";
@@ -40,8 +41,7 @@ export class MainPageComponent implements OnInit {
   }
 
   logout() {
-    localStorage.clear();
-    this.router.navigate(["/login"]);
+    this.loginService.logout();
   }
 
   populateDropdown(clientId: number) {
@@ -83,10 +83,11 @@ export class MainPageComponent implements OnInit {
       .subscribe((response) => {
         if (response) {
           this.success = true;
+          this.errorMessage = '';
           wasteType.value = '';
           companySelector.value = '';
           wasteInput.value = '';
-        };
+        }
       },
         (err: HttpErrorResponse) => {
           if (err.error === "Client do not exists!") {

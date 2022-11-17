@@ -94,7 +94,7 @@
           <input type="number" class="form-control" id="input-waste-quantity" name="input-waste-quantity"
                  placeholder="Enter the recycled quantity (Kg)" [(ngModel)]="wasteQuantity" required>
           <label for="input-waste-quantity" class="form-label">Recycled quantity (Kg)</label>
-          <div *ngIf="errorMessage" class="alert alert-warning" id="input-waste-quantity-tooltip">
+          <div *ngIf="errorMessage !== ''" class="alert alert-warning" id="input-waste-quantity-tooltip">
             <strong> Warning!</strong> {{errorMessage}}
           </div>
         </div>
