@@ -1,0 +1,33 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <img src="../../../../assets/images/small-logo.png" alt="small-logo.png" width="50" height="50" style=""
+           class="d-inline-block align-text-center">
+      Recycle IT
+    </a>
+    <button type="button" class="btn btn-dark" (click)="logout()">
+      <div class="gap-2 with-icon">
+        <mat-icon fontIcon="logout"></mat-icon>
+        Logout
+      </div>
+    </button>
+  </div>
+</nav>
+
+<div class="requests-list">
+  <div class="requests-list-title-container">
+    <h1 class="requests-list-title">Manage requests</h1>
+  </div>
+  <div class="container-fluid">
+    <mat-list>
+      <app-request *ngFor="let request of requestsList"
+                   [_requestId]="request._id"
+                   [_clientId]="request._clientId"
+                   [_companyId]="request._companyId"
+                   [_wasteType]="request.type"
+                   [_wasteQuantity]="request.quantity"
+                   [_requestStatus]="request.status">
+      </app-request>
+    </mat-list>
+  </div>
+</div>

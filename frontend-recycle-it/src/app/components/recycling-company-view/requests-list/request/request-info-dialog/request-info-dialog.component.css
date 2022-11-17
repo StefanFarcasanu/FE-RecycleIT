@@ -1,0 +1,21 @@
+.info-text {
+  font-size: 30px;
+  color: white;
+}
+
+.close-dialog-button {
+  width: 140px;
+  height: 40px;
+  font-size: 15px;
+  background-color: green;
+  color: white;
+  border-radius: 30px;
+  top: 20px;
+}
+
+.close-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6%;
+}
