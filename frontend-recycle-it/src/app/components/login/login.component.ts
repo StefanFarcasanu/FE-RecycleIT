@@ -65,7 +65,7 @@ export class LoginComponent {
           const payload = jwtDecode(token!) as JWTPayload;
 
           if (payload.scope === "ROLE_CLIENT") {
-            this.router.navigate(["/main-view"]);
+            this.router.navigate(["/main-page"]);
           }
           if (payload.scope === "ROLE_COMPANY") {
             this.router.navigate(["/recycling-company-view/requests-list"]);
