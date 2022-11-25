@@ -31,3 +31,22 @@ mat-list {
   align-items: center;
   justify-content: center;
 }
+
+.no-requests-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(1, 1, 1, 0.8);
+  color: white;
+  font-size: 45px;
+  height: 12vh;
+  width: 30%;
+  border: 1px solid black;
+}
+
+.no-requests-message-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20vh;
+}

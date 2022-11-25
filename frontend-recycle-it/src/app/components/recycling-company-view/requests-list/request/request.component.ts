@@ -23,6 +23,8 @@ export class RequestComponent implements OnInit {
 
   @Input() _requestStatus!: String;
 
+  @Input() _dateCreated!: Date;
+
   public _isPending: boolean = true;
 
   public _isLoading = false;
@@ -43,7 +45,8 @@ export class RequestComponent implements OnInit {
       this._companyId,
       this._wasteType,
       this._wasteQuantity,
-      updatedStatus
+      updatedStatus,
+      this._dateCreated
     );
 
     this._isLoading = true
