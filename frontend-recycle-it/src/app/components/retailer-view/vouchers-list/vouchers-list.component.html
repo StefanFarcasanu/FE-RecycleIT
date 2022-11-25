@@ -1,1 +1,40 @@
-<p>vouchers-list works!</p>
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <img src="../../../../assets/images/small-logo.png" alt="small-logo.png" width="50" height="50" style=""
+           class="d-inline-block align-text-center">
+      Recycle IT
+    </a>
+    <button type="button" class="btn btn-dark" (click)="logout()">
+      <div class="gap-2 with-icon">
+        <mat-icon fontIcon="logout"></mat-icon>
+        Logout
+      </div>
+    </button>
+  </div>
+</nav>
+
+<div class="vouchers-list">
+  <div class="vouchers-list-title-container">
+    <h1 class="vouchers-list-title">Manage vouchers</h1>
+  </div>
+  <div class="no-vouchers-message-container" *ngIf="vouchersList.length == 0">
+    <h1 class="no-vouchers-message">No vouchers available!</h1>
+  </div>
+  <div class="container-fluid">
+    <mat-list>
+      <app-voucher *ngFor="let voucher of vouchersList"
+                   [_value]="voucher.value"
+                   [_details]="voucher.details"
+                   [_status]="voucher.status">
+      </app-voucher>
+    </mat-list>
+    <hr class="list-and-button-divider">
+    <div class="button-container">
+      <button class="add-vouchers-button btn btn-success w-50 mt-3 mb-3" (click)="openAddNewVoucherDialog()">
+        <mat-icon class="icon-display" fontIcon="add"></mat-icon>
+        Add new voucher
+      </button>
+    </div>
+  </div>
+</div>

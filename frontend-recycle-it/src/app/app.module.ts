@@ -25,6 +25,7 @@ import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loadin
 import { RetailerViewComponent } from './components/retailer-view/retailer-view.component';
 import { VouchersListComponent } from './components/retailer-view/vouchers-list/vouchers-list.component';
 import { VoucherComponent } from './components/retailer-view/vouchers-list/voucher/voucher.component';
+import { AddNewVoucherDialogComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { VoucherComponent } from './components/retailer-view/vouchers-list/vouch
     RecyclingCompanyViewComponent,
     RetailerViewComponent,
     VouchersListComponent,
-    VoucherComponent
+    VoucherComponent,
+    AddNewVoucherDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-voucher',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VoucherComponent implements OnInit {
 
-  constructor() { }
+  @Input() _value!: Number;
+
+  @Input() _details!: String;
+
+  @Input() _status!: String;
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

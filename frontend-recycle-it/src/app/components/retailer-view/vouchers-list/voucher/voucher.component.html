@@ -1,1 +1,23 @@
-<p>voucher works!</p>
+<div class="container-fluid text-center voucher">
+  <div class="row">
+    <div class="col">
+      <mat-icon class="icon-display" fontIcon="local_offer" size="100px"></mat-icon>
+      {{ _value }} RON
+    </div>
+    <div class="col">
+      <textarea class="details-text" [value]="_details" disabled>
+      </textarea>
+    </div>
+    <div class="col">
+      <span class="badge rounded-pill bg-success" *ngIf="_status === 'AVAILABLE'">
+        {{ _status }}
+      </span>
+      <span class="badge rounded-pill bg-warning" *ngIf="_status === 'USED'">
+        {{ _status }}
+      </span>
+      <span class="badge rounded-pill bg-danger" *ngIf="_status === 'EXPIRED'">
+        {{ _status }}
+      </span>
+    </div>
+  </div>
+</div>
