@@ -22,6 +22,9 @@ import {
 } from './components/recycling-company-view/requests-list/request/request-info-dialog/request-info-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loading-spinner.component';
+import { RetailerViewComponent } from './components/retailer-view/retailer-view.component';
+import { VouchersListComponent } from './components/retailer-view/vouchers-list/vouchers-list.component';
+import { VoucherComponent } from './components/retailer-view/vouchers-list/voucher/voucher.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loadin
     LoginComponent,
     MainPageComponent,
     LoadingSpinnerLoginComponent,
-    RecyclingCompanyViewComponent
+    RecyclingCompanyViewComponent,
+    RetailerViewComponent,
+    VouchersListComponent,
+    VoucherComponent
   ],
   imports: [
     BrowserModule,
