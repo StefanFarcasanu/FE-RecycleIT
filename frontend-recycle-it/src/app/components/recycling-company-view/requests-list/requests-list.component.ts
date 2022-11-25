@@ -45,7 +45,7 @@ export class RequestsListComponent implements OnInit {
               requestJSON.type,
               requestJSON.quantity,
               requestJSON.status,
-              new Date(requestJSON.date + "Z")
+              new Date(requestJSON.date)
             ))
           }
         },

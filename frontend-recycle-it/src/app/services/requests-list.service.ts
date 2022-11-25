@@ -16,7 +16,6 @@ export class RequestsListService {
   getAllRequestsForCompany() {
     const _token: string = localStorage.getItem("token")!;
     const payload = jwtDecode(_token) as JWTPayload;
-    this._requestsUrl += payload.sub;
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -25,6 +24,6 @@ export class RequestsListService {
       observe: "response" as "body"
     };
 
-    return this.http.get<HttpResponse<any>>(this._requestsUrl, httpOptions);
+    return this.http.get<HttpResponse<any>>(this._requestsUrl + payload.sub, httpOptions);
   }
 }

@@ -3,6 +3,7 @@ import {RequestService} from "../../../../services/request.service";
 import {RequestModel} from "../../../../models/request.model";
 import {RequestInfoDialogComponent} from "./request-info-dialog/request-info-dialog.component";
 import {MatDialog} from "@angular/material/dialog";
+import {UserDto} from "../../../../models/userDto";
 
 @Component({
   selector: 'app-request',
@@ -13,7 +14,7 @@ export class RequestComponent implements OnInit {
 
   @Input() _requestId!: Number;
 
-  @Input() _clientId!: Number;
+  @Input() _client!: UserDto;
 
   @Input() _companyId!: Number;
 
@@ -41,7 +42,7 @@ export class RequestComponent implements OnInit {
   updateRequest(updatedStatus: String) {
     const updatedRequest = new RequestModel(
       this._requestId,
-      this._clientId,
+      this._client.id,
       this._companyId,
       this._wasteType,
       this._wasteQuantity,
@@ -76,7 +77,8 @@ export class RequestComponent implements OnInit {
       minHeight: "300px",
       width: "800px",
       data: {
-        clientId: this._clientId
+        client: this._client,
+        dateCreated: this._dateCreated
       }
     });
   }

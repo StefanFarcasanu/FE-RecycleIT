@@ -25,7 +25,7 @@
     <mat-list>
       <app-request *ngFor="let request of requestsList"
                    [_requestId]="request._id"
-                   [_clientId]="request._client.id"
+                   [_client]="request._client"
                    [_companyId]="request._company._id"
                    [_wasteType]="request.type"
                    [_wasteQuantity]="request.quantity"
