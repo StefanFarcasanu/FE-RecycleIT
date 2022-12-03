@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sign up!</title>
+</head>
+<body class="d-flex flex-column">
+<header>
+  <img src="assets/images/small-logo.png" alt="small-logo.png">
+  <h1>Recycle It</h1>
+  <p>Create an account and make your way towards <strong>helping the planet!</strong></p>
+</header>
+
+<div class="loading-spinner" *ngIf="isLoading">
+  <app-loading-spinner-login></app-loading-spinner-login>
+  <p class="logging-text">Register...</p>
+</div>
+
+<form [formGroup]="registerForm" (submit)="onSubmit(registerForm)" action="" method="post"
+      class="form-register text-center" *ngIf="!isLoading">
+  <h2 style="color: white">User registration</h2>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="first-name" name="input-first-name"
+           placeholder="First Name" formControlName="firstName">
+    <hr style="color: white">
+    <label for="first-name" class="form-label">First Name</label>
+    <div id="first-name-tooltip"></div>
+    <small class="error-message"
+           *ngIf="registerForm.controls.firstName.touched && registerForm.controls.firstName.errors?.['required']">
+      Please enter your first name!
+    </small>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="last-name" name="input-last-name"
+           placeholder="Last Name" formControlName="lastName">
+
+    <label for="last-name" class="form-label">Last Name</label>
+    <hr style="color: white">
+    <div id="last-name-tooltip"></div>
+    <small class="error-message"
+           *ngIf="registerForm.controls.lastName.touched && registerForm.controls.lastName.errors?.['required']">
+      Please enter your last name!
+    </small>
+  </div>
+  <div class="col md-3 position-relative">
+    <select id="county-select" class="form-select mb-3" style="height: 60px" (click)="getAllCounties()"
+            (change)="getCitiesFromCounty($any($event.target).value)">
+      <option *ngFor="let county of countiesList" value="{{county}}">
+        {{ county }}
+    </select>
+    <div id="county-tooltip">
+    </div>
+  </div>
+  <hr style="color: white">
+  <div class="col md-3 position-relative">
+    <select id="city-select" class="form-select mb-3" style="height: 60px"
+            (change)="selectCity($any($event.target).value)">
+      <option *ngFor="let city of citiesList" value="{{city}}">
+        {{ city }}
+    </select>
+    <div id="city-tooltip">
+    </div>
+  </div>
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="input-email" name="input-email"
+           placeholder="Enter your email address..." formControlName="email">
+    <label for="input-email" class="form-label">Email address</label>
+    <div id="email-tooltip"></div>
+    <small class="error-message"
+           *ngIf="registerForm.controls.email.touched && registerForm.controls.email.errors?.['required']">
+      Please enter email address!
+    </small>
+  </div>
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control" id="input-password" name="input-password"
+           placeholder="Enter your password..." formControlName="password">
+    <label for="input-password">Password</label>
+    <div id="password-tooltip">
+      <small class="error-message"
+             *ngIf="registerForm.controls.password.touched && registerForm.controls.password.errors?.['required']">
+        Please enter the password!
+      </small>
+    </div>
+    <hr style="color: white">
+    <div class="form-floating mb-3">
+      <input type="password" class="form-control mb-3" id="input-repeat-password" name="input-repeat-password"
+             placeholder="Confirm your password...">
+      <label for="input-repeat-password">Confirm password</label>
+      <div id="repeat-password-tooltip">
+        <small class="error-message"
+               *ngIf="registerForm.controls.confirmPassword.touched && registerForm.controls.confirmPassword.errors?.['required']">
+          Please confirm the password!
+        </small>
+      </div>
+    </div>
+  </div>
+  <hr style="color: white">
+  <button type="submit" class="btn btn-primary w-100 mb-2" id="signup-button">Sign up
+  </button>
+  <a class="btn btn-secondary w-100 mb-2" role="button" id="back-button" (click)="login()">Back</a>
+  <hr style="color: white">
+</form>
+</body>
+</html>

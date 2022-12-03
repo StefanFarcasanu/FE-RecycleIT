@@ -78,4 +78,8 @@ export class LoginComponent {
       form.reset();
     }
   }
+
+  createAccount() {
+    this.router.navigate(["/register"]);
+  }
 }

@@ -6,12 +6,17 @@ import {MainPageComponent} from "./components/main-page/main-page.component";
 import {AuthGuard} from "./components/login/auth.guard";
 import {RecyclingCompanyViewComponent} from "./components/recycling-company-view/recycling-company-view.component";
 import {AuthRecyclingCompanyGuard} from "./components/login/auth-recycling-company.guard";
+import {RegisterComponent} from "./components/register/register.component";
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'main-page',
     pathMatch: 'full'
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'login',

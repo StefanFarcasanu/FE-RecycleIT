@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule, RoutingComponents } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
+import {AppRoutingModule, RoutingComponents} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './components/login/login.component';
 import {LoginService} from "./services/login-service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { MainPageComponent } from './components/main-page/main-page.component';
+import {MainPageComponent} from './components/main-page/main-page.component';
 import {MainPageOperationsService} from "./services/main-page-operations.service";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RequestsListComponent} from './components/recycling-company-view/requests-list/requests-list.component';
@@ -22,6 +22,7 @@ import {
 } from './components/recycling-company-view/requests-list/request/request-info-dialog/request-info-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loading-spinner.component';
+import {RegisterComponent} from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loadin
     LoginComponent,
     MainPageComponent,
     LoadingSpinnerLoginComponent,
-    RecyclingCompanyViewComponent
+    RecyclingCompanyViewComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
