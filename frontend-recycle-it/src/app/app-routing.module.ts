@@ -6,6 +6,7 @@ import {MainPageComponent} from "./components/main-page/main-page.component";
 import {AuthGuard} from "./components/login/auth.guard";
 import {RecyclingCompanyViewComponent} from "./components/recycling-company-view/recycling-company-view.component";
 import {AuthRecyclingCompanyGuard} from "./components/login/auth-recycling-company.guard";
+import {ManageAccountComponent} from "./components/manage-account/manage-account.component";
 
 const routes: Routes = [
   {
@@ -33,6 +34,11 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: "manage-account",
+    component: ManageAccountComponent,
+
+  }
 ];
 
 @NgModule({

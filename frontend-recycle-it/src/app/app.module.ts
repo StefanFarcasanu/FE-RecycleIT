@@ -22,6 +22,7 @@ import {
 } from './components/recycling-company-view/requests-list/request/request-info-dialog/request-info-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loading-spinner.component';
+import { ManageAccountComponent } from './components/manage-account/manage-account.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loadin
     LoginComponent,
     MainPageComponent,
     LoadingSpinnerLoginComponent,
-    RecyclingCompanyViewComponent
+    RecyclingCompanyViewComponent,
+    ManageAccountComponent
   ],
   imports: [
     BrowserModule,
