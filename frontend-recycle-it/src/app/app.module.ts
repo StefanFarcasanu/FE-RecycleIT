@@ -22,6 +22,10 @@ import {
 } from './components/recycling-company-view/requests-list/request/request-info-dialog/request-info-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loading-spinner.component';
+import { AddNewVouchersComponent } from './components/add-new-vouchers/add-new-vouchers.component';
+import {DatepickerDropdownPositionY, MatDatepickerModule} from "@angular/material/datepicker";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
 
 @NgModule({
   declarations: [
@@ -34,7 +38,8 @@ import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loadin
     LoginComponent,
     MainPageComponent,
     LoadingSpinnerLoginComponent,
-    RecyclingCompanyViewComponent
+    RecyclingCompanyViewComponent,
+    AddNewVouchersComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,9 @@ import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loadin
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatSelectModule,
   ],
   providers: [LoginService, MainPageOperationsService],
   bootstrap: [AppComponent]

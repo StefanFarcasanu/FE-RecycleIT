@@ -37,15 +37,15 @@ export class MainPageComponent implements OnInit {
     this.token = (localStorage.getItem("token")) ? localStorage.getItem("token") : "";
     this.payload = jwtDecode(this.token!) as JWTPayload;
     console.log(this.payload.sub);
-    this.populateDropdown(this.payload.sub);
+    this.populateDropdown();
   }
 
   logout() {
     this.loginService.logout();
   }
 
-  populateDropdown(clientId: number) {
-    this.mainService.getCompaniesFromClientCounty(clientId).subscribe(
+  populateDropdown() {
+    this.mainService.getCompaniesFromClientCounty().subscribe(
       data => {
         console.log(typeof data);
         for (let companyJson of data.body) {
