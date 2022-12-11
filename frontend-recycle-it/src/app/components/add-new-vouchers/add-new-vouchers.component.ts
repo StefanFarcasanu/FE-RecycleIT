@@ -7,6 +7,9 @@ import jwtDecode from "jwt-decode";
 import {JWTPayload} from "../main-page/main-page.component";
 import {VoucherDto} from "../../models/voucherDto";
 import {VouchersService} from "../../services/vouchers.service";
+import { MatDialog} from "@angular/material/dialog";
+import {SuccessfulPopUpComponent} from "./successful-pop-up/successful-pop-up.component";
+import {HttpErrorResponse} from "@angular/common/http";
 
 interface VoucherValue {
   id: number;
@@ -43,7 +46,8 @@ export class AddNewVouchersComponent implements OnInit {
     {id: 10, value: 160},  {id: 11, value: 180},  {id: 12, value: 200}
   ];
 
-  constructor(private router: Router, private voucherService: VouchersService, private loginService: LoginService) { }
+  constructor(private router: Router, private voucherService: VouchersService, private loginService: LoginService,
+              private dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     this.token = (localStorage.getItem("token")) ? localStorage.getItem("token") : "";
@@ -56,6 +60,14 @@ export class AddNewVouchersComponent implements OnInit {
 
   closeAlert() {
     this.success = false;
+  }
+
+  openDialog () {
+    this.dialogRef.open(SuccessfulPopUpComponent, {
+      data: {
+        name: "Samule"
+      }
+    });
   }
 
   addNewVoucher() {
@@ -72,11 +84,18 @@ export class AddNewVouchersComponent implements OnInit {
         if (response) {
           this.success = true;
           this.errorMessage = '';
+          this.openDialog();
           voucherValue = 0;
           details.value = '';
           noOfVouchers.value = '';
         }
-      });
+      },
+        (err: HttpErrorResponse) => {
+          if (err.status === 201) {
+            this.openDialog();
+            this.errorMessage = err.error;
+          }
+        });
     console.log("added new voucher");
   }
 }
