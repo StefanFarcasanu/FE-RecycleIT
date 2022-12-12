@@ -25,7 +25,6 @@ export class RecyclingProgressDialogComponent implements OnInit {
     if (data == null) {
       this._isError = true;
     } else {
-      console.log(data);
       this._value = data["value"];
       this._details = data["details"];
       this._status = data["status"];

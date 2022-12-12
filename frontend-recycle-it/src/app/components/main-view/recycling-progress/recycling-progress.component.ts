@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RecyclingProgressService} from "../../../services/recycling-progress.service";
 import {MatDialog} from "@angular/material/dialog";
-import {
-  RequestInfoDialogComponent
-} from "../../recycling-company-view/requests-list/request/request-info-dialog/request-info-dialog.component";
 import {RecyclingProgressDialogComponent} from "./recycling-progress-dialog/recycling-progress-dialog.component";
 
 @Component({
@@ -13,13 +10,17 @@ import {RecyclingProgressDialogComponent} from "./recycling-progress-dialog/recy
 })
 export class RecyclingProgressComponent implements OnInit {
 
-  progressBar! : HTMLDivElement;
+  progressBar!: HTMLDivElement;
 
-  circles! : NodeListOf<HTMLDivElement>;
+  circles!: NodeListOf<HTMLDivElement>;
 
   currentActive = 0;
 
-  milestones : number[] = [];
+  milestones: number[] = [];
+
+  nextMilestone = -1;
+
+  _progressDisabled = false;
 
   constructor(private recyclingProgressService: RecyclingProgressService, private _progressInfoDialog: MatDialog) {
     this.milestones.push(0.5);
@@ -72,6 +73,18 @@ export class RecyclingProgressComponent implements OnInit {
               this.updateCircleState();
             }
           }
+
+          this.recyclingProgressService.getNextMilestoneForClient()
+            .subscribe(data => {
+                this.nextMilestone = data.body;
+
+                if (this.milestones[this.currentActive - 1] == this.nextMilestone) {
+                  this._progressDisabled = true;
+                }
+              },
+              error => {
+                alert("Could not fetch the next milestone!");
+              });
         },
         error => {
           alert("Could not fetch the vouchers for the client!")
@@ -129,30 +142,27 @@ export class RecyclingProgressComponent implements OnInit {
   }
 
   claimVoucherForCurrentMilestone() {
-    this.recyclingProgressService.getNextMilestoneForClient()
-      .subscribe(data => {
-        let nextMilestone = data.body;
+    if (this.milestones[this.currentActive - 1] < this.nextMilestone) {
+      this.recyclingProgressService.claimVoucherForClient(this.milestones[this.currentActive - 1])
+        .subscribe(data => {
+            // Verify if there is a voucher available
+            if (data.body != null) {
+              this.incrementCurrent();
+              this.updateCircleState();
+              this.openProgressInfoDialog(data.body);
+            } else {
+              this.openProgressInfoDialog(null);
+            }
+            console.log(this.milestones[this.currentActive - 1]);
+            console.log(this.nextMilestone);
+            if (this.milestones[this.currentActive - 1] == this.nextMilestone) {
 
-        if (this.milestones[this.currentActive - 1] < nextMilestone) {
-          this.recyclingProgressService.claimVoucherForClient(this.milestones[this.currentActive - 1])
-            .subscribe(data => {
-
-              // Verify if there is a voucher available
-              if (data.body != null) {
-                this.incrementCurrent();
-                this.updateCircleState();
-                this.openProgressInfoDialog(data.body);
-              } else {
-                this.openProgressInfoDialog(null);
-              }
-            },
-            error => {
-              alert(error);
-            })
-        }
-      },
-      error => {
-        alert("Could not fetch the next milestone!");
-      });
+              this._progressDisabled = true;
+            }
+          },
+          error => {
+            alert(error);
+          });
+    }
   }
 }

@@ -19,6 +19,10 @@
 
   <hr style="color: white">
   <div class="wrapper">
-    <button id="claim-voucher-button" type="button" class="btn w-50 js-next" (click)="claimVoucherForCurrentMilestone()">Claim your voucher!</button>
+    <button id="claim-voucher-button" type="button" class="btn w-50 js-next"
+            (click)="claimVoucherForCurrentMilestone()"
+            [disabled]="_progressDisabled">
+      Claim your voucher!
+    </button>
   </div>
 </main>
