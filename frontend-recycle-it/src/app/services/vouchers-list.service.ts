@@ -8,14 +8,13 @@ import {JWTPayload} from "../components/login/login.component";
 })
 export class VouchersListService {
 
-  private _vouchersUrl: string = "http://localhost:8080/vouchers?id=";
+  private _vouchersUrl: string = "http://localhost:8080/vouchers/client";
 
   constructor(private http: HttpClient) {
   }
 
   getAllVouchersForRetailer() {
     const _token: string = localStorage.getItem("token")!;
-    const payload = jwtDecode(_token) as JWTPayload;
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -24,6 +23,6 @@ export class VouchersListService {
       observe: "response" as "body"
     };
 
-    return this.http.get<HttpResponse<any>>(this._vouchersUrl + payload.sub, httpOptions);
+    return this.http.get<HttpResponse<any>>(this._vouchersUrl, httpOptions);
   }
 }
