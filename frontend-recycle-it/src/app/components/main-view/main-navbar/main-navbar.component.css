@@ -1,0 +1,15 @@
+.top-page-div {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url("../../../../assets/login-register-background.jpg") no-repeat top fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  clip-path: circle(180vh at 50% -80vh);
+}
+
+.with-icon {
+  display: flex;
+  align-items: center;
+}

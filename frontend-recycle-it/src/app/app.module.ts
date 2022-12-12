@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import {LoginService} from "./services/login-service";
 import {HttpClient, HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { MainPageComponent } from './components/main-page/main-page.component';
+import { MainPageComponent } from './components/main-view/main-page/main-page.component';
 import {MainPageOperationsService} from "./services/main-page-operations.service";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RequestsListComponent} from './components/recycling-company-view/requests-list/requests-list.component';
@@ -22,6 +22,9 @@ import {
 } from './components/recycling-company-view/requests-list/request/request-info-dialog/request-info-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loading-spinner.component';
+import { MainNavbarComponent } from './components/main-view/main-navbar/main-navbar.component';
+import { MainViewComponent } from './components/main-view/main-view.component';
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loadin
     LoginComponent,
     MainPageComponent,
     LoadingSpinnerLoginComponent,
-    RecyclingCompanyViewComponent
+    RecyclingCompanyViewComponent,
+    MainNavbarComponent,
+    MainViewComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +52,7 @@ import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loadin
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatMenuModule,
   ],
   providers: [LoginService, MainPageOperationsService],
   bootstrap: [AppComponent]
