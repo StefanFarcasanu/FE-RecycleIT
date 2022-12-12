@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {RecyclingProgressService} from "../../../services/recycling-progress.service";
+import {MatDialog} from "@angular/material/dialog";
+import {
+  RequestInfoDialogComponent
+} from "../../recycling-company-view/requests-list/request/request-info-dialog/request-info-dialog.component";
+import {RecyclingProgressDialogComponent} from "./recycling-progress-dialog/recycling-progress-dialog.component";
 
 @Component({
   selector: 'app-recycling-progress',
@@ -16,7 +21,7 @@ export class RecyclingProgressComponent implements OnInit {
 
   milestones : number[] = [];
 
-  constructor(private recyclingProgressService: RecyclingProgressService) {
+  constructor(private recyclingProgressService: RecyclingProgressService, private _progressInfoDialog: MatDialog) {
     this.milestones.push(0.5);
     this.milestones.push(1);
     this.milestones.push(2);
@@ -115,6 +120,14 @@ export class RecyclingProgressComponent implements OnInit {
     this.currentActive > this.circles.length && (this.currentActive = this.circles.length);
   };
 
+  openProgressInfoDialog(data: any) {
+    this._progressInfoDialog.open(RecyclingProgressDialogComponent, {
+      minHeight: "300px",
+      width: "1800px",
+      data: data
+    });
+  }
+
   claimVoucherForCurrentMilestone() {
     this.recyclingProgressService.getNextMilestoneForClient()
       .subscribe(data => {
@@ -128,9 +141,9 @@ export class RecyclingProgressComponent implements OnInit {
               if (data.body != null) {
                 this.incrementCurrent();
                 this.updateCircleState();
-                // open modal with voucher
+                this.openProgressInfoDialog(data.body);
               } else {
-                // open modal with error
+                this.openProgressInfoDialog(null);
               }
             },
             error => {
