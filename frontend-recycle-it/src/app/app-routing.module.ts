@@ -8,6 +8,7 @@ import {RecyclingCompanyViewComponent} from "./components/recycling-company-view
 import {AuthRecyclingCompanyGuard} from "./components/login/auth-recycling-company.guard";
 import {RetailerViewComponent} from "./components/retailer-view/retailer-view.component";
 import {VouchersListComponent} from "./components/retailer-view/vouchers-list/vouchers-list.component";
+import {AuthRetailerGuard} from "./components/login/auth-retailer.guard";
 
 const routes: Routes = [
   {
@@ -38,7 +39,7 @@ const routes: Routes = [
   {
     path: "retailer-view",
     component: RetailerViewComponent,
-    // canActivate: [AuthRetailerGuard],
+    canActivate: [AuthRetailerGuard],
     children: [
       {
         path: "vouchers-list",
