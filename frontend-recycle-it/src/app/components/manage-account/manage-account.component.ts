@@ -2,12 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {MainPageOperationsService} from "../../services/main-page-operations.service";
 import {LoginService} from "../../services/login-service";
-import jwtDecode from "jwt-decode";
-import {JWTPayload} from "../main-page/main-page.component";
-import {RequestInfoService} from "../../services/request-info.service";
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserDto} from "../../models/userDto";
-import {useAnimation} from "@angular/animations";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
@@ -48,9 +44,6 @@ export class ManageAccountComponent implements OnInit {
 
   isLoading = false;
   responseError = null;
-
-  messageError = [''];
-
 
   ngOnInit(): void {
     this.mainService.getClientDetails().subscribe(
@@ -116,7 +109,7 @@ export class ManageAccountComponent implements OnInit {
 
     if (email && password && firstName && lastName && city && county) {
       this.isLoading = true;
-      this.userUpdatedDto = new UserDto(firstName, lastName, email, password, county, city);
+      this.userUpdatedDto = new UserDto(this._clientId, firstName, lastName, email, password, county, city, "");
       this.mainService.updateClientAccount(this._clientId, this.userUpdatedDto)
         .subscribe((response) => {
             if (response) {

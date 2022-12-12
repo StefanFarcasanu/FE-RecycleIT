@@ -43,7 +43,7 @@ import { ManageAccountComponent } from './components/manage-account/manage-accou
     RetailerViewComponent,
     VouchersListComponent,
     VoucherComponent,
-    AddNewVoucherDialogComponent
+    AddNewVoucherDialogComponent,
     RecyclingCompanyViewComponent,
     ManageAccountComponent
   ],

@@ -47,12 +47,14 @@ export class MainPageComponent implements OnInit {
       data => {
         for (let companyJson of data.body) {
           this.companies.push(new UserDto(
+            companyJson.id,
             companyJson.firstname,
             companyJson.lastname,
             companyJson.email,
             companyJson.password,
             companyJson.county,
             companyJson.city,
+            companyJson.role
           ))
         }
       });
