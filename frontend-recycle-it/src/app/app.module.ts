@@ -25,6 +25,7 @@ import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loadin
 import { MainNavbarComponent } from './components/main-view/main-navbar/main-navbar.component';
 import { MainViewComponent } from './components/main-view/main-view.component';
 import {MatMenuModule} from "@angular/material/menu";
+import { RecyclingProgressComponent } from './components/main-view/recycling-progress/recycling-progress.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import {MatMenuModule} from "@angular/material/menu";
     LoadingSpinnerLoginComponent,
     RecyclingCompanyViewComponent,
     MainNavbarComponent,
-    MainViewComponent
+    MainViewComponent,
+    RecyclingProgressComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import {AuthGuard} from "./components/login/auth.guard";
 import {RecyclingCompanyViewComponent} from "./components/recycling-company-view/recycling-company-view.component";
 import {AuthRecyclingCompanyGuard} from "./components/login/auth-recycling-company.guard";
 import {MainViewComponent} from "./components/main-view/main-view.component";
+import {RecyclingProgressComponent} from "./components/main-view/recycling-progress/recycling-progress.component";
 
 const routes: Routes = [
   {
@@ -26,6 +27,10 @@ const routes: Routes = [
       {
         path: "main-page",
         component: MainPageComponent
+      },
+      {
+        path: "recycling-progress",
+        component: RecyclingProgressComponent
       }
     ]
   },
