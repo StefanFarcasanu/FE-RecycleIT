@@ -54,12 +54,12 @@ export class AddNewVouchersComponent implements OnInit {
     this.payload = jwtDecode(this.token!) as JWTPayload;
   }
 
-  logout() {
-    this.loginService.logout();
-  }
-
   closeAlert() {
     this.success = false;
+  }
+
+  logout() {
+    this.loginService.logout();
   }
 
   openDialog () {
@@ -72,6 +72,7 @@ export class AddNewVouchersComponent implements OnInit {
 
   addNewVoucher() {
     let voucherValue = this.selectedValue.valueOf();
+    console.log(voucherValue);
     let details = document.getElementById("input-details") as HTMLInputElement;
     let noOfVouchers = document.getElementById("input-no-vouchers") as HTMLInputElement;
     this.voucherDto = new VoucherDto(
@@ -79,23 +80,31 @@ export class AddNewVouchersComponent implements OnInit {
       voucherValue,
       details.value,
     );
-    this.voucherService.addNewVoucher(this.voucherDto)
+    this.voucherService.addNewVoucher(this.voucherDto, this.selectedNoVouchers)
       .subscribe((response) => {
         if (response) {
           this.success = true;
           this.errorMessage = '';
           this.openDialog();
+          console.log("aici suntem")
           voucherValue = 0;
           details.value = '';
           noOfVouchers.value = '';
         }
       },
         (err: HttpErrorResponse) => {
+          console.log("why");
           if (err.status === 201) {
             this.openDialog();
+          }
+          if (err.error === "Invalid value!") {
+            this.errorMessage = err.error;
+          }
+          if (err.error === "Invalid number of vouchers!"){
             this.errorMessage = err.error;
           }
         });
+    console.log(details.value);
     console.log("added new voucher");
   }
 }
