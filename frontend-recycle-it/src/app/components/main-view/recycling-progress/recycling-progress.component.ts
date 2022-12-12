@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {RecyclingProgressService} from "../../../services/recycling-progress.service";
-import {RequestModel} from "../../../models/request.model";
 
 @Component({
   selector: 'app-recycling-progress',
@@ -15,19 +14,13 @@ export class RecyclingProgressComponent implements OnInit {
 
   currentActive = 0;
 
-  milestone1: number;
-
-  milestone2: number;
-
-  milestone3: number;
-
-  milestone4: number;
+  milestones : number[] = [];
 
   constructor(private recyclingProgressService: RecyclingProgressService) {
-    this.milestone1 = 0.5;
-    this.milestone2 = 1;
-    this.milestone3 = 2;
-    this.milestone4 = 4;
+    this.milestones.push(0.5);
+    this.milestones.push(1);
+    this.milestones.push(2);
+    this.milestones.push(4);
   }
 
   generateGoalValues() {
@@ -37,22 +30,22 @@ export class RecyclingProgressComponent implements OnInit {
 
           // Populate the milestone values based on the number of vouchers
           if (nrOfVouchers <= 3) {
-            this.milestone1 = 0.5;
+            this.milestones[0] = 0.5;
           } else if (nrOfVouchers <= 7) {
-            this.milestone1 = 6;
+            this.milestones[0] = 6;
           } else if (nrOfVouchers <= 11) {
-            this.milestone1 = 14;
+            this.milestones[0] = 14;
           }
 
           // Treat the case if first milestone is 0.5
-          if (this.milestone1 == 0.5) {
-            this.milestone2 = 1;
-            this.milestone3 = 2;
-            this.milestone4 = 4;
+          if (this.milestones[0] == 0.5) {
+            this.milestones[1] = 1;
+            this.milestones[2] = 2;
+            this.milestones[3] = 4;
           } else {
-            this.milestone2 = this.milestone1 + 2;
-            this.milestone3 = this.milestone2 + 2;
-            this.milestone4 = this.milestone3 + 2;
+            this.milestones[1] = this.milestones[0] + 2;
+            this.milestones[2] = this.milestones[1] + 2;
+            this.milestones[3] = this.milestones[2] + 2;
           }
 
           // Find the current position based on the number of vouchers
@@ -116,14 +109,37 @@ export class RecyclingProgressComponent implements OnInit {
 
     if (this.currentActive > this.circles.length) {
       this.currentActive = 1;
-      // generateGoalValues();
+      this.generateGoalValues();
     }
 
     this.currentActive > this.circles.length && (this.currentActive = this.circles.length);
   };
 
   claimVoucherForCurrentMilestone() {
-    this.incrementCurrent();
-    this.updateCircleState();
+    this.recyclingProgressService.getNextMilestoneForClient()
+      .subscribe(data => {
+        let nextMilestone = data.body;
+
+        if (this.milestones[this.currentActive - 1] < nextMilestone) {
+          this.recyclingProgressService.claimVoucherForClient(this.milestones[this.currentActive - 1])
+            .subscribe(data => {
+
+              // Verify if there is a voucher available
+              if (data.body != null) {
+                this.incrementCurrent();
+                this.updateCircleState();
+                // open modal with voucher
+              } else {
+                // open modal with error
+              }
+            },
+            error => {
+              alert(error);
+            })
+        }
+      },
+      error => {
+        alert("Could not fetch the next milestone!");
+      });
   }
 }
