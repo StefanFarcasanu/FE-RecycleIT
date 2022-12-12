@@ -8,6 +8,9 @@ import {RecyclingCompanyViewComponent} from "./components/recycling-company-view
 import {AuthRecyclingCompanyGuard} from "./components/login/auth-recycling-company.guard";
 import {MainViewComponent} from "./components/main-view/main-view.component";
 import {RecyclingProgressComponent} from "./components/main-view/recycling-progress/recycling-progress.component";
+import {RetailerViewComponent} from "./components/retailer-view/retailer-view.component";
+import {VouchersListComponent} from "./components/retailer-view/vouchers-list/vouchers-list.component";
+import {AuthRetailerGuard} from "./components/login/auth-retailer.guard";
 
 const routes: Routes = [
   {
@@ -45,6 +48,17 @@ const routes: Routes = [
       }
     ]
   },
+  {
+    path: "retailer-view",
+    component: RetailerViewComponent,
+    canActivate: [AuthRetailerGuard],
+    children: [
+      {
+        path: "vouchers-list",
+        component: VouchersListComponent
+      }
+    ]
+  },
 ];
 
 @NgModule({
@@ -54,4 +68,4 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 
-export const RoutingComponents = [LoginComponent, MainViewComponent, MainPageComponent, RequestsListComponent];
+export const RoutingComponents = [LoginComponent, MainViewComponent, MainPageComponent, RequestsListComponent, VouchersListComponent];

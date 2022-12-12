@@ -5,7 +5,8 @@ export class RequestModel {
     private companyId: Number,
     public type: String,
     public quantity: Number,
-    public status: String
+    public status: String,
+    public dateCreated: Date
   ) {
   }
 
@@ -14,7 +15,7 @@ export class RequestModel {
   }
 
   get _clientId() {
-    return this.clientId
+    return this.clientId;
   }
 
   get _companyId() {

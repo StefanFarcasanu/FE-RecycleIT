@@ -26,6 +26,10 @@ import { MainNavbarComponent } from './components/main-view/main-navbar/main-nav
 import { MainViewComponent } from './components/main-view/main-view.component';
 import {MatMenuModule} from "@angular/material/menu";
 import { RecyclingProgressComponent } from './components/main-view/recycling-progress/recycling-progress.component';
+import { RetailerViewComponent } from './components/retailer-view/retailer-view.component';
+import { VouchersListComponent } from './components/retailer-view/vouchers-list/vouchers-list.component';
+import { VoucherComponent } from './components/retailer-view/vouchers-list/voucher/voucher.component';
+import { AddNewVoucherDialogComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +45,12 @@ import { RecyclingProgressComponent } from './components/main-view/recycling-pro
     RecyclingCompanyViewComponent,
     MainNavbarComponent,
     MainViewComponent,
-    RecyclingProgressComponent
+    RecyclingProgressComponent,
+    RecyclingCompanyViewComponent,
+    RetailerViewComponent,
+    VouchersListComponent,
+    VoucherComponent,
+    AddNewVoucherDialogComponent
   ],
   imports: [
     BrowserModule,

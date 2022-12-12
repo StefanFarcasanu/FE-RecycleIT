@@ -70,6 +70,9 @@ export class LoginComponent {
           if (payload.scope === "ROLE_COMPANY") {
             this.router.navigate(["/recycling-company-view/requests-list"]);
           }
+          if (payload.scope === "ROLE_RETAILER") {
+            this.router.navigate(["/retailer-view/vouchers-list"]);
+          }
         },
         error => {
           this.responseError = error.error;
