@@ -12,8 +12,8 @@ export class MainPageOperationsService {
 
   token = localStorage.getItem("token");
 
-  getCompaniesFromClientCounty(clientId: number) {
-    let url = "http://localhost:8080/users?clientId=" + clientId;
+  getCompaniesFromClientCounty() {
+    let url = "http://localhost:8080/users/companies";
     return this.httpClient.get<HttpResponse<any>>(url, {
       headers: {
         'Authorization': "Bearer " + this.token,

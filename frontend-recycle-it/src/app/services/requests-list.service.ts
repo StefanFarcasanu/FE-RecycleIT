@@ -8,7 +8,7 @@ import {JWTPayload} from "../components/login/login.component";
 })
 export class RequestsListService {
 
-  private _requestsUrl: string = "http://localhost:8080/requests?companyId=";
+  private _requestsUrl: string = "http://localhost:8080/requests/company";
 
   constructor(private http: HttpClient) {
   }
@@ -24,6 +24,6 @@ export class RequestsListService {
       observe: "response" as "body"
     };
 
-    return this.http.get<HttpResponse<any>>(this._requestsUrl + payload.sub, httpOptions);
+    return this.http.get<HttpResponse<any>>(this._requestsUrl, httpOptions);
   }
 }
