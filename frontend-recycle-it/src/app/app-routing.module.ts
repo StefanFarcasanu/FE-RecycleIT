@@ -15,7 +15,7 @@ import {AuthRetailerGuard} from "./components/login/auth-retailer.guard";
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'main-view',
+    redirectTo: 'main-view/main-page',
     pathMatch: 'full'
   },
   {
@@ -27,6 +27,11 @@ const routes: Routes = [
     component: MainViewComponent,
     canActivate: [AuthGuard],
     children: [
+      {
+        path: '',
+        redirectTo: 'main-page',
+        pathMatch: 'full'
+      },
       {
         path: "main-page",
         component: MainPageComponent

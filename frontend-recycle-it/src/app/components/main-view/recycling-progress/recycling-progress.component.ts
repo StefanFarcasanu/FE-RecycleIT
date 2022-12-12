@@ -13,7 +13,7 @@ export class RecyclingProgressComponent implements OnInit {
 
   circles! : NodeListOf<HTMLDivElement>;
 
-  currentActive = 1;
+  currentActive = 0;
 
   milestone1: number;
 
@@ -25,38 +25,60 @@ export class RecyclingProgressComponent implements OnInit {
 
   constructor(private recyclingProgressService: RecyclingProgressService) {
     this.milestone1 = 0.5;
-    this.milestone2 = 2 * this.milestone1;
-    this.milestone3 = 2 * this.milestone2;
-    this.milestone4 = 2 * this.milestone3;
+    this.milestone2 = 1;
+    this.milestone3 = 2;
+    this.milestone4 = 4;
   }
 
   generateGoalValues() {
-    this.recyclingProgressService.getNextMilestoneForClient()
+    this.recyclingProgressService.getAllVouchersForClient()
       .subscribe(data => {
-          let nextMilestone = data.body;
+          let nrOfVouchers = data.body.length;
+
+          // Populate the milestone values based on the number of vouchers
+          if (nrOfVouchers <= 3) {
+            this.milestone1 = 0.5;
+          } else if (nrOfVouchers <= 7) {
+            this.milestone1 = 6;
+          } else if (nrOfVouchers <= 11) {
+            this.milestone1 = 14;
+          }
+
+          // Treat the case if first milestone is 0.5
+          if (this.milestone1 == 0.5) {
+            this.milestone2 = 1;
+            this.milestone3 = 2;
+            this.milestone4 = 4;
+          } else {
+            this.milestone2 = this.milestone1 + 2;
+            this.milestone3 = this.milestone2 + 2;
+            this.milestone4 = this.milestone3 + 2;
+          }
+
+          // Find the current position based on the number of vouchers
+          if (nrOfVouchers % 4 < 1) {
+            this.currentActive = 1;
+          } else if (nrOfVouchers % 4 < 2) {
+            for (let i = 0; i < 2; i++) {
+              this.incrementCurrent();
+              this.updateCircleState();
+            }
+          } else if (nrOfVouchers % 4 < 3) {
+            for (let i = 0; i < 3; i++) {
+              this.incrementCurrent();
+              this.updateCircleState();
+            }
+          } else if (nrOfVouchers % 4 < 4) {
+            for (let i = 0; i < 4; i++) {
+              this.incrementCurrent();
+              this.updateCircleState();
+            }
+          }
         },
         error => {
-          alert(error.error)
+          alert("Could not fetch the vouchers for the client!")
         });
   }
-
-  // generateGoalValues() {
-  //   this.recyclingProgressService.getRequestsHistoryForClient()
-  //     .subscribe(data => {
-  //         let totalQuantityRecycledByClient = 0;
-  //
-  //         for (let requestJSON of data.body) {
-  //           if (requestJSON.status == "CONFIRMED") {
-  //             totalQuantityRecycledByClient += requestJSON.quantity
-  //           }
-  //         }
-  //
-  //
-  //       },
-  //       error => {
-  //         alert("Could not fetch the requests history for calculating the total recycled kgs!")
-  //       });
-  // }
 
   ngOnInit(): void {
     this.progressBar = document.querySelector(".js-bar") as HTMLDivElement;
