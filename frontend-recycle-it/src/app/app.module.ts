@@ -22,6 +22,10 @@ import {
 } from './components/recycling-company-view/requests-list/request/request-info-dialog/request-info-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loading-spinner.component';
+import { RetailerViewComponent } from './components/retailer-view/retailer-view.component';
+import { VouchersListComponent } from './components/retailer-view/vouchers-list/vouchers-list.component';
+import { VoucherComponent } from './components/retailer-view/vouchers-list/voucher/voucher.component';
+import { AddNewVoucherDialogComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component';
 import { ManageAccountComponent } from './components/manage-account/manage-account.component';
 
 @NgModule({
@@ -35,6 +39,11 @@ import { ManageAccountComponent } from './components/manage-account/manage-accou
     LoginComponent,
     MainPageComponent,
     LoadingSpinnerLoginComponent,
+    RecyclingCompanyViewComponent,
+    RetailerViewComponent,
+    VouchersListComponent,
+    VoucherComponent,
+    AddNewVoucherDialogComponent
     RecyclingCompanyViewComponent,
     ManageAccountComponent
   ],

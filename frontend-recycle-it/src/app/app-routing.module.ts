@@ -6,6 +6,9 @@ import {MainPageComponent} from "./components/main-page/main-page.component";
 import {AuthGuard} from "./components/login/auth.guard";
 import {RecyclingCompanyViewComponent} from "./components/recycling-company-view/recycling-company-view.component";
 import {AuthRecyclingCompanyGuard} from "./components/login/auth-recycling-company.guard";
+import {RetailerViewComponent} from "./components/retailer-view/retailer-view.component";
+import {VouchersListComponent} from "./components/retailer-view/vouchers-list/vouchers-list.component";
+import {AuthRetailerGuard} from "./components/login/auth-retailer.guard";
 import {ManageAccountComponent} from "./components/manage-account/manage-account.component";
 
 const routes: Routes = [
@@ -35,6 +38,17 @@ const routes: Routes = [
     ]
   },
   {
+    path: "retailer-view",
+    component: RetailerViewComponent,
+    canActivate: [AuthRetailerGuard],
+    children: [
+      {
+        path: "vouchers-list",
+        component: VouchersListComponent
+      }
+    ]
+  },
+  {
     path: "manage-account",
     component: ManageAccountComponent,
 
@@ -48,4 +62,4 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 
-export const RoutingComponents = [LoginComponent, MainPageComponent, RequestsListComponent];
+export const RoutingComponents = [LoginComponent, MainPageComponent, RequestsListComponent, VouchersListComponent];
