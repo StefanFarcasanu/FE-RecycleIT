@@ -1,1 +1,24 @@
-<p>recycling-progress works!</p>
+<main class="container text-center">
+  <h1 style="color: white">Check your progress and claim vouchers!</h1>
+  <hr style="color: white">
+  <div class="progress__container">
+    <div class="progress__bar js-bar"></div>
+    <div class="progress__circle js-circle active">
+      <span id="first-circle" class="progress__span"> {{ milestone1 }} </span>
+    </div>
+    <div class="progress__circle js-circle">
+      <span id="second-circle" class="progress__span"> {{ milestone2 }} </span>
+    </div>
+    <div class="progress__circle js-circle">
+      <span id="third-circle" class="progress__span"> {{ milestone3 }} </span>
+    </div>
+    <div class="progress__circle js-circle">
+      <span id="fourth-circle" class="progress__span"> {{ milestone4 }} </span>
+    </div>
+  </div>
+
+  <hr style="color: white">
+  <div class="wrapper">
+    <button id="claim-voucher-button" type="button" class="btn w-50 js-next" (click)="claimVoucherForCurrentMilestone()">Claim your voucher!</button>
+  </div>
+</main>
