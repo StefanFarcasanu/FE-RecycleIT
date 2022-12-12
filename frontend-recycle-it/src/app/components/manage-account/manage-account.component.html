@@ -9,90 +9,116 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="manage-account.component.css">
 </head>
-<body class="d-flex flex-column" onload="loadUserData()">
+<body class="d-flex flex-column">
 
 <nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="main-page.html">
+    <a class="navbar-brand" routerLink="/main-page">
       <img src="assets/images/small-logo.png" alt="small-logo.png" width="50" height="50" style="" class="d-inline-block align-text-center">
       Recycle It
     </a>
     <div class="d-flex gap-2">
-      <a class="btn btn-dark" href="progress-page.html">
+      <a class="btn btn-dark">
         <i class="fa fa-line-chart" style="color: white;">    My progress</i>
       </a>
-      <a class="btn btn-dark" href="national-statistics.html">
+      <a class="btn btn-dark">
         <i class="fa fa-bar-chart" style="color: white;">    National statistics</i>
       </a>
-      <a class="btn btn-dark" href="vouchers-page.html">
+      <a class="btn btn-dark">
         <i class="fa fa-tag" style="color: white;">    My vouchers</i>
       </a>
       <div class="nav-item dropdown">
         <a class="nav-link" href="#" data-bs-toggle="dropdown" style="color: white" data-toggle="dropdown"><i class="fa fa-user" style="color: white;">    My account</i></a>
         <ul class="dropdown-menu">
-          <li><a class="dropdown-item" href="account-management-page.html">Manage account</a></li>
-          <li><a class="dropdown-item" href="recycling-history-page.html">Recycling history</a></li>
+          <li><a class="dropdown-item" routerLink="/manage-account">Manage account</a></li>
+          <li><a class="dropdown-item">Recycling history</a></li>
         </ul>
       </div>
-      <button type="button" class="btn btn-dark" onclick="logout()">
+      <button type="button" class="btn btn-dark" (click)="logout()">
         <i class="fa fa-sign-out" style="color: white;">    Logout</i>
       </button>
     </div>
   </div>
 </nav>
 
-<form action="" method="post" class="form-update-account text-center">
+<form action="" method="post" class="form-update-account text-center" [formGroup]="updateAccountForm" (ngSubmit)="onSubmit(updateAccountForm)">
   <h2 style="color: white">Account management</h2>
   <div class="form-floating mb-3">
-    <input type="text" class="form-control mb-3" id="input-first-name" name="input-first-name" placeholder="Enter your first name...">
+    <input type="text" class="form-control mb-3" id="input-first-name" name="input-first-name" formControlName="firstName" placeholder="Enter your first name...">
+<!--    [(ngModel)]="_firstname"-->
     <label for="input-first-name">Change your first name</label>
     <div id="first-name-tooltip">
+      <small class="error-message"
+             *ngIf="updateAccountForm.controls.firstName.touched && updateAccountForm.controls.firstName.errors?.['required']">
+        Please enter your first name!
+      </small>
     </div>
   </div>
   <div class="form-floating mb-3">
-    <input type="text" class="form-control mb-3" id="input-last-name" name="input-last-name" placeholder="Enter your last name...">
+    <input type="text" class="form-control mb-3" id="input-last-name" name="input-last-name" formControlName="lastName" placeholder="Enter your last name...">
+<!--    [(ngModel)]="_lastname"-->
     <label for="input-last-name">Change your last name</label>
     <div id="last-name-tooltip">
+      <small class="error-message"
+             *ngIf="updateAccountForm.controls.lastName.touched && updateAccountForm.controls.lastName.errors?.['required']">
+        Please enter your last name!
+      </small>
     </div>
   </div>
   <div class="form-floating mb-3">
-    <input disabled type="email" class="form-control mb-3" id="input-email" name="input-email" placeholder="Enter your email address...">
+    <input type="email" class="form-control mb-3" id="input-email" name="input-email" formControlName="email"
+            placeholder="Enter your email address...">
+<!--    [(ngModel)]="_email"-->
     <label for="input-email">Email address</label>
     <div id="email-tooltip">
+      <small class="error-message"
+             *ngIf="updateAccountForm.controls.email.touched && updateAccountForm.controls.email.errors?.['required']">
+        Please enter email address!
+      </small>
     </div>
   </div>
   <div class="form-floating mb-3">
-    <input disabled type="text" class="form-control mb-3" id="input-county" name="input-county" placeholder="Enter your county...">
+    <input type="text" class="form-control mb-3" id="input-county" name="input-county" formControlName="county"
+          placeholder="Enter your county...">
+<!--    [(ngModel)]="_county"-->
     <label for="input-county">County</label>
     <div id="county-tooltip">
     </div>
   </div>
   <div class="form-floating mb-3">
-    <input disabled type="text" class="form-control mb-3" id="input-city" name="input-city" placeholder="Enter your city...">
+    <input type="text" class="form-control mb-3" id="input-city" name="input-city" formControlName="city"
+            placeholder="Enter your city...">
+<!--    [(ngModel)]="_city"-->
     <label for="input-city">City</label>
     <div id="city-tooltip">
     </div>
   </div>
   <div class="form-floating mb-3">
-    <input disabled type="text" class="form-control mb-3" id="input-address" name="input-address" placeholder="Enter your address...">
-    <label for="input-address">Address</label>
-    <div id="address-tooltip">
-    </div>
-  </div>
-  <div class="form-floating mb-3">
-    <input type="password" class="form-control mb-3" id="input-password" name="input-password" placeholder="Enter your password...">
+    <input type="password" class="form-control mb-3" id="input-password" name="input-password" formControlName="password"
+           placeholder="Enter your password...">
+<!--    [(ngModel)]="_password"-->
     <label for="input-password">New password</label>
     <div id="password-tooltip">
+      <small class="error-message"
+             *ngIf="updateAccountForm.controls.password.touched && updateAccountForm.controls.password.errors?.['required']">
+        Please enter the password!
+      </small>
     </div>
   </div>
   <div class="form-floating mb-3">
-    <input type="password" class="form-control mb-3" id="input-repeat-password" name="input-repeat-password" placeholder="Confirm your password...">
+    <input type="password" class="form-control mb-3" id="input-repeat-password" name="input-repeat-password"
+           formControlName="confirmPassword" placeholder="Confirm your password...">
     <label for="input-repeat-password">Confirm new password</label>
     <div id="repeat-password-tooltip">
+      <small class="error-message"
+             *ngIf="updateAccountForm.controls.confirmPassword.touched && updateAccountForm.controls.confirmPassword.errors?.['required']">
+        Please confirm the password!
+      </small>
     </div>
   </div>
   <hr style="color: white">
-  <button type="button" class="btn btn-primary w-100 mb-2" id="update-account-button" onclick="sendUpdateAccountRequest()">Save changes</button>
+  <button type="submit" class="btn btn-primary w-100 mb-2" id="update-account-button">Save changes</button>
+<!--  (click)="updateAccount()-->
   <a class="btn btn-secondary w-100 mb-2" routerLink="/main-page" role="button" id="back-button">Back</a>
 </form>
 

@@ -1,4 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import {Router} from "@angular/router";
+import {MainPageOperationsService} from "../../services/main-page-operations.service";
+import {LoginService} from "../../services/login-service";
+import jwtDecode from "jwt-decode";
+import {JWTPayload} from "../main-page/main-page.component";
+import {RequestInfoService} from "../../services/request-info.service";
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {UserDto} from "../../models/userDto";
+import {useAnimation} from "@angular/animations";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-manage-account',
@@ -7,114 +17,141 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageAccountComponent implements OnInit {
 
-  constructor() { }
+  token!: string | null;
+  payload: any;
+  _clientId!: number;
+  _firstname!: string;
+  _lastname!: string;
+  _email!: string;
+  _password!: string;
+  _county!: string;
+  _city!: string;
+  userUpdatedDto!: UserDto;
+
+  constructor(private router: Router, private mainService: MainPageOperationsService, private loginService: LoginService) { }
+
+  updateAccountForm = new FormGroup({
+    firstName: new FormControl('', [Validators.required]),
+    lastName: new FormControl('', [Validators.required]),
+    email: new FormControl({value: '', disabled:true}, [Validators.required]),
+    password: new FormControl('', [Validators.required]),
+    confirmPassword: new FormControl('', [Validators.required]),
+    city: new FormControl({value: '', disabled:true}, [Validators.required]),
+    county: new FormControl({value: '', disabled:true}, [Validators.required]),
+  });
+
+  showFirstNameError = false;
+  showLastNameError = false;
+  showPasswordError = false;
+  showPasswordsUnmatch = false;
+  showConfirmPasswordError = false;
+
+  isLoading = false;
+  responseError = null;
+
+  messageError = [''];
+
 
   ngOnInit(): void {
+    this.mainService.getClientDetails().subscribe(
+      data => {
+          let userJSON = data.body;
+          this.updateAccountForm.controls['firstName'].setValue(userJSON.firstname);
+          this.updateAccountForm.controls['lastName'].setValue(userJSON.lastname);
+          this.updateAccountForm.controls['email'].setValue(userJSON.email);
+          this.updateAccountForm.controls['county'].setValue(userJSON.county);
+          this.updateAccountForm.controls['city'].setValue(userJSON.city);
+          this.updateAccountForm.controls['password'].setValue(userJSON.password);
+          this._email = userJSON.email;
+          this._county = userJSON.county;
+          this._city = userJSON.city;
+      },
+      error => {
+        alert("There was an error fetching the details of the client!")
+      }
+    );
   }
 
-  // function clearValidationTooltips() {
-  //   document.getElementById("input-first-name").classList.remove("is-invalid", "is-valid");
-  //   document.getElementById("input-last-name").classList.remove("is-invalid", "is-valid");
-  //   document.getElementById("input-password").classList.remove("is-invalid", "is-valid");
-  //   document.getElementById("input-repeat-password").classList.remove("is-invalid", "is-valid");
-  //
-  //   document.getElementById("first-name-tooltip").classList.remove("invalid-tooltip", "valid-tooltip");
-  //   document.getElementById("first-name-tooltip").innerHTML = "";
-  //   document.getElementById("last-name-tooltip").classList.remove("invalid-tooltip", "valid-tooltip");
-  //   document.getElementById("last-name-tooltip").innerHTML = "";
-  //   document.getElementById("password-tooltip").classList.remove("invalid-tooltip", "valid-tooltip");
-  //   document.getElementById("password-tooltip").innerHTML = "";
-  //   document.getElementById("repeat-password-tooltip").classList.remove("invalid-tooltip", "valid-tooltip");
-  //   document.getElementById("repeat-password-tooltip").innerHTML = "";
-  // }
-  //
-  // function logout() {
-  //   localStorage.removeItem("currentUser");
-  //   document.location.href = "login.html";
-  // }
-  //
-  // function loadUserData() {
-  //   let xhr = new XMLHttpRequest();
-  //   let url = "http://localhost:8080/usercontroller/user-rest-service/user";
-  //   xhr.open("GET", url, true);
-  //   xhr.setRequestHeader("Content-Type", "application/json");
-  //   xhr.setRequestHeader("Authorization", localStorage.getItem("currentUser"));
-  //   xhr.onreadystatechange = function () {
-  //     if (xhr.readyState === 4 && xhr.status === 200) {
-  //       clearValidationTooltips();
-  //       let firstName = JSON.parse(xhr.responseText)["firstName"];
-  //       let lastName = JSON.parse(xhr.responseText)["lastName"];
-  //       let email = JSON.parse(xhr.responseText)["mail"];
-  //       let county = JSON.parse(xhr.responseText)["county"];
-  //       let city = JSON.parse(xhr.responseText)["city"];
-  //       let address = JSON.parse(xhr.responseText)["address"];
-  //
-  //       document.getElementById("input-first-name").value = firstName;
-  //       document.getElementById("input-last-name").value = lastName;
-  //       document.getElementById("input-email").value = email;
-  //       document.getElementById("input-county").value = county;
-  //       document.getElementById("input-city").value = city;
-  //       document.getElementById("input-address").value = address;
-  //     }
-  //   }
-  //
-  //   xhr.send(null);
-  // }
-  //
-  // function sendUpdateAccountRequest() {
-  //   let xhr = new XMLHttpRequest();
-  //   let url = "http://localhost:8080/usercontroller/user-rest-service/update";
-  //   xhr.open("PUT", url, true);
-  //   xhr.setRequestHeader("Content-Type", "application/json");
-  //   xhr.setRequestHeader("Authorization", localStorage.getItem("currentUser"));
-  //   xhr.onreadystatechange = function () {
-  //     if (xhr.readyState === 4 && xhr.status === 200) {
-  //       clearValidationTooltips();
-  //       if (password !== repeatPassword) {
-  //         document.getElementById("input-password").classList.add("is-invalid");
-  //         document.getElementById("input-repeat-password").classList.add("is-invalid");
-  //         document.getElementById("password-tooltip").classList.add("invalid-tooltip");
-  //         document.getElementById("repeat-password-tooltip").classList.add("invalid-tooltip");
-  //         document.getElementById("password-tooltip").innerHTML = "Passwords do not match!";
-  //         document.getElementById("repeat-password-tooltip").innerHTML = "Passwords do not match!";
-  //       } else
-  //         document.location.href = "update-account-success.html";
-  //     }
-  //     if (xhr.readyState === 4 && xhr.status === 404) {
-  //       clearValidationTooltips();
-  //       if (xhr.responseText.includes("first name")) {
-  //         document.getElementById("input-first-name").classList.add("is-invalid");
-  //         document.getElementById("first-name-tooltip").classList.add("invalid-tooltip");
-  //         document.getElementById("first-name-tooltip").innerHTML = "Invalid first name!";
-  //       }
-  //       if (xhr.responseText.includes("last name")) {
-  //         document.getElementById("input-last-name").classList.add("is-invalid");
-  //         document.getElementById("last-name-tooltip").classList.add("invalid-tooltip");
-  //         document.getElementById("last-name-tooltip").innerHTML = "Invalid last name!";
-  //       }
-  //       if (xhr.responseText.includes("password")) {
-  //         document.getElementById("input-password").classList.add("is-invalid");
-  //         document.getElementById("password-tooltip").classList.add("invalid-tooltip");
-  //         document.getElementById("password-tooltip").innerHTML = "Invalid password! Password must be at least 10 characters long!";
-  //       }
-  //       if (password !== repeatPassword) {
-  //         document.getElementById("input-password").classList.add("is-invalid");
-  //         document.getElementById("input-repeat-password").classList.add("is-invalid");
-  //         document.getElementById("password-tooltip").classList.add("invalid-tooltip");
-  //         document.getElementById("repeat-password-tooltip").classList.add("invalid-tooltip");
-  //         document.getElementById("password-tooltip").innerHTML = "Passwords do not match!";
-  //         document.getElementById("repeat-password-tooltip").innerHTML = "Passwords do not match!";
-  //       }
-  //     }
-  //   }
-  //
-  //   let firstName = document.getElementById("input-first-name").value;
-  //   let lastName = document.getElementById("input-last-name").value;
-  //   let password = document.getElementById("input-password").value;
-  //   let repeatPassword = document.getElementById("input-repeat-password").value;
-  //
-  //   let updateData = JSON.stringify({"firstName": firstName, "lastName": lastName, "password": password});
-  //   xhr.send(updateData);
-  // }
+  logout() {
+    this.loginService.logout();
+  }
 
+
+  onSubmit(form: FormGroup) {
+    const firstName = form.value.firstName;
+    const lastName = form.value.lastName;
+    const email = this._email;
+    const password = form.value.password;
+    const city = this._city;
+    const county = this._county;
+    const confirmPassword = form.value.confirmPassword;
+
+    this.showFirstNameError = false;
+    this.showLastNameError = false;
+    this.showPasswordError = false;
+    this.showPasswordsUnmatch = false;
+    this.showConfirmPasswordError = false;
+
+    this.responseError = null;
+
+    if (firstName === null || firstName === "") {
+      this.showFirstNameError = true;
+    }
+
+    if (lastName === null || lastName === "") {
+      this.showLastNameError = true;
+    }
+
+    if (password === null || password === "" || password.length < 8) {
+      this.showPasswordError = true;
+    }
+
+    if (password !== confirmPassword) {
+      this.showPasswordsUnmatch = true;
+    }
+
+    if (confirmPassword === null || confirmPassword === "") {
+      this.showConfirmPasswordError = true;
+    }
+
+    if (email && password && firstName && lastName && city && county) {
+      this.isLoading = true;
+      this.userUpdatedDto = new UserDto(firstName, lastName, email, password, county, city);
+      this.mainService.updateClientAccount(this._clientId, this.userUpdatedDto)
+        .subscribe((response) => {
+            if (response) {
+              this.isLoading = false;
+              this.responseError = null;
+              console.log("here");
+            }
+          },
+          (err: HttpErrorResponse) => {
+            this.responseError = err.error;
+            this.isLoading = false;
+          });
+      this.router.navigate(["/login"]);
+      } else {
+        let error = String("Register failed because:\n");
+
+        if (this.showFirstNameError) {
+          error += "Invalid First Name!\n";
+        }
+
+        if (this.showLastNameError) {
+          error += "Invalid Last Name!\n";
+        }
+
+        if (this.showPasswordError) {
+          error += "Invalid Password!\n";
+        }
+
+        if (this.showPasswordsUnmatch) {
+          error += "Passwords do not match!\n";
+        }
+        if (error !== '') {
+          alert(error);
+           //form.reset();
+        }
+    }
+  }
 }

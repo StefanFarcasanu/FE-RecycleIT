@@ -28,7 +28,6 @@ export class MainPageComponent implements OnInit {
   recycleRequest!: RecycleRequestDto;
   payload: any;
   errorMessage: string = "";
-  severity: string = "";
   success: boolean = false;
 
   constructor(private router: Router, private mainService: MainPageOperationsService, private loginService: LoginService) { }
@@ -36,7 +35,6 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.token = (localStorage.getItem("token")) ? localStorage.getItem("token") : "";
     this.payload = jwtDecode(this.token!) as JWTPayload;
-    console.log(this.payload.sub);
     this.populateDropdown(this.payload.sub);
   }
 
@@ -47,17 +45,14 @@ export class MainPageComponent implements OnInit {
   populateDropdown(clientId: number) {
     this.mainService.getCompaniesFromClientCounty(clientId).subscribe(
       data => {
-        console.log(typeof data);
         for (let companyJson of data.body) {
           this.companies.push(new UserDto(
-            companyJson.id,
             companyJson.firstname,
             companyJson.lastname,
             companyJson.email,
             companyJson.password,
             companyJson.county,
             companyJson.city,
-            companyJson.role
           ))
         }
       });
