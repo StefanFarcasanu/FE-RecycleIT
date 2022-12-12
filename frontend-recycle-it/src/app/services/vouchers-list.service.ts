@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import jwtDecode from "jwt-decode";
 import {JWTPayload} from "../components/login/login.component";
@@ -6,16 +6,15 @@ import {JWTPayload} from "../components/login/login.component";
 @Injectable({
   providedIn: 'root'
 })
-export class RequestsListService {
+export class VouchersListService {
 
-  private _requestsUrl: string = "http://localhost:8080/requests/company";
+  private _vouchersUrl: string = "http://localhost:8080/vouchers/client";
 
   constructor(private http: HttpClient) {
   }
 
-  getAllRequestsForCompany() {
+  getAllVouchersForRetailer() {
     const _token: string = localStorage.getItem("token")!;
-    const payload = jwtDecode(_token) as JWTPayload;
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
@@ -24,6 +23,6 @@ export class RequestsListService {
       observe: "response" as "body"
     };
 
-    return this.http.get<HttpResponse<any>>(this._requestsUrl, httpOptions);
+    return this.http.get<HttpResponse<any>>(this._vouchersUrl, httpOptions);
   }
 }
