@@ -27,7 +27,6 @@ import { VouchersListComponent } from './components/retailer-view/vouchers-list/
 import { VoucherComponent } from './components/retailer-view/vouchers-list/voucher/voucher.component';
 import { AddNewVoucherDialogComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component';
 import { AddNewVouchersComponent } from './components/add-new-vouchers/add-new-vouchers.component';
-import {DatepickerDropdownPositionY, MatDatepickerModule} from "@angular/material/datepicker";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import { SuccessfulPopUpComponent } from './components/add-new-vouchers/successful-pop-up/successful-pop-up.component';
@@ -47,7 +46,7 @@ import { SuccessfulPopUpComponent } from './components/add-new-vouchers/successf
     RetailerViewComponent,
     VouchersListComponent,
     VoucherComponent,
-    AddNewVoucherDialogComponent
+    AddNewVoucherDialogComponent,
     RecyclingCompanyViewComponent,
     AddNewVouchersComponent,
     SuccessfulPopUpComponent
@@ -63,7 +62,6 @@ import { SuccessfulPopUpComponent } from './components/add-new-vouchers/successf
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    MatDatepickerModule,
     MatFormFieldModule,
     MatSelectModule,
   ],

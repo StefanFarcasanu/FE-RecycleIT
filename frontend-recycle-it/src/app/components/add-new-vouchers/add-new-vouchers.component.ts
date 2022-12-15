@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from "@angular/router";
 
 import {LoginService} from "../../services/login-service";
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, Validators} from "@angular/forms";
 import jwtDecode from "jwt-decode";
 import {JWTPayload} from "../main-page/main-page.component";
 import {VoucherDto} from "../../models/voucherDto";
