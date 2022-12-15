@@ -1,0 +1,45 @@
+<nav class="navbar navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/main-view/main-page">
+      <img src="../../../../assets/small-logo.png" alt="small-logo.png" width="50" height="50" style=""
+           class="d-inline-block align-text-center">
+      Recycle IT
+    </a>
+    <div class="d-flex gap-2">
+      <button type="button" class="btn btn-dark" routerLink="/main-view/recycling-progress">
+        <div class="gap-2 with-icon">
+          <mat-icon fontIcon="moving"></mat-icon>
+          My Progress
+        </div>
+      </button>
+      <button type="button" class="btn btn-dark">
+        <div class="gap-2 with-icon">
+          <mat-icon fontIcon="bar_chart"></mat-icon>
+          National Statistics
+        </div>
+      </button>
+      <button type="button" class="btn btn-dark">
+        <div class="gap-2 with-icon">
+          <mat-icon fontIcon="local_offer"></mat-icon>
+          My Vouchers
+        </div>
+      </button>
+      <button type="button" class="btn btn-dark" [matMenuTriggerFor]="menu">
+        <div class="gap-2 with-icon">
+          <mat-icon fontIcon="person"></mat-icon>
+          My Account
+        </div>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>Manage account</button>
+          <button mat-menu-item>Recycling history</button>
+        </mat-menu>
+      </button>
+      <button type="button" class="btn btn-dark" (click)="logout()">
+        <div class="gap-2 with-icon">
+          <mat-icon fontIcon="logout"></mat-icon>
+          Logout
+        </div>
+      </button>
+    </div>
+  </div>
+</nav>

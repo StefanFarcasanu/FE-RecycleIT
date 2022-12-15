@@ -1,0 +1,27 @@
+<div *ngIf="_isError">
+  <div class="info-text">
+    There are no vouchers available at this time!
+  </div>
+  <div class="close-button-container">
+    <button type="button" class="close-dialog-button" (click)="closeDialog()">Close</button>
+  </div>
+</div>
+<div class="container-fluid text-center voucher" *ngIf="!_isError">
+  <div class="row">
+    <div class="col">
+      <mat-icon class="icon-display" fontIcon="local_offer" size="100px"></mat-icon>
+      {{ _value }} RON
+    </div>
+    <div class="col">
+      <textarea class="details-text" [value]="_details" disabled>
+      </textarea>
+    </div>
+    <div class="col">
+      <textarea class="details-text" [value]="'Exp: ' + _validUntil" disabled>
+      </textarea>
+    </div>
+  </div>
+  <div class="close-button-container">
+    <button type="button" class="close-dialog-button" (click)="closeDialog()">Close</button>
+  </div>
+</div>
