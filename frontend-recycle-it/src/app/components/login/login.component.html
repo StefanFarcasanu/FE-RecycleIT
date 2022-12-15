@@ -22,8 +22,8 @@
     <label for="input-email" class="form-label">Email address</label>
     <div id="email-tooltip"></div>
     <small class="error-message"
-           *ngIf="loginForm.controls.email.touched && loginForm.controls.email.errors?.['required']">
-      Please enter email address!
+           *ngIf="showEmailError">
+      Invalid email!
     </small>
   </div>
   <div class="form-floating mb-3">
@@ -32,8 +32,8 @@
     <label for="input-password">Password</label>
     <div id="password-tooltip">
       <small class="error-message"
-             *ngIf="loginForm.controls.password.touched && loginForm.controls.password.errors?.['required']">
-        Please enter the password!
+             *ngIf="showPasswordError">
+        Invalid password!
       </small>
     </div>
     <small class="error-message"
