@@ -31,6 +31,7 @@ import { VouchersListComponent } from './components/retailer-view/vouchers-list/
 import { VoucherComponent } from './components/retailer-view/vouchers-list/voucher/voucher.component';
 import { AddNewVoucherDialogComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component';
 import { RecyclingProgressDialogComponent } from './components/main-view/recycling-progress/recycling-progress-dialog/recycling-progress-dialog.component';
+import {RegisterComponent} from './components/register/register.component';
 
 @NgModule({
   declarations: [
@@ -47,12 +48,12 @@ import { RecyclingProgressDialogComponent } from './components/main-view/recycli
     MainNavbarComponent,
     MainViewComponent,
     RecyclingProgressComponent,
-    RecyclingCompanyViewComponent,
     RetailerViewComponent,
     VouchersListComponent,
     VoucherComponent,
     AddNewVoucherDialogComponent,
-    RecyclingProgressDialogComponent
+    RecyclingProgressDialogComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

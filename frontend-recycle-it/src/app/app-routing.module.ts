@@ -11,12 +11,17 @@ import {RecyclingProgressComponent} from "./components/main-view/recycling-progr
 import {RetailerViewComponent} from "./components/retailer-view/retailer-view.component";
 import {VouchersListComponent} from "./components/retailer-view/vouchers-list/vouchers-list.component";
 import {AuthRetailerGuard} from "./components/login/auth-retailer.guard";
+import {RegisterComponent} from "./components/register/register.component";
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'main-view/main-page',
     pathMatch: 'full'
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'login',
