@@ -1,17 +1,19 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginService} from "../../services/login-service";
 import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {RegisterService} from "../../services/register-service";
-import jwtDecode from "jwt-decode";
-import {JWTPayload} from "../login/login.component";
+import {CountyModel} from "../../models/county.model";
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit {
+
+  ngOnInit(): void {
+    this.getAllCounties();
+  }
 
   constructor(private registerService: RegisterService, private router: Router) {
   }
@@ -26,7 +28,6 @@ export class RegisterComponent {
     county: new FormControl('', [Validators.required]),
   });
 
-
   showFirstNameError = false;
   showLastNameError = false;
   showEmailError = false;
@@ -35,17 +36,11 @@ export class RegisterComponent {
   showCountyError = false;
   showPasswordsUnmatch = false;
   showConfirmPasswordError = false;
-
   isLoading = false;
-  responseError = null;
-
   selectedCounty = "";
   selectedCity = "";
-
-  countiesList = ['County'];
+  countiesList = [new CountyModel("", "County")];
   citiesList = ['City'];
-
-  messageError = [''];
 
   onSubmit(form: FormGroup) {
     const firstName = form.value.firstName;
@@ -64,8 +59,6 @@ export class RegisterComponent {
     this.showCountyError = false;
     this.showPasswordsUnmatch = false;
     this.showConfirmPasswordError = false;
-
-    this.responseError = null;
 
     if (firstName == null || firstName == "") {
       this.showFirstNameError = true;
@@ -100,52 +93,44 @@ export class RegisterComponent {
       this.showConfirmPasswordError = true;
     }
 
-    if (email && password && firstName && lastName && city && county) {
+    if (!this.showFirstNameError &&
+      !this.showLastNameError &&
+      !this.showCountyError &&
+      !this.showCityError &&
+      !this.showEmailError &&
+      !this.showPasswordError &&
+      !this.showConfirmPasswordError &&
+      !this.showPasswordsUnmatch
+    ) {
+
       this.isLoading = true;
       this.registerService.register(firstName, lastName, email, password, city, county).subscribe(() => {
           this.isLoading = false;
-          this.responseError = null;
+          this.router.navigate(["/login"]);
         },
         error => {
-          this.responseError = error.error;
+          let errors = error.error;
+
+          if (errors.includes("first name")) {
+            this.showFirstNameError = true;
+          }
+          if (errors.includes("last name")) {
+            this.showLastNameError = true;
+          }
+          if (errors.includes("password")) {
+            this.showPasswordError = true;
+          }
+          if (errors.includes("email")) {
+            this.showEmailError = true;
+          }
+          if (errors.includes("county")) {
+            this.showCountyError = true;
+          }
+          if (errors.includes("city")) {
+            this.showCityError = true;
+          }
           this.isLoading = false;
         });
-      this.router.navigate(["/login"])
-    } else {
-      let error = String("Register failed because:\n");
-
-      if (this.showFirstNameError) {
-        error += "Invalid First Name!\n";
-      }
-
-      if (this.showLastNameError) {
-        error += "Invalid Last Name!\n";
-      }
-
-      if (this.showEmailError) {
-        error += "Invalid Email!\n";
-      }
-
-      if (this.showPasswordError) {
-        error += "Invalid Password!\n";
-      }
-
-      if (this.showPasswordsUnmatch) {
-        error += "Passwords do not match!\n";
-      }
-
-      if (this.showCountyError) {
-        error += "County not selected!\n";
-      }
-
-      if (this.showCityError) {
-        error += "City not selected!\n";
-      }
-
-      if (error != '') {
-        alert(error);
-        // form.reset();
-      }
     }
   }
 
@@ -154,13 +139,13 @@ export class RegisterComponent {
   }
 
   getCitiesFromCounty(county: string) {
-    console.log("Selected county: " + county)
+    console.log(county);
     this.selectedCounty = county;
     fetch("https://roloca.coldfuse.io/orase/" + county)
       .then(response => response.json())
       .then(response => {
+        this.citiesList = ['City'];
         for (let i = 0; i < response.length; i++) {
-          console.log(response[i].nume)
           this.citiesList.push(response[i].nume)
         }
       });
@@ -170,12 +155,11 @@ export class RegisterComponent {
     fetch("https://roloca.coldfuse.io/judete")
       .then(response => response.json())
       .then(response => {
+        this.countiesList = [new CountyModel("", "County")];
         for (let i = 0; i < response.length; i++) {
-          console.log(response[i].nume)
-          this.countiesList.push(response[i].auto)
+          this.countiesList.push(new CountyModel(response[i].auto, response[i].nume))
         }
       });
-    console.log(this.countiesList)
   }
 
   emailPattern(email: string) {

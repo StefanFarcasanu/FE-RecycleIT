@@ -12,7 +12,7 @@ export class RegisterService {
 
   registerUrl: string = "http://localhost:8080/users/register";
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
   }
 
   register(firstName: string, lastName: string, email: string, password: string, city: string, county: string) {
