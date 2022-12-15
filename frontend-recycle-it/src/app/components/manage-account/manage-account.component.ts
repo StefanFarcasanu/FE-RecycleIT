@@ -22,6 +22,7 @@ export class ManageAccountComponent implements OnInit {
   _password!: string;
   _county!: string;
   _city!: string;
+  _role!: string;
   userUpdatedDto!: UserDto;
 
   constructor(private router: Router, private mainService: MainPageOperationsService, private loginService: LoginService) { }
@@ -58,6 +59,7 @@ export class ManageAccountComponent implements OnInit {
           this._email = userJSON.email;
           this._county = userJSON.county;
           this._city = userJSON.city;
+          this._role = userJSON.role;
       },
       error => {
         alert("There was an error fetching the details of the client!")
@@ -109,13 +111,14 @@ export class ManageAccountComponent implements OnInit {
 
     if (email && password && firstName && lastName && city && county) {
       this.isLoading = true;
-      this.userUpdatedDto = new UserDto(this._clientId, firstName, lastName, email, password, county, city, "");
+      this.userUpdatedDto = new UserDto(this._clientId, firstName, lastName, email, password, county, city, this._role);
+      console.log(this.userUpdatedDto);
       this.mainService.updateClientAccount(this._clientId, this.userUpdatedDto)
         .subscribe((response) => {
             if (response) {
               this.isLoading = false;
               this.responseError = null;
-              console.log("here");
+              alert("The account has been updated! Login again!");
             }
           },
           (err: HttpErrorResponse) => {
