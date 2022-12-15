@@ -4,12 +4,12 @@ import {Router} from "@angular/router";
 import {LoginService} from "../../services/login-service";
 import {FormControl, Validators} from "@angular/forms";
 import jwtDecode from "jwt-decode";
-import {JWTPayload} from "../main-page/main-page.component";
 import {VoucherDto} from "../../models/voucherDto";
 import {VouchersService} from "../../services/vouchers.service";
 import { MatDialog} from "@angular/material/dialog";
 import {SuccessfulPopUpComponent} from "./successful-pop-up/successful-pop-up.component";
 import {HttpErrorResponse} from "@angular/common/http";
+import {JWTPayload} from "../main-view/main-page/main-page.component";
 
 interface VoucherValue {
   id: number;
@@ -93,10 +93,10 @@ export class AddNewVouchersComponent implements OnInit {
         }
       },
         (err: HttpErrorResponse) => {
-          console.log("why");
-          if (err.status === 201) {
-            this.openDialog();
-          }
+          // console.log("why");
+          // if (err.status === 201) {
+          //   this.openDialog();
+          // }
           if (err.error === "Invalid value!") {
             this.errorMessage = err.error;
           }

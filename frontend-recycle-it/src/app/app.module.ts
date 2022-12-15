@@ -56,7 +56,7 @@ import { SuccessfulPopUpComponent } from './components/add-new-vouchers/successf
     VouchersListComponent,
     VoucherComponent,
     AddNewVoucherDialogComponent,
-    RecyclingProgressDialogComponent
+    RecyclingProgressDialogComponent,
     AddNewVoucherDialogComponent,
     RecyclingCompanyViewComponent,
     AddNewVouchersComponent,

@@ -1,12 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {MainPageOperationsService} from "../../../services/main-page-operations.service";
-import {lastValueFrom} from "rxjs";
 import {RecycleRequestDto} from "../../../models/recycleRequestDto";
 import {UserDto} from "../../../models/userDto";
 import jwtDecode from "jwt-decode";
 import {HttpErrorResponse} from "@angular/common/http";
-import {LoginService} from "../../../services/login-service";
 
 export interface JWTPayload {
   sub: number,
@@ -28,7 +26,6 @@ export class MainPageComponent implements OnInit {
   recycleRequest!: RecycleRequestDto;
   payload: any;
   errorMessage: string = "";
-  severity: string = "";
   success: boolean = false;
 
   constructor(private router: Router, private mainService: MainPageOperationsService) { }
@@ -73,6 +70,7 @@ export class MainPageComponent implements OnInit {
       wasteType.value,
       "PENDING"
     );
+    console.log(this.recycleRequest);
 
     this.mainService.addRecycledWaste(this.recycleRequest)
       .subscribe((response) => {

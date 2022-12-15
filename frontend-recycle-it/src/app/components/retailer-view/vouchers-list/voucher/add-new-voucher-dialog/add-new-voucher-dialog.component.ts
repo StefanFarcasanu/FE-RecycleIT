@@ -4,11 +4,11 @@ import {FormControl, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {VouchersService} from "../../../../../services/vouchers.service";
 import {LoginService} from "../../../../../services/login-service";
-import {MatDialog} from "@angular/material/dialog";
+import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import jwtDecode from "jwt-decode";
-import {JWTPayload} from "../../../../main-page/main-page.component";
 import {SuccessfulPopUpComponent} from "../../../../add-new-vouchers/successful-pop-up/successful-pop-up.component";
 import {HttpErrorResponse} from "@angular/common/http";
+import {JWTPayload} from "../../../../main-view/main-page/main-page.component";
 
 interface VoucherValue {
   id: number;
@@ -24,7 +24,8 @@ interface VoucherValue {
 export class AddNewVoucherDialogComponent implements OnInit {
 
   constructor(private router: Router, private voucherService: VouchersService, private loginService: LoginService,
-              private dialogRef: MatDialog) { }
+              private dialogRef: MatDialogRef<AddNewVoucherDialogComponent>,
+              private dialogSuccess: MatDialog) { }
 
   ngOnInit(): void {
     this.token = (localStorage.getItem("token")) ? localStorage.getItem("token") : "";
@@ -54,22 +55,18 @@ export class AddNewVoucherDialogComponent implements OnInit {
     {id: 10, value: 160},  {id: 11, value: 180},  {id: 12, value: 200}
   ];
 
-
-  closeAlert() {
-    this.success = false;
-  }
-
-  logout() {
-    this.loginService.logout();
-  }
-
-  openDialog () {
-    this.dialogRef.open(SuccessfulPopUpComponent, {
+  openSuccess() {
+    this.dialogSuccess.open(SuccessfulPopUpComponent, {
       data: {
-        name: "Samule"
+        name: "Success!"
       }
     });
   }
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
 
   addNewVoucher() {
     let voucherValue = this.selectedValue.valueOf();
@@ -86,18 +83,14 @@ export class AddNewVoucherDialogComponent implements OnInit {
           if (response) {
             this.success = true;
             this.errorMessage = '';
-            this.openDialog();
-            console.log("aici suntem")
+            this.closeDialog();
+            this.openSuccess();
             voucherValue = 0;
             details.value = '';
             noOfVouchers.value = '';
           }
         },
         (err: HttpErrorResponse) => {
-          console.log("why");
-          if (err.status === 201) {
-            this.openDialog();
-          }
           if (err.error === "Invalid value!") {
             this.errorMessage = err.error;
           }
@@ -105,7 +98,5 @@ export class AddNewVoucherDialogComponent implements OnInit {
             this.errorMessage = err.error;
           }
         });
-    console.log(details.value);
-    console.log("added new voucher");
   }
 }
