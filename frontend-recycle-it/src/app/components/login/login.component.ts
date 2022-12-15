@@ -56,7 +56,7 @@ export class LoginComponent {
       this.showPasswordError = true;
     }
 
-    if (email && password) {
+    if (!this.showEmailError && !this.showPasswordError) {
       this.isLoading = true;
       this.loginService.login(email, password).subscribe(() => {
           this.isLoading = false;
@@ -65,7 +65,7 @@ export class LoginComponent {
           const payload = jwtDecode(token!) as JWTPayload;
 
           if (payload.scope === "ROLE_CLIENT") {
-            this.router.navigate(["/main-page"]);
+            this.router.navigate(["/main-view/main-page"]);
           }
           if (payload.scope === "ROLE_COMPANY") {
             this.router.navigate(["/recycling-company-view/requests-list"]);
@@ -80,5 +80,9 @@ export class LoginComponent {
         });
       form.reset();
     }
+  }
+
+  createAccount() {
+    this.router.navigate(["/register"]);
   }
 }

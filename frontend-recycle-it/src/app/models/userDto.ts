@@ -8,7 +8,6 @@ export class UserDto {
   city!: string;
   role!: string;
 
-
   constructor(id: number, firstname: string, lastname: string, email: string, password: string, county: string, city: string, role: string) {
     this.id = id;
     this.firstname = firstname;
