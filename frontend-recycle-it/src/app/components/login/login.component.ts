@@ -71,7 +71,7 @@ export class LoginComponent {
             this.router.navigate(["/recycling-company-view/requests-list"]);
           }
           if (payload.scope === "ROLE_RETAILER") {
-            this.router.navigate(["/add-new-vouchers"]);
+            this.router.navigate(["/retailer-view/vouchers-list"]);
           }
         },
         error => {

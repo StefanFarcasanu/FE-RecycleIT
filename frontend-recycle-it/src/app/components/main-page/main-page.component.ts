@@ -36,7 +36,6 @@ export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.token = (localStorage.getItem("token")) ? localStorage.getItem("token") : "";
     this.payload = jwtDecode(this.token!) as JWTPayload;
-    console.log(this.payload.sub);
     this.populateDropdown();
   }
 

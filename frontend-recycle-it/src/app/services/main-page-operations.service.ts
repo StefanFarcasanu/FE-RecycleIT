@@ -25,8 +25,6 @@ export class MainPageOperationsService {
 
   addRecycledWaste(recycleRequest: RecycleRequestDto): Observable<any> {
     let url = "http://localhost:8080/requests";
-    console.log("clicked");
-    console.log(recycleRequest);
     return this.httpClient.post(url, recycleRequest, {
       headers: {
         'Authorization': "Bearer " + this.token,
