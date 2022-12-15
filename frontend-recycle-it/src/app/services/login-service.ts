@@ -24,7 +24,7 @@ export class LoginService {
     const httpOptions = {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
-        "Authorization": "Basic" + btoa(email + ":" + password)
+        "Authorization": "Basic " + btoa(email + ":" + password)
       }),
       observe: "response" as "body"
     };

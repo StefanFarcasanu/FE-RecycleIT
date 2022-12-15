@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
-import {RequestInfoService} from "../../../../../services/request-info.service";
+import {formatDate} from "@angular/common";
 
 @Component({
   selector: 'app-request-info-dialog',
@@ -9,37 +9,25 @@ import {RequestInfoService} from "../../../../../services/request-info.service";
 })
 export class RequestInfoDialogComponent implements OnInit {
 
-  _clientId!: Number;
-
   _clientFirstName!: String;
 
   _clientLastName!: String;
 
   _clientEmail!: String;
 
-  constructor(private _dialogRef: MatDialogRef<RequestInfoDialogComponent>,
-              private _requestInfoService: RequestInfoService,
-              @Inject(MAT_DIALOG_DATA) public clientIdData: any) {
+  _dateCreated!: String;
 
-    this._clientId = clientIdData["clientId"];
+  constructor(private _dialogRef: MatDialogRef<RequestInfoDialogComponent>,
+              @Inject(MAT_DIALOG_DATA) public data: any) {
+
+    this._clientFirstName = data["client"].firstname;
+    this._clientLastName = data["client"].lastname;
+    this._clientEmail = data["client"].email;
+    let utcDate = data["dateCreated"];
+    this._dateCreated = formatDate(utcDate, "dd/MM/yyyy HH:mm", "en-US");
   }
 
   ngOnInit(): void {
-    this._requestInfoService.getClientDetails().subscribe(
-      data => {
-        for (let userJSON of data.body) {
-          if (userJSON.id === this._clientId) {
-            this._clientFirstName = userJSON.firstname;
-            this._clientLastName = userJSON.lastname;
-            this._clientEmail = userJSON.email;
-            break;
-          }
-        }
-      },
-      error => {
-        alert("There was an error fetching the details of the client!")
-      }
-    );
   }
 
   closeDialog() {

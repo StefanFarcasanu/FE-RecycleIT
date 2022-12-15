@@ -1,0 +1,55 @@
+.col {
+  font-size: 40px;
+  color: white;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  height: 20vh;
+  border: 1px solid white;
+  background: rgba(1, 1, 1, 0.8);
+}
+
+.icon-display {
+  transform: scale(2);
+  color: green;
+}
+
+.voucher {
+  grid-template-columns: auto auto auto auto 40px 40px 40px;
+}
+
+.details-text {
+  min-height: 110px;
+  background: rgba(1, 1, 1, 0.8);
+  color: white;
+  line-height: 50px;
+  resize: none;
+  text-align: center;
+}
+
+.info-text {
+  text-align: center;
+  vertical-align: center;
+  margin-top: 6%;
+  font-size: 30px;
+  color: white;
+}
+
+.close-dialog-button {
+  width: 240px;
+  height: 50px;
+  font-size: 25px;
+  background-color: green;
+  color: white;
+  border-radius: 30px;
+  top: 20px;
+}
+
+.close-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 6%;
+}

@@ -1,0 +1,28 @@
+<main class="container text-center">
+  <h1 style="color: white">Check your progress and claim vouchers!</h1>
+  <hr style="color: white">
+  <div class="progress__container">
+    <div class="progress__bar js-bar"></div>
+    <div class="progress__circle js-circle active">
+      <span id="first-circle" class="progress__span"> {{ milestones[0] }}kg</span>
+    </div>
+    <div class="progress__circle js-circle">
+      <span id="second-circle" class="progress__span"> {{ milestones[1] }}kg</span>
+    </div>
+    <div class="progress__circle js-circle">
+      <span id="third-circle" class="progress__span"> {{ milestones[2] }}kg</span>
+    </div>
+    <div class="progress__circle js-circle">
+      <span id="fourth-circle" class="progress__span"> {{ milestones[3] }}kg</span>
+    </div>
+  </div>
+
+  <hr style="color: white">
+  <div class="wrapper">
+    <button id="claim-voucher-button" type="button" class="btn w-50 js-next"
+            (click)="claimVoucherForCurrentMilestone()"
+            [disabled]="_progressDisabled">
+      Claim your voucher!
+    </button>
+  </div>
+</main>

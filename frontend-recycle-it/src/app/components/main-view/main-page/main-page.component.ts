@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
-import {MainPageOperationsService} from "../../services/main-page-operations.service";
+import {MainPageOperationsService} from "../../../services/main-page-operations.service";
 import {lastValueFrom} from "rxjs";
-import {RecycleRequestDto} from "../../models/recycleRequestDto";
-import {UserDto} from "../../models/userDto";
+import {RecycleRequestDto} from "../../../models/recycleRequestDto";
+import {UserDto} from "../../../models/userDto";
 import jwtDecode from "jwt-decode";
 import {HttpErrorResponse} from "@angular/common/http";
-import {LoginService} from "../../services/login-service";
+import {LoginService} from "../../../services/login-service";
 
 export interface JWTPayload {
   sub: number,
@@ -31,21 +31,16 @@ export class MainPageComponent implements OnInit {
   severity: string = "";
   success: boolean = false;
 
-  constructor(private router: Router, private mainService: MainPageOperationsService, private loginService: LoginService) { }
+  constructor(private router: Router, private mainService: MainPageOperationsService) { }
 
   ngOnInit(): void {
     this.token = (localStorage.getItem("token")) ? localStorage.getItem("token") : "";
     this.payload = jwtDecode(this.token!) as JWTPayload;
-    console.log(this.payload.sub);
-    this.populateDropdown(this.payload.sub);
+    this.populateDropdown();
   }
 
-  logout() {
-    this.loginService.logout();
-  }
-
-  populateDropdown(clientId: number) {
-    this.mainService.getCompaniesFromClientCounty(clientId).subscribe(
+  populateDropdown() {
+    this.mainService.getCompaniesFromClientCounty().subscribe(
       data => {
         console.log(typeof data);
         for (let companyJson of data.body) {
