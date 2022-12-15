@@ -23,6 +23,11 @@
       </div>
     </div>
   </div>
+  <div class="title">
+    <div class="title-container">
+      <h3 class="title-text">Make a request below</h3>
+    </div>
+  </div>
 </div>
 
 <div class="bottom-page-div">
@@ -66,7 +71,6 @@
         <div class="form-floating mb-3">
           <select class="form-control" id="companies" name="companies" [(ngModel)]="selectedCompany" required>
             <option value="" disabled selected hidden>Choose the company you want</option>
-<!--            <option value="">None</option>-->
             <option *ngFor="let company of companies" [ngValue]="company.id">{{company.firstname}}</option>
           </select>
         </div>

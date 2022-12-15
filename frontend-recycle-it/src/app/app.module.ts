@@ -32,7 +32,7 @@ import { VoucherComponent } from './components/retailer-view/vouchers-list/vouch
 import { AddNewVoucherDialogComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component';
 import { RecyclingProgressDialogComponent } from './components/main-view/recycling-progress/recycling-progress-dialog/recycling-progress-dialog.component';
 import {RegisterComponent} from './components/register/register.component';
-import { ManageAccountComponent } from './components/manage-account/manage-account.component';
+import { ManageAccountComponent } from './components/main-view/manage-account/manage-account.component';
 
 @NgModule({
   declarations: [
@@ -54,9 +54,7 @@ import { ManageAccountComponent } from './components/manage-account/manage-accou
     VoucherComponent,
     AddNewVoucherDialogComponent,
     RecyclingProgressDialogComponent,
-    RegisterComponent
-    AddNewVoucherDialogComponent,
-    RecyclingCompanyViewComponent,
+    RegisterComponent,
     ManageAccountComponent
   ],
   imports: [

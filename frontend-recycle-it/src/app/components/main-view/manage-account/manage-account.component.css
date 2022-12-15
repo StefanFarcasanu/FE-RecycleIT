@@ -42,6 +42,15 @@ header img {
   border-color: limegreen;
 }
 
+.loading-spinner {
+  text-align: center;
+  padding-top: 14%;
+}
+
+.updating-text {
+  font-weight: bold;
+}
+
 @media all and (min-width: 992px) {
   .navbar .nav-item .dropdown-menu { display: none; }
   .navbar .nav-item:hover .nav-link {   }
