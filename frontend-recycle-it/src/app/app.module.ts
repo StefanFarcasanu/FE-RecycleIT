@@ -31,6 +31,7 @@ import { VouchersListComponent } from './components/retailer-view/vouchers-list/
 import { VoucherComponent } from './components/retailer-view/vouchers-list/voucher/voucher.component';
 import { AddNewVoucherDialogComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component';
 import { RecyclingProgressDialogComponent } from './components/main-view/recycling-progress/recycling-progress-dialog/recycling-progress-dialog.component';
+import {RegisterComponent} from './components/register/register.component';
 import { AddNewVouchersComponent } from './components/add-new-vouchers/add-new-vouchers.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
@@ -51,11 +52,12 @@ import { SuccessfulPopUpComponent } from './components/add-new-vouchers/successf
     MainNavbarComponent,
     MainViewComponent,
     RecyclingProgressComponent,
-    RecyclingCompanyViewComponent,
     RetailerViewComponent,
     VouchersListComponent,
     VoucherComponent,
     AddNewVoucherDialogComponent,
+    RecyclingProgressDialogComponent,
+    RegisterComponent,
     RecyclingProgressDialogComponent,
     AddNewVoucherDialogComponent,
     RecyclingCompanyViewComponent,

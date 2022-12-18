@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Sign up!</title>
+</head>
+<body class="d-flex flex-column">
+<header>
+  <img src="assets/images/small-logo.png" alt="small-logo.png">
+  <h1>RecycleIT</h1>
+  <p>Create an account and make your way towards <strong>helping the planet!</strong></p>
+</header>
+
+<div class="loading-spinner" *ngIf="isLoading">
+  <app-loading-spinner-login></app-loading-spinner-login>
+  <p class="register-text">Register...</p>
+</div>
+
+<form [formGroup]="registerForm" (submit)="onSubmit(registerForm)" action="" method="post"
+      class="form-register text-center" *ngIf="!isLoading">
+  <h2 style="color: white">User registration</h2>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="first-name" name="input-first-name"
+           placeholder="First Name" formControlName="firstName">
+    <small class="error-message"
+           *ngIf="showFirstNameError">
+      Invalid first name!
+    </small>
+    <hr style="color: white">
+    <label for="first-name" class="form-label">First Name</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control" id="last-name" name="input-last-name"
+           placeholder="Last Name" formControlName="lastName">
+    <small class="error-message"
+           *ngIf="showLastNameError">
+      Invalid last name!
+    </small>
+    <label for="last-name" class="form-label">Last Name</label>
+    <hr style="color: white">
+  </div>
+  <div class="col md-3 position-relative">
+    <select id="county-select" class="form-select mb-3" style="height: 60px"
+            (change)="getCitiesFromCounty($any($event.target).value)">
+      <option *ngFor="let county of countiesList" value="{{ county.auto }}">
+        {{ county.name }}
+    </select>
+  </div>
+  <small class="error-message"
+         *ngIf="showCountyError">
+    Invalid county!
+  </small>
+  <hr style="color: white">
+  <div class="col md-3 position-relative">
+    <select id="city-select" class="form-select mb-3" style="height: 60px"
+            (change)="selectCity($any($event.target).value)">
+      <option *ngFor="let city of citiesList" value="{{city}}">
+        {{ city }}
+    </select>
+  </div>
+  <small class="error-message"
+         *ngIf="showCityError">
+    Invalid city!
+  </small>
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" id="input-email" name="input-email"
+           placeholder="Enter your email address..." formControlName="email">
+    <label for="input-email" class="form-label">Email address</label>
+  </div>
+  <small class="error-message"
+         *ngIf="showEmailError">
+    Invalid email!
+  </small>
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control" id="input-password" name="input-password"
+           placeholder="Enter your password..." formControlName="password">
+    <label for="input-password">Password</label>
+  </div>
+  <small class="error-message"
+         *ngIf="showPasswordError">
+    Invalid password!
+  </small>
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control mb-3" id="input-repeat-password" name="input-repeat-password"
+           placeholder="Confirm your password..." formControlName="confirmPassword">
+    <label for="input-repeat-password">Confirm password</label>
+  </div>
+  <small class="error-message"
+         *ngIf="showPasswordsUnmatch">
+    Passwords do not match!
+  </small>
+  <hr style="color: white">
+  <button type="submit" class="btn btn-primary w-100 mb-2" id="signup-button">Sign up
+  </button>
+  <a class="btn btn-secondary w-100 mb-2" role="button" id="back-button" (click)="login()">Back</a>
+  <hr style="color: white">
+</form>
+</body>
+</html>

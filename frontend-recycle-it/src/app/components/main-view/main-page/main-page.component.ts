@@ -27,6 +27,7 @@ export class MainPageComponent implements OnInit {
   payload: any;
   errorMessage: string = "";
   success: boolean = false;
+  animationTime: number = 500;
 
   constructor(private router: Router, private mainService: MainPageOperationsService) { }
 
@@ -34,6 +35,69 @@ export class MainPageComponent implements OnInit {
     this.token = (localStorage.getItem("token")) ? localStorage.getItem("token") : "";
     this.payload = jwtDecode(this.token!) as JWTPayload;
     this.populateDropdown();
+    this.populateStatistics();
+  }
+
+  animateValue(obj: any, start: any, end: any, duration: any): void {
+    let startTimestamp: number | null = null;
+    const step = (timestamp: number | null) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp! - startTimestamp!) / duration, 1);
+      obj.innerHTML = Math.floor(progress * (end - start) + start);
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
+      }
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  populateStatistics() {
+    this.mainService.getTotalNumberOfUsers().subscribe(
+      data => {
+        var noOfUsers = data.body;
+        console.log(noOfUsers);
+
+        document.getElementById("amount-of-customers")!.innerHTML = noOfUsers;
+        this.animateValue(
+          document.getElementById("amount-of-customers")!,
+          0,
+          noOfUsers,
+          this.animationTime
+        );
+      }
+    )
+
+    this.mainService.getTotalNumberOfGeneratedVouchers().subscribe(
+      data => {
+        var noOfGeneratedVouchers = data.body;
+        console.log(noOfGeneratedVouchers);
+
+        document.getElementById("amount-of-generated-vouchers")!.innerHTML = noOfGeneratedVouchers;
+
+        this.animateValue(
+          document.getElementById("amount-of-generated-vouchers")!,
+          0,
+          noOfGeneratedVouchers,
+          this.animationTime
+        );
+      }
+    )
+
+    this.mainService.getTotalQuantityOfRecycledWaste().subscribe(
+      data => {
+        var quantityOfWaste = data.body;
+        console.log(quantityOfWaste);
+
+        document.getElementById("amount-of-kg-collected")!.innerHTML = quantityOfWaste;
+
+        this.animateValue(
+          document.getElementById("amount-of-kg-collected")!,
+          0,
+          quantityOfWaste,
+          this.animationTime
+        );
+      }
+    )
   }
 
   populateDropdown() {

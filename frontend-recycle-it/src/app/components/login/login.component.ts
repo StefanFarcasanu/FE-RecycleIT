@@ -56,7 +56,7 @@ export class LoginComponent {
       this.showPasswordError = true;
     }
 
-    if (email && password) {
+    if (!this.showEmailError && !this.showPasswordError) {
       this.isLoading = true;
       this.loginService.login(email, password).subscribe(() => {
           this.isLoading = false;
@@ -80,5 +80,9 @@ export class LoginComponent {
         });
       form.reset();
     }
+  }
+
+  createAccount() {
+    this.router.navigate(["/register"]);
   }
 }

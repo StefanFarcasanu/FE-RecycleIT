@@ -12,12 +12,17 @@ import {RetailerViewComponent} from "./components/retailer-view/retailer-view.co
 import {VouchersListComponent} from "./components/retailer-view/vouchers-list/vouchers-list.component";
 import {AddNewVouchersComponent} from "./components/add-new-vouchers/add-new-vouchers.component";
 import {AuthRetailerGuard} from "./components/login/auth-retailer.guard";
+import {RegisterComponent} from "./components/register/register.component";
 
 const routes: Routes = [
   {
     path: '',
     redirectTo: 'main-view/main-page',
     pathMatch: 'full'
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   },
   {
     path: 'login',
