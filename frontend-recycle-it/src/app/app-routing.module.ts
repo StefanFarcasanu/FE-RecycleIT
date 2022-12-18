@@ -12,6 +12,7 @@ import {RetailerViewComponent} from "./components/retailer-view/retailer-view.co
 import {VouchersListComponent} from "./components/retailer-view/vouchers-list/vouchers-list.component";
 import {AuthRetailerGuard} from "./components/login/auth-retailer.guard";
 import {RegisterComponent} from "./components/register/register.component";
+import {ManageAccountComponent} from "./components/main-view/manage-account/manage-account.component";
 
 const routes: Routes = [
   {
@@ -44,6 +45,10 @@ const routes: Routes = [
       {
         path: "recycling-progress",
         component: RecyclingProgressComponent
+      },
+      {
+        path: "manage-account",
+        component: ManageAccountComponent,
       }
     ]
   },

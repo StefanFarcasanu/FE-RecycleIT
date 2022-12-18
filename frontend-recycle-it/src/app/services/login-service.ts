@@ -70,7 +70,10 @@ export class LoginService {
 
   logout() {
     this.loggedUser.next(null!);
-    this.router.navigate(["/login"]);
+    this.router.navigate(["/login"])
+      .then(() => {
+        window.location.reload();
+      });
     localStorage.removeItem("token");
 
     if (this.tokenExpirationTimer) {

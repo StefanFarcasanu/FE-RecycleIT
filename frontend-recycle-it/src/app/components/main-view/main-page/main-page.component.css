@@ -9,10 +9,9 @@
   clip-path: circle(180vh at 50% -80vh);
 }
 
-
 .bottom-page-div {
   position: center;
-  margin: -35vh auto auto auto;
+  margin: -45vh auto auto auto;
   background-color: green;
   background-size: cover;
 }
@@ -127,6 +126,35 @@ input[type=number] {
   font-size: 20px;
   color: white;
   line-height: 34px;
+}
+
+.title-text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(1, 1, 1, 0.8);
+  color: white;
+  font-size: 30px;
+  height: 8vh;
+  width: 25%;
+  border: 1px solid black;
+  border-radius: 60px;
+}
+
+.title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-spinner {
+  text-align: center;
+  padding-top: 14%;
+}
+
+.updating-text {
+  font-weight: bold;
+  font-size: 10px;
 }
 
 @media all and (min-width: 992px) {

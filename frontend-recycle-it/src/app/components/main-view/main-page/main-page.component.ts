@@ -28,7 +28,6 @@ export class MainPageComponent implements OnInit {
   recycleRequest!: RecycleRequestDto;
   payload: any;
   errorMessage: string = "";
-  severity: string = "";
   success: boolean = false;
   animationTime: number = 500;
 
@@ -106,7 +105,6 @@ export class MainPageComponent implements OnInit {
   populateDropdown() {
     this.mainService.getCompaniesFromClientCounty().subscribe(
       data => {
-        console.log(typeof data);
         for (let companyJson of data.body) {
           this.companies.push(new UserDto(
             companyJson.id,

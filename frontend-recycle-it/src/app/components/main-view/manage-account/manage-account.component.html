@@ -1,0 +1,66 @@
+<div class="loading-spinner" *ngIf="isLoading">
+  <app-loading-spinner-login></app-loading-spinner-login>
+  <p class="updating-text">Updating account...</p>
+</div>
+
+<form action="" method="post" class="form-update-account text-center" [formGroup]="updateAccountForm"
+      (submit)="onSubmit(updateAccountForm)" *ngIf="!isLoading">
+  <h2 style="color: white">Account management</h2>
+
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control mb-3" id="input-first-name" name="input-first-name"
+           formControlName="firstName" placeholder="Enter your first name...">
+    <label for="input-first-name">Change your first name</label>
+  </div>
+  <small class="error-message" *ngIf="showFirstNameError">Invalid first name!</small>
+
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control mb-3" id="input-last-name" name="input-last-name"
+           formControlName="lastName" placeholder="Enter your last name...">
+    <label for="input-last-name">Change your last name</label>
+  </div>
+  <small class="error-message" *ngIf="showLastNameError">Invalid last name!</small>
+
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control mb-3" id="input-email" name="input-email"
+           formControlName="email" placeholder="Enter your email address...">
+    <label for="input-email">Email address</label>
+  </div>
+
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control mb-3" id="input-county" name="input-county"
+           formControlName="county" placeholder="Enter your county...">
+    <label for="input-county">County</label>
+  </div>
+
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="text" class="form-control mb-3" id="input-city" name="input-city"
+           formControlName="city" placeholder="Enter your city...">
+    <label for="input-city">City</label>
+  </div>
+
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control mb-3" id="input-password" name="input-password"
+           formControlName="password" placeholder="Enter your password...">
+    <label for="input-password">New password</label>
+  </div>
+  <small class="error-message" *ngIf="showPasswordError">Please enter the password!</small>
+
+  <hr style="color: white">
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control mb-3" id="input-repeat-password" name="input-repeat-password"
+           formControlName="confirmPassword" placeholder="Confirm your password...">
+    <label for="input-repeat-password">Confirm new password</label>
+  </div>
+  <small class="error-message" *ngIf="showPasswordsUnmatch">Please confirm the password!</small>
+
+  <hr style="color: white">
+  <button type="submit" class="btn btn-primary w-100 mb-2" id="update-account-button">Save changes</button>
+  <a class="btn btn-secondary w-100 mb-2" routerLink="/main-view/main-page" role="button" id="back-button">Back</a>
+</form>
