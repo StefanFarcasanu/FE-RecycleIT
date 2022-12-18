@@ -1,9 +1,11 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from "@angular/router";
 import {MainPageOperationsService} from "../../../services/main-page-operations.service";
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserDto} from "../../../models/userDto";
 import {HttpErrorResponse} from "@angular/common/http";
+import {MatDialog} from "@angular/material/dialog";
+import {SuccessfulDialogComponent} from "../../successful-dialog/successful-dialog.component";
 
 @Component({
   selector: 'app-manage-account',
@@ -20,7 +22,8 @@ export class ManageAccountComponent implements OnInit {
   _role!: string;
   userUpdatedDto!: UserDto;
 
-  constructor(private router: Router, private mainService: MainPageOperationsService) { }
+  constructor(private router: Router, private mainService: MainPageOperationsService,
+              private _dialogRef: MatDialog) { }
 
   updateAccountForm = new FormGroup({
     firstName: new FormControl('', [Validators.required]),
@@ -59,6 +62,12 @@ export class ManageAccountComponent implements OnInit {
         alert("There was an error fetching the details of the client!")
       }
     );
+  }
+
+  openSuccessDialog() {
+    this._dialogRef.open(SuccessfulDialogComponent, {
+      minHeight: "350px",
+      width: "400px"});
   }
 
   onSubmit(form: FormGroup) {
@@ -109,7 +118,8 @@ export class ManageAccountComponent implements OnInit {
         .subscribe((response) => {
             if (response) {
               this.isLoading = false;
-              this.router.navigate(["/login"]);
+              this.openSuccessDialog();
+              //this.router.navigate(["/main-view/main-page"]);
             }
           },
           (err: HttpErrorResponse) => {
