@@ -5,7 +5,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserDto} from "../../../models/userDto";
 import {HttpErrorResponse} from "@angular/common/http";
 import {MatDialog} from "@angular/material/dialog";
-import {SuccessfulDialogComponent} from "../../successful-dialog/successful-dialog.component";
+import {SuccessfulDialogComponent} from "./successful-dialog/successful-dialog.component";
 
 @Component({
   selector: 'app-manage-account',
@@ -52,7 +52,6 @@ export class ManageAccountComponent implements OnInit {
           this.updateAccountForm.controls['email'].setValue(userJSON.email);
           this.updateAccountForm.controls['county'].setValue(userJSON.county);
           this.updateAccountForm.controls['city'].setValue(userJSON.city);
-          this.updateAccountForm.controls['password'].setValue(userJSON.password);
           this._email = userJSON.email;
           this._county = userJSON.county;
           this._city = userJSON.city;
@@ -119,7 +118,8 @@ export class ManageAccountComponent implements OnInit {
             if (response) {
               this.isLoading = false;
               this.openSuccessDialog();
-              //this.router.navigate(["/main-view/main-page"]);
+              this.updateAccountForm.controls['password'].setValue('');
+              this.updateAccountForm.controls['confirmPassword'].setValue('');
             }
           },
           (err: HttpErrorResponse) => {

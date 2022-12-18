@@ -33,7 +33,7 @@ import { AddNewVoucherDialogComponent } from './components/retailer-view/voucher
 import { RecyclingProgressDialogComponent } from './components/main-view/recycling-progress/recycling-progress-dialog/recycling-progress-dialog.component';
 import {RegisterComponent} from './components/register/register.component';
 import { ManageAccountComponent } from './components/main-view/manage-account/manage-account.component';
-import { SuccessfulDialogComponent } from './components/successful-dialog/successful-dialog.component';
+import { SuccessfulDialogComponent } from './components/main-view/manage-account/successful-dialog/successful-dialog.component';
 
 @NgModule({
   declarations: [
