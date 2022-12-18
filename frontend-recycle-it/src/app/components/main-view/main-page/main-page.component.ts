@@ -54,9 +54,7 @@ export class MainPageComponent implements OnInit {
   populateStatistics() {
     this.mainService.getTotalNumberOfUsers().subscribe(
       data => {
-        var noOfUsers = data.body;
-        console.log(noOfUsers);
-
+        let noOfUsers = data.body;
         document.getElementById("amount-of-customers")!.innerHTML = noOfUsers;
         this.animateValue(
           document.getElementById("amount-of-customers")!,
@@ -69,8 +67,7 @@ export class MainPageComponent implements OnInit {
 
     this.mainService.getTotalNumberOfGeneratedVouchers().subscribe(
       data => {
-        var noOfGeneratedVouchers = data.body;
-        console.log(noOfGeneratedVouchers);
+        let noOfGeneratedVouchers = data.body;
 
         document.getElementById("amount-of-generated-vouchers")!.innerHTML = noOfGeneratedVouchers;
 
@@ -85,8 +82,7 @@ export class MainPageComponent implements OnInit {
 
     this.mainService.getTotalQuantityOfRecycledWaste().subscribe(
       data => {
-        var quantityOfWaste = data.body;
-        console.log(quantityOfWaste);
+        let quantityOfWaste = data.body;
 
         document.getElementById("amount-of-kg-collected")!.innerHTML = quantityOfWaste;
 

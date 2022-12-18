@@ -36,6 +36,7 @@ import { AddNewVouchersComponent } from './components/add-new-vouchers/add-new-v
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import { SuccessfulPopUpComponent } from './components/add-new-vouchers/successful-pop-up/successful-pop-up.component';
+import {MatInput} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { SuccessfulPopUpComponent } from './components/add-new-vouchers/successf
     AddNewVoucherDialogComponent,
     RecyclingCompanyViewComponent,
     AddNewVouchersComponent,
-    SuccessfulPopUpComponent
+    SuccessfulPopUpComponent,
+    MatInput
   ],
   imports: [
     BrowserModule,

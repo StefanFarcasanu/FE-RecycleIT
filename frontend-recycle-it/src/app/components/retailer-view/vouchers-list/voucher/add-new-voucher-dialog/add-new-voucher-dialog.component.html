@@ -10,29 +10,33 @@
         <h4></h4>
         <div class="voucher-props">
           <div class="form-floating mb-3">
-            <select class="form-control" id="companies" name="companies" [(ngModel)]="selectedValue" required>
-              <option value="" disabled selected hidden>Please choose a value</option>
-              <!--            <option value="">None</option>-->
-              <option *ngFor="let val of values" [ngValue]="val.value">{{val.value}}</option>
-            </select>
-            <!--            <mat-form-field appearance="fill">-->
-            <!--              <mat-label>Enter voucher value</mat-label>-->
-            <!--              <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}"required>-->
-            <!--&lt;!&ndash;                          [formControl]="valueControl" (change)="changeSelectedValue($event.value)" required>&ndash;&gt;-->
-            <!--                <mat-option>&#45;&#45;</mat-option>-->
-            <!--                <mat-option *ngFor="let value of values" [value]="value.value">-->
-            <!--                  {{value.value}}-->
-            <!--                </mat-option>-->
-            <!--              </mat-select>-->
-            <!--              <mat-error *ngIf="valueControl.hasError('required')">Please choose a value</mat-error>-->
-            <!--            </mat-form-field>-->
+<!--            <select class="form-control" id="companies" name="companies" [(ngModel)]="selectedValue" required>-->
+<!--              <option value="" disabled selected hidden>Please choose a value</option>-->
+<!--              &lt;!&ndash;            <option value="">None</option>&ndash;&gt;-->
+<!--              <option *ngFor="let val of values" [ngValue]="val.value">{{val.value}}</option>-->
+<!--            </select>-->
+                        <mat-form-field appearance="fill">
+                          <mat-label>Enter voucher value</mat-label>
+                          <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}"required>
+            <!--                          [formControl]="valueControl" (change)="changeSelectedValue($event.value)" required>-->
+                            <mat-option>--</mat-option>
+                            <mat-option *ngFor="let value of values" [value]="value.value">
+                              {{value.value}}
+                            </mat-option>
+                          </mat-select>
+                          <mat-error *ngIf="valueControl.hasError('required')">Please choose a value</mat-error>
+                        </mat-form-field>
           </div>
 
           <div class="form-floating mb-3">
-            <input type="text" class="form-control" id="input-details" name="input-details"
-                   placeholder="Write details about voucher" required [(ngModel)]="detailsInput">
-            <label for="input-details" class="form-label">Details</label>
-            <mat-error *ngIf="detailsInput===''">Please enter the details!</mat-error>
+            <mat-form-field floatLabel="auto">
+              <mat-label>Enter details..</mat-label>
+              <input matInput>
+            </mat-form-field>
+<!--            <input type="text" class="form-control" id="input-details" name="input-details"-->
+<!--                   placeholder="Write details about voucher" required [(ngModel)]="detailsInput">-->
+<!--            <label for="input-details" class="form-label">Enter details...</label>-->
+<!--            <mat-error *ngIf="detailsInput===''">Please enter the details!</mat-error>-->
 
             <!--            <div *ngIf="errorMessage !== ''" class="alert alert-warning" id="input-details-tooltip">-->
             <!--              <strong> Warning!</strong> {{errorMessage}}-->
