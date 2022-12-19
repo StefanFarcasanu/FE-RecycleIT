@@ -1,14 +1,15 @@
 import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {VoucherDto} from "../../../../../models/voucherDto";
-import {FormControl, Validators} from "@angular/forms";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {VouchersService} from "../../../../../services/vouchers.service";
 import {LoginService} from "../../../../../services/login-service";
 import {MatDialog, MatDialogRef} from "@angular/material/dialog";
 import jwtDecode from "jwt-decode";
-import {SuccessfulPopUpComponent} from "../../../../add-new-vouchers/successful-pop-up/successful-pop-up.component";
+import {SuccessfulPopUpComponent} from "./successful-pop-up/successful-pop-up.component";
 import {HttpErrorResponse} from "@angular/common/http";
 import {JWTPayload} from "../../../../main-view/main-page/main-page.component";
+import {VouchersListService} from "../../../../../services/vouchers-list.service";
 
 interface VoucherValue {
   id: number;
@@ -25,7 +26,8 @@ export class AddNewVoucherDialogComponent implements OnInit {
 
   constructor(private router: Router, private voucherService: VouchersService, private loginService: LoginService,
               private dialogRef: MatDialogRef<AddNewVoucherDialogComponent>,
-              private dialogSuccess: MatDialog) { }
+              private dialogSuccess: MatDialog,
+              private _vouchersListService: VouchersListService) { }
 
   ngOnInit(): void {
     this.token = (localStorage.getItem("token")) ? localStorage.getItem("token") : "";
@@ -34,19 +36,18 @@ export class AddNewVoucherDialogComponent implements OnInit {
 
   success: boolean = false;
   errorMessage: string = "";
-  selectedValue!: number;
-  selectedNoVouchers!: number;
+  errorMessageDetails: string = "";
+  errorMessageVouchers: string = "";
+  errorMessageValue: string = "";
   payload: any;
   token!: string | null;
   voucherDto!: VoucherDto;
-  detailsInput!: string;
 
-  // voucherForm = new FormGroup({
-  //   ,
-  //   // noVouchers: new FormControl(0, Validators.required)
-  // });
-
-  valueControl = new FormControl<VoucherValue | null>(null, Validators.required);
+  voucherForm = new FormGroup({
+     voucherValue: new FormControl('', Validators.required),
+     details: new FormControl ('', Validators.required),
+     noVouchers: new FormControl('', Validators.required)
+  });
 
   values: VoucherValue[] = [
     {id: 1, value: 5}, {id: 2, value: 10}, {id: 3, value: 20},
@@ -56,46 +57,41 @@ export class AddNewVoucherDialogComponent implements OnInit {
   ];
 
   openSuccess() {
-    this.dialogSuccess.open(SuccessfulPopUpComponent, {
-      data: {
-        name: "Success!"
-      }
-    });
+    this.dialogSuccess.open(SuccessfulPopUpComponent);
   }
 
   closeDialog() {
     this.dialogRef.close();
   }
 
+  addNewVoucher(form: FormGroup) {
+    let selectedValue = form.get('voucherValue')?.value;
+    let detailsInput = form.get('details')?.value;
+    let noOfVouchers = form.get('noVouchers')?.value;
 
-  addNewVoucher() {
-    let voucherValue = this.selectedValue.valueOf();
-    console.log(voucherValue);
-    let details = document.getElementById("input-details") as HTMLInputElement;
-    let noOfVouchers = document.getElementById("input-no-vouchers") as HTMLInputElement;
     this.voucherDto = new VoucherDto(
       this.payload.sub,
-      voucherValue,
-      details.value,
+      Number(selectedValue),
+      String(detailsInput),
     );
-    this.voucherService.addNewVoucher(this.voucherDto, this.selectedNoVouchers)
+    this.voucherService.addNewVoucher(this.voucherDto, Number(noOfVouchers))
       .subscribe((response) => {
           if (response) {
             this.success = true;
             this.errorMessage = '';
             this.closeDialog();
             this.openSuccess();
-            voucherValue = 0;
-            details.value = '';
-            noOfVouchers.value = '';
           }
         },
         (err: HttpErrorResponse) => {
+          if (err.error === "Invalid details!") {
+            this.errorMessageDetails = err.error;
+          }
           if (err.error === "Invalid value!") {
-            this.errorMessage = err.error;
+            this.errorMessageValue = err.error;
           }
           if (err.error === "Invalid number of vouchers!"){
-            this.errorMessage = err.error;
+            this.errorMessageVouchers = err.error;
           }
         });
   }

@@ -43,8 +43,9 @@ export class VouchersListComponent implements OnInit {
 
   openAddNewVoucherDialog() {
     this._addNewVoucherDialog.open(AddNewVoucherDialogComponent, {
-      minHeight: "300px",
-      width: "800px",
+      height: "35rem",
+      width: "650px",
+      panelClass: 'custom-dialog'
     });
   }
 

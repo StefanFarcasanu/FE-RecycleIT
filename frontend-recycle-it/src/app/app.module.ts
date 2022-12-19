@@ -5,7 +5,7 @@ import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import {LoginService} from "./services/login-service";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MainPageComponent } from './components/main-view/main-page/main-page.component';
 import {MainPageOperationsService} from "./services/main-page-operations.service";
@@ -32,11 +32,10 @@ import { VoucherComponent } from './components/retailer-view/vouchers-list/vouch
 import { AddNewVoucherDialogComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component';
 import { RecyclingProgressDialogComponent } from './components/main-view/recycling-progress/recycling-progress-dialog/recycling-progress-dialog.component';
 import {RegisterComponent} from './components/register/register.component';
-import { AddNewVouchersComponent } from './components/add-new-vouchers/add-new-vouchers.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
-import { SuccessfulPopUpComponent } from './components/add-new-vouchers/successful-pop-up/successful-pop-up.component';
-import {MatInput} from "@angular/material/input";
+import { SuccessfulPopUpComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/successful-pop-up/successful-pop-up.component';
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -62,9 +61,7 @@ import {MatInput} from "@angular/material/input";
     RecyclingProgressDialogComponent,
     AddNewVoucherDialogComponent,
     RecyclingCompanyViewComponent,
-    AddNewVouchersComponent,
     SuccessfulPopUpComponent,
-    MatInput
   ],
   imports: [
     BrowserModule,
@@ -80,6 +77,7 @@ import {MatInput} from "@angular/material/input";
     MatFormFieldModule,
     MatSelectModule,
     MatMenuModule,
+    MatInputModule
   ],
   providers: [LoginService, MainPageOperationsService],
   bootstrap: [AppComponent]

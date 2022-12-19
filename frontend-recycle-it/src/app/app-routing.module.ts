@@ -10,9 +10,11 @@ import {MainViewComponent} from "./components/main-view/main-view.component";
 import {RecyclingProgressComponent} from "./components/main-view/recycling-progress/recycling-progress.component";
 import {RetailerViewComponent} from "./components/retailer-view/retailer-view.component";
 import {VouchersListComponent} from "./components/retailer-view/vouchers-list/vouchers-list.component";
-import {AddNewVouchersComponent} from "./components/add-new-vouchers/add-new-vouchers.component";
 import {AuthRetailerGuard} from "./components/login/auth-retailer.guard";
 import {RegisterComponent} from "./components/register/register.component";
+import {
+  AddNewVoucherDialogComponent
+} from "./components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component";
 
 const routes: Routes = [
   {
@@ -67,15 +69,14 @@ const routes: Routes = [
       {
         path: "vouchers-list",
         component: VouchersListComponent
+      },
+      {
+        path: "add-new-vouchers",
+        component: AddNewVoucherDialogComponent,
+        canActivate: [AuthRetailerGuard]
       }
     ]
   },
-  {
-    path: "add-new-vouchers",
-    component: AddNewVouchersComponent,
-    canActivate: [AuthRetailerGuard]
-  }
-
 ];
 
 @NgModule({

@@ -1,62 +1,52 @@
-<div class="bottom-page-div">
-  <form method="post" class="form-waste-register">
-    <div class="card">
-      <div class="card-header">
-        <h3 class="card-title text-center text-uppercase">
-          Create rewards for your clients
-        </h3>
+<form method="post" class="form-waste-register" [formGroup]="voucherForm" (submit)="addNewVoucher(voucherForm)">
+  <div class="card">
+    <div class="card-header">
+      <img class="gift-voucher" src="assets/images/discount-coupon.png">
+      <h2 class="card-title text-center text-uppercase">
+        Add rewards for your clients
+      </h2>
+    </div>
+    <div class="card-body text-center py-2">
+      <div class="voucher-props">
+
+        <div class="form-floating mb-3">
+          <mat-form-field appearance="fill">
+            <mat-label>Enter voucher value</mat-label>
+            <mat-select formControlName="voucherValue" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let value of values" [value]="value.value">
+                {{value.value}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="voucherForm.controls['voucherValue'].errors?.['required']">Please choose a value!</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-floating mb-3">
+          <mat-form-field floatLabel="auto">
+            <mat-label>Enter details..</mat-label>
+            <input type="text" matInput required formControlName="details">
+            <mat-error *ngIf="errorMessageDetails !== '' || errorMessageDetails.includes('details')">{{errorMessageDetails}}</mat-error>
+            <mat-error *ngIf="voucherForm.controls['details'].errors?.['required']">Please enter the details!</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-floating mb-3">
+          <mat-form-field floatLabel="auto">
+            <mat-label>Number of vouchers</mat-label>
+            <input type="number" matInput required formControlName="noVouchers">
+            <mat-error *ngIf="voucherForm.controls['noVouchers'].errors?.['required']">Please enter a number!</mat-error>
+            <mat-error *ngIf="errorMessageVouchers !== '' || errorMessageVouchers.includes('vouchers')">{{errorMessageVouchers}}</mat-error>
+          </mat-form-field>
+        </div>
+
       </div>
-      <div class="card-body text-center py-2">
-        <h4></h4>
-        <div class="voucher-props">
-          <div class="form-floating mb-3">
-<!--            <select class="form-control" id="companies" name="companies" [(ngModel)]="selectedValue" required>-->
-<!--              <option value="" disabled selected hidden>Please choose a value</option>-->
-<!--              &lt;!&ndash;            <option value="">None</option>&ndash;&gt;-->
-<!--              <option *ngFor="let val of values" [ngValue]="val.value">{{val.value}}</option>-->
-<!--            </select>-->
-                        <mat-form-field appearance="fill">
-                          <mat-label>Enter voucher value</mat-label>
-                          <mat-select [(ngModel)]="selectedValue" [ngModelOptions]="{standalone: true}"required>
-            <!--                          [formControl]="valueControl" (change)="changeSelectedValue($event.value)" required>-->
-                            <mat-option>--</mat-option>
-                            <mat-option *ngFor="let value of values" [value]="value.value">
-                              {{value.value}}
-                            </mat-option>
-                          </mat-select>
-                          <mat-error *ngIf="valueControl.hasError('required')">Please choose a value</mat-error>
-                        </mat-form-field>
-          </div>
-
-          <div class="form-floating mb-3">
-            <mat-form-field floatLabel="auto">
-              <mat-label>Enter details..</mat-label>
-              <input matInput>
-            </mat-form-field>
-<!--            <input type="text" class="form-control" id="input-details" name="input-details"-->
-<!--                   placeholder="Write details about voucher" required [(ngModel)]="detailsInput">-->
-<!--            <label for="input-details" class="form-label">Enter details...</label>-->
-<!--            <mat-error *ngIf="detailsInput===''">Please enter the details!</mat-error>-->
-
-            <!--            <div *ngIf="errorMessage !== ''" class="alert alert-warning" id="input-details-tooltip">-->
-            <!--              <strong> Warning!</strong> {{errorMessage}}-->
-            <!--            </div>-->
-          </div>
-
-          <div class="form-floating mb-3">
-            <input type="number" class="form-control" id="input-no-vouchers" name="input-no-vouchers"
-                   [(ngModel)]="selectedNoVouchers" placeholder="Enter the number of vouchers" required>
-            <label for="input-no-vouchers" class="form-label">Number of vouchers</label>
-            <!--            <mat-error *ngIf="selectedNoVouchers">Please enter a number</mat-error>-->
-            <div *ngIf="errorMessage !== ''" class="alert alert-warning" id="input-waste-quantity-tooltip">
-              <strong> Warning!</strong> {{errorMessage}}
-            </div>
-          </div>
-        </div>
-        <div class="card-footer">
-          <button type="button" class="btn btn-primary w-100" id="recycle-button" style="font-size: 30px" (click)="addNewVoucher()">Add new voucher now!</button>
-        </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-primary" id="close-dialog" style="font-size: 25px" (click)="closeDialog()">Cancel</button>
+      </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary w-90" id="recycle-button" style="font-size: 25px">Add new voucher now!</button>
       </div>
     </div>
-  </form>
-</div>
+  </div>
+</form>

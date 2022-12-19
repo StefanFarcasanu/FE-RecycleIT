@@ -1,5 +1,5 @@
-import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {MatDialogRef} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-successful-pop-up',
@@ -9,17 +9,14 @@ import {MAT_DIALOG_DATA} from "@angular/material/dialog";
 })
 export class SuccessfulPopUpComponent implements OnInit {
 
-  firstname: string;
   success: boolean = false;
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-    this.firstname = data.name;
-  }
+  constructor(private _dialogRef: MatDialogRef<SuccessfulPopUpComponent>) {}
 
   ngOnInit(): void {
   }
 
-  closeAlert() {
-    this.success = false;
+  onClose() {
+    this._dialogRef.close();
   }
 
 }
