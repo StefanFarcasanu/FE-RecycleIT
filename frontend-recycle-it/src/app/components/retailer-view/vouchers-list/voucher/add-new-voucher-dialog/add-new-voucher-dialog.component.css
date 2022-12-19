@@ -1,0 +1,142 @@
+.form-waste-register {
+  max-width: 600px;
+  margin: auto;
+  width: 100%;
+  padding: 20px 20px 20px 20px;
+  border-radius: 10px;
+}
+
+.gift-voucher {
+  height: 6rem;
+  width: 6.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  position: fixed;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.card, .card .card-header, .card .card-body, .card .card-footer {
+  border: none;
+}
+
+.card-header {
+  display: inline-block;
+  height: 7rem;
+}
+
+.card-title {
+  margin-top: 35px !important;
+  font-weight: bold !important;
+}
+
+.card {
+  border-radius: 0.5rem!important;
+  overflow: hidden;
+}
+
+.card-footer {
+  background-color: transparent !important;
+  display: inline-block;
+  height: 6rem;
+}
+
+.card-body {
+  margin-top: 3rem;
+}
+
+.card {
+  height: 35rem;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  //margin-top: -8rem;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+}
+
+#recycle-button, #close-dialog{
+  background-color: #ff794d;
+  border-color: #ff794d;
+  border-radius: 30px;
+}
+
+#close-dialog {
+  width: 6.5rem;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+#close-dialog:hover {
+  background-color: #ff4000;
+}
+
+#recycle-button{
+  width: 21.5rem;
+  position: relative;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.form-floating>.form-control {
+  border-radius: 4px 4px 0 0;
+  border-bottom: 1px solid;
+}
+
+#recycle-button:after {
+  content: '»';
+  position: absolute;
+  opacity: 0;
+  top: -50px;
+  right: -20px;
+  transition: 0.5s;
+  font-size: 90px;
+}
+
+.custom-dialog .mat-dialog-container {
+  background-color: transparent !important;
+  overflow: hidden;
+}
+
+#recycle-button:hover{
+  padding-right: 24px;
+  padding-left:8px;
+  background-color: #ff4000;
+}
+
+#recycle-button:hover:after {
+  opacity: 1;
+  right: 4px;
+}
+
+
+.mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex {
+  border: 1px solid rgba(0,0,0,.125);
+  background-color: white;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: 4px 4px 4px 4px;
+}
+
+.mat-form-field {
+  width: 30rem;
+  border: black;
+}
+
+

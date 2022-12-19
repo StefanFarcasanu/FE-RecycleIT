@@ -5,7 +5,7 @@ import { AppRoutingModule, RoutingComponents } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import {LoginService} from "./services/login-service";
-import {HttpClient, HttpClientModule} from "@angular/common/http";
+import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { MainPageComponent } from './components/main-view/main-page/main-page.component';
 import {MainPageOperationsService} from "./services/main-page-operations.service";
@@ -34,6 +34,10 @@ import { RecyclingProgressDialogComponent } from './components/main-view/recycli
 import {RegisterComponent} from './components/register/register.component';
 import { ManageAccountComponent } from './components/main-view/manage-account/manage-account.component';
 import { SuccessfulDialogComponent } from './components/main-view/manage-account/successful-dialog/successful-dialog.component';
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatSelectModule} from "@angular/material/select";
+import { SuccessfulPopUpComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/successful-pop-up/successful-pop-up.component';
+import {MatInputModule} from "@angular/material/input";
 
 @NgModule({
   declarations: [
@@ -57,7 +61,12 @@ import { SuccessfulDialogComponent } from './components/main-view/manage-account
     RecyclingProgressDialogComponent,
     RegisterComponent,
     ManageAccountComponent,
-    SuccessfulDialogComponent
+    SuccessfulDialogComponent,
+    RegisterComponent,
+    RecyclingProgressDialogComponent,
+    AddNewVoucherDialogComponent,
+    RecyclingCompanyViewComponent,
+    SuccessfulPopUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -70,7 +79,10 @@ import { SuccessfulDialogComponent } from './components/main-view/manage-account
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
     MatMenuModule,
+    MatInputModule
   ],
   providers: [LoginService, MainPageOperationsService],
   bootstrap: [AppComponent]

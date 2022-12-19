@@ -12,6 +12,9 @@ import {RetailerViewComponent} from "./components/retailer-view/retailer-view.co
 import {VouchersListComponent} from "./components/retailer-view/vouchers-list/vouchers-list.component";
 import {AuthRetailerGuard} from "./components/login/auth-retailer.guard";
 import {RegisterComponent} from "./components/register/register.component";
+import {
+  AddNewVoucherDialogComponent
+} from "./components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component";
 import {ManageAccountComponent} from "./components/main-view/manage-account/manage-account.component";
 
 const routes: Routes = [
@@ -71,6 +74,11 @@ const routes: Routes = [
       {
         path: "vouchers-list",
         component: VouchersListComponent
+      },
+      {
+        path: "add-new-vouchers",
+        component: AddNewVoucherDialogComponent,
+        canActivate: [AuthRetailerGuard]
       }
     ]
   },

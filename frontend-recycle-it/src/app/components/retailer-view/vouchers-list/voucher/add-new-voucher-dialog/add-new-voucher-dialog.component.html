@@ -1,1 +1,50 @@
-<p style="color: white">add-new-voucher-dialog works!</p>
+<form method="post" class="form-waste-register" [formGroup]="voucherForm" (submit)="addNewVoucher(voucherForm)">
+  <div class="card">
+    <div class="card-header">
+      <img class="gift-voucher" src="assets/images/discount-coupon.png">
+      <h2 class="card-title text-center text-uppercase">
+        Add rewards for your clients
+      </h2>
+    </div>
+    <div class="card-body text-center py-2">
+      <div class="voucher-props">
+
+        <div class="form-floating mb-3">
+          <mat-form-field appearance="fill">
+            <mat-label>Enter voucher value</mat-label>
+            <mat-select formControlName="voucherValue" required>
+              <mat-option>--</mat-option>
+              <mat-option *ngFor="let value of values" [value]="value.value">
+                {{value.value}}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="errorMessageValue">Invalid value!</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-floating mb-3">
+          <mat-form-field floatLabel="auto">
+            <mat-label>Enter details..</mat-label>
+            <input type="text" matInput required formControlName="details">
+            <mat-error *ngIf="errorMessageDetails">Invalid details!</mat-error>
+          </mat-form-field>
+        </div>
+
+        <div class="form-floating mb-3">
+          <mat-form-field floatLabel="auto">
+            <mat-label>Number of vouchers</mat-label>
+            <input type="number" matInput min="1" required formControlName="noVouchers">
+            <mat-error *ngIf="errorMessageVouchers">Invalid number of vouchers!</mat-error>
+          </mat-form-field>
+        </div>
+
+      </div>
+      <div class="card-footer">
+        <button type="button" class="btn btn-primary" id="close-dialog" style="font-size: 25px" (click)="closeDialog()">Cancel</button>
+      </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-primary w-90" id="recycle-button" style="font-size: 25px">Add new voucher now!</button>
+      </div>
+    </div>
+  </div>
+</form>

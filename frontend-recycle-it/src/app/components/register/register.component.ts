@@ -139,7 +139,6 @@ export class RegisterComponent implements OnInit {
   }
 
   getCitiesFromCounty(county: string) {
-    console.log(county);
     this.selectedCounty = county;
     fetch("https://roloca.coldfuse.io/orase/" + county)
       .then(response => response.json())
