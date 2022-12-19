@@ -33,7 +33,7 @@
         <div class="form-floating mb-3">
           <mat-form-field floatLabel="auto">
             <mat-label>Number of vouchers</mat-label>
-            <input type="number" matInput required formControlName="noVouchers">
+            <input type="number" matInput min="1" required formControlName="noVouchers">
             <mat-error *ngIf="errorMessageVouchers">Invalid number of vouchers!</mat-error>
           </mat-form-field>
         </div>
