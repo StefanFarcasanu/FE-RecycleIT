@@ -18,7 +18,7 @@
                 {{value.value}}
               </mat-option>
             </mat-select>
-            <mat-error *ngIf="voucherForm.controls['voucherValue'].errors?.['required']">Please choose a value!</mat-error>
+
           </mat-form-field>
         </div>
 
@@ -27,7 +27,6 @@
             <mat-label>Enter details..</mat-label>
             <input type="text" matInput required formControlName="details">
             <mat-error *ngIf="errorMessageDetails !== '' || errorMessageDetails.includes('details')">{{errorMessageDetails}}</mat-error>
-            <mat-error *ngIf="voucherForm.controls['details'].errors?.['required']">Please enter the details!</mat-error>
           </mat-form-field>
         </div>
 
@@ -35,7 +34,6 @@
           <mat-form-field floatLabel="auto">
             <mat-label>Number of vouchers</mat-label>
             <input type="number" matInput required formControlName="noVouchers">
-            <mat-error *ngIf="voucherForm.controls['noVouchers'].errors?.['required']">Please enter a number!</mat-error>
             <mat-error *ngIf="errorMessageVouchers !== '' || errorMessageVouchers.includes('vouchers')">{{errorMessageVouchers}}</mat-error>
           </mat-form-field>
         </div>

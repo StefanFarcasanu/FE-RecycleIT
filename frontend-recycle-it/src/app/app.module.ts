@@ -61,7 +61,7 @@ import {MatInputModule} from "@angular/material/input";
     RecyclingProgressDialogComponent,
     RegisterComponent,
     ManageAccountComponent,
-    SuccessfulDialogComponent
+    SuccessfulDialogComponent,
     RegisterComponent,
     RecyclingProgressDialogComponent,
     AddNewVoucherDialogComponent,
