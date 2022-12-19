@@ -34,14 +34,14 @@ export class AddNewVoucherDialogComponent implements OnInit {
     this.payload = jwtDecode(this.token!) as JWTPayload;
   }
 
-  success: boolean = false;
   errorMessage: string = "";
-  errorMessageDetails: string = "";
-  errorMessageVouchers: string = "";
-  errorMessageValue: string = "";
+  errorMessageDetails = false;
+  errorMessageVouchers = false;
+  errorMessageValue = false;
   payload: any;
   token!: string | null;
   voucherDto!: VoucherDto;
+  isLoading = false;
 
   voucherForm = new FormGroup({
      voucherValue: new FormControl('', Validators.required),
@@ -69,30 +69,52 @@ export class AddNewVoucherDialogComponent implements OnInit {
     let detailsInput = form.get('details')?.value;
     let noOfVouchers = form.get('noVouchers')?.value;
 
-    this.voucherDto = new VoucherDto(
-      this.payload.sub,
-      Number(selectedValue),
-      String(detailsInput),
-    );
-    this.voucherService.addNewVoucher(this.voucherDto, Number(noOfVouchers))
-      .subscribe((response) => {
-          if (response) {
-            this.success = true;
-            this.errorMessage = '';
-            this.closeDialog();
-            this.openSuccess();
-          }
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error === "Invalid details!") {
-            this.errorMessageDetails = err.error;
-          }
-          if (err.error === "Invalid value!") {
-            this.errorMessageValue = err.error;
-          }
-          if (err.error === "Invalid number of vouchers!"){
-            this.errorMessageVouchers = err.error;
-          }
-        });
+    this.errorMessageValue = false;
+    this.errorMessageDetails = false;
+    this.errorMessageVouchers = false;
+
+    if (selectedValue == '--' || selectedValue == null || selectedValue == "") {
+      this.errorMessageValue = true;
+    }
+
+    if (detailsInput == null || detailsInput == "") {
+      this.errorMessageDetails = true;
+    }
+
+    if (noOfVouchers <= 0 || noOfVouchers == null || noOfVouchers == "") {
+      this.errorMessageVouchers = true;
+    }
+
+    if (!this.errorMessageValue && !this.errorMessageDetails && !this.errorMessageVouchers) {
+      this.isLoading = true;
+      this.voucherDto = new VoucherDto(
+        this.payload.sub,
+        Number(selectedValue),
+        String(detailsInput),
+      );
+
+      this.voucherService.addNewVoucher(this.voucherDto, Number(noOfVouchers))
+        .subscribe((response) => {
+            if (response) {
+              this.isLoading = false;
+              this.errorMessage = '';
+              this.closeDialog();
+              this.openSuccess();
+            }
+          },
+          (err: HttpErrorResponse) => {
+            let errors = err.error;
+            if (errors.includes("details")) {
+              this.errorMessageDetails = true;
+            }
+            if (errors.includes("value")) {
+              this.errorMessageValue = true;
+            }
+            if (errors.includes("vouchers")) {
+              this.errorMessageVouchers = true;
+            }
+            this.isLoading = false;
+          });
+    }
   }
 }
