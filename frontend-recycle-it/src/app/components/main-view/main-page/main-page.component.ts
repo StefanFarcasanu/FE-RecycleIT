@@ -99,7 +99,6 @@ export class MainPageComponent implements OnInit {
   populateDropdown() {
     this.mainService.getCompaniesFromClientCounty().subscribe(
       data => {
-        console.log(typeof data);
         for (let companyJson of data.body) {
           this.companies.push(new UserDto(
             companyJson.id,

@@ -32,6 +32,8 @@ import { VoucherComponent } from './components/retailer-view/vouchers-list/vouch
 import { AddNewVoucherDialogComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component';
 import { RecyclingProgressDialogComponent } from './components/main-view/recycling-progress/recycling-progress-dialog/recycling-progress-dialog.component';
 import {RegisterComponent} from './components/register/register.component';
+import { ManageAccountComponent } from './components/main-view/manage-account/manage-account.component';
+import { SuccessfulDialogComponent } from './components/main-view/manage-account/successful-dialog/successful-dialog.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import { SuccessfulPopUpComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/successful-pop-up/successful-pop-up.component';
@@ -57,6 +59,9 @@ import {MatInputModule} from "@angular/material/input";
     VoucherComponent,
     AddNewVoucherDialogComponent,
     RecyclingProgressDialogComponent,
+    RegisterComponent,
+    ManageAccountComponent,
+    SuccessfulDialogComponent
     RegisterComponent,
     RecyclingProgressDialogComponent,
     AddNewVoucherDialogComponent,

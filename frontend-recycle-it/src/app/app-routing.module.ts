@@ -15,6 +15,7 @@ import {RegisterComponent} from "./components/register/register.component";
 import {
   AddNewVoucherDialogComponent
 } from "./components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component";
+import {ManageAccountComponent} from "./components/main-view/manage-account/manage-account.component";
 
 const routes: Routes = [
   {
@@ -47,6 +48,10 @@ const routes: Routes = [
       {
         path: "recycling-progress",
         component: RecyclingProgressComponent
+      },
+      {
+        path: "manage-account",
+        component: ManageAccountComponent,
       }
     ]
   },
