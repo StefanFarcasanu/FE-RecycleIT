@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your recycling history</title>
+</head>
+<body>
+<div id="history-list-container">
+  <h2 style="color: white" class="text-center">Your recycling history</h2>
+  <hr style="color: white">
+  <div class="recycling-history-list">
+    <div class="no-recycling-items-message-container" *ngIf="recyclingHistoryList.length == 0">
+      <h1 class="no-recycling-items-message">No recycling items available!</h1>
+    </div>
+    <div class="container">
+      <ul>
+        <tr *ngFor="let recycleItem of recyclingHistoryList">
+          <li><img src="assets/images/medal.png"/> Waste: {{recycleItem.type}}  | Quantity: {{recycleItem.quantity}} |
+            Status: {{recycleItem.status}} |
+            Date: {{recycleItem.date.toLocaleDateString()}} </li>
+          <hr style="color: white">
+        </tr>
+      </ul>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: center">
+    <a (click)="backAction()" class="btn btn-secondary w-50 mb-2" role="button" id="back-button">Back</a>
+  </div>
+</div>
+</body>
+</html>
