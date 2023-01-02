@@ -14,7 +14,6 @@ export class RecyclingHistoryComponent implements OnInit {
   public recyclingHistoryList: Array<RecyclingHistoryModel> = [];
 
   constructor(private _recyclingHistoryService: RecyclingHistoryService, private _location: Location) {
-    console.log('here');
   }
 
   ngOnInit(): void {
@@ -22,7 +21,6 @@ export class RecyclingHistoryComponent implements OnInit {
   }
 
   getRecyclingHistory() {
-    console.log('here');
     this._recyclingHistoryService.getRecyclingHistory()
       .subscribe(data => {
           for (let requestJSON of data.body) {
@@ -45,7 +43,7 @@ export class RecyclingHistoryComponent implements OnInit {
           }
         },
         error => {
-          if (error.error !== "There are no recycling history items for this company!") {
+          if (error.error !== "This client has made no recycling requests!") {
             alert("There was an error fetching the recycling history list!")
           }
         });
