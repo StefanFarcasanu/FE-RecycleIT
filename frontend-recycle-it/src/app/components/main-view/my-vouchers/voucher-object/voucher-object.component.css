@@ -1,5 +1,5 @@
 .col {
-  font-size: 35px;
+  font-size: 30px;
   padding-left: 2.5rem;
   color: white;
 }
@@ -17,6 +17,15 @@
   color: green;
 }
 
+span.status-span.badge.rounded-pill{
+  height: 3.1rem;
+  padding-top: 1rem
+}
+
+img.emag {
+  height: 3rem;
+  width: 3rem;
+}
 .voucher {
   grid-template-columns: auto auto auto auto 40px 40px 40px;
 }
