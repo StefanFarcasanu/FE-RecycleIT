@@ -1,0 +1,25 @@
+#history-list-container {
+  background: rgba(0, 0, 0, .60);
+  max-width: 750px;
+  max-height: 700px;
+  margin: auto;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#history-list-container {
+  margin-top: 3%;
+}
+
+.recycling-history-list {
+  max-height: 550px;
+  overflow: auto;
+  font-size: 20px;
+}
+
+li {
+  list-style-type: none;
+  color: white;
+  position: center;
+}
