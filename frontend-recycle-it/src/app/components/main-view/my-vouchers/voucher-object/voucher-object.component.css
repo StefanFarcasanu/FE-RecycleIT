@@ -1,6 +1,6 @@
 .col {
   font-size: 30px;
-  padding-left: 2.5rem;
+  padding-left: 2rem;
   color: white;
 }
 
@@ -22,10 +22,11 @@ span.status-span.badge.rounded-pill{
   padding-top: 1rem
 }
 
-img.emag {
-  height: 3rem;
-  width: 3rem;
+img.emag, img.lidl, img.kaufland, img.altex, img.auchan, img.flanco, img.carrefour{
+  height: 4rem;
+  width: 4rem;
 }
+
 .voucher {
   grid-template-columns: auto auto auto auto 40px 40px 40px;
 }

@@ -2,17 +2,14 @@
   <div class="row">
     <div class="col">
 <!--      <mat-icon class="icon-display" fontIcon="shopping_cart" size="100px"></mat-icon>-->
-      <img class="emag" src="/assets/images/emag.png" *ngIf="_retailerName.includes('Emag'); else anotherOne">
+        <img class="emag" src="/assets/images/emag.png" *ngIf="_retailerName.includes('Emag')">
+        <img class="lidl" src="/assets/images/Lidl_logo.png" *ngIf="_retailerName.includes('Lidl')">
+        <img class="kaufland" src="/assets/images/Kaufland.png" *ngIf="_retailerName.includes('Kaufland')">
+        <img class="altex" src="/assets/images/altex-icon.png" *ngIf="_retailerName.includes('Altex')">
+        <img class="flanco" src="/assets/images/flanco.png" *ngIf="_retailerName.includes('Flanco')">
+        <img class="carrefour" src="/assets/images/carrefour.png" *ngIf="_retailerName.includes('Carrefour')">
+        <img class="auchan" src="/assets/images/auchan.png" *ngIf="_retailerName.includes('Auchan')">
       {{ _retailerName }}
-      <ng-template #anotherOne *ngIf="_retailerName.includes('Lidl')">
-        <img class="lidl" src="/assets/images/lidl.png">
-      </ng-template>
-      <ng-template #anotherOne *ngIf="_retailerName.includes('Kaufland')">
-        <img class="lidl" src="/assets/images/Kaufland.png">
-      </ng-template>
-      <ng-template #anotherOne *ngIf="_retailerName.includes('Altex')">
-        <img class="lidl" src="/assets/images/altex.jpg">
-      </ng-template>
     </div>
     <div class="col">
       <mat-icon class="icon-display" fontIcon="local_offer" size="100px"></mat-icon>
