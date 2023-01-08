@@ -1,0 +1,124 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  background-size: cover;
+  background: url("src/assets/login-register-background.jpg") no-repeat center;
+}
+
+#vouchers-list-container {
+  background: rgba(0, 0, 0, .60);
+  max-width: 1300px;
+  max-height: 900px;
+  margin: auto;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+#vouchers-list-container {
+  margin-top: 2%;
+}
+
+
+.vouchers-list {
+  max-height: 480px;
+  font-size: 20px;
+}
+
+.vouchers-list li:hover {
+  background-color: lightgray;
+}
+
+
+#login-button, #signup-button, #update-account-button {
+  background-color: forestgreen;
+  border-color: forestgreen;
+}
+
+#login-button:hover, #signup-button:hover, #update-account-button:hover {
+  background-color: limegreen;
+  border-color: limegreen;
+}
+
+
+.with-icon {
+  display: flex;
+  align-items: center;
+}
+
+mat-list {
+  max-height: 60vh;
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.vouchers-list {
+  padding-top: 4vh;
+}
+
+.vouchers-list-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(1, 1, 1, 0.8);
+  color: white;
+  font-size: 45px !important;
+  height: 10vh;
+  width: 28%;
+  border: 1px solid black;
+  border-radius: 60px;
+}
+
+.vouchers-list-title-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-vouchers-message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(1, 1, 1, 0.8);
+  color: white;
+  font-size: 45px;
+  height: 12vh;
+  width: 30%;
+  border: 1px solid black;
+}
+
+.no-vouchers-message-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 20vh;
+}
+
+.list-and-button-divider {
+  color: white;
+  margin: auto;
+  background: rgba(1, 1, 1, 0.8);
+}
+
+#back-button {
+  height: 3rem;
+  font-size: 1.5rem;
+  background: rgba(0, 0, 0, .70);
+}
+
+#back-button:hover {
+  background-color: rgba(35, 120, 0, 0.8);
+}
+
+.mat-icon.back-arrow {
+  line-height: 2rem;
+}
+
+@media all and (min-width: 992px) {
+  .navbar .nav-item .dropdown-menu { display: none; }
+  .navbar .nav-item:hover .nav-link {   }
+  .navbar .nav-item:hover .dropdown-menu { display: block; }
+  .navbar .nav-item .dropdown-menu { margin-top:0; }
+}

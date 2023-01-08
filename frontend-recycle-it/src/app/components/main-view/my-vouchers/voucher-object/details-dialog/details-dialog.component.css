@@ -1,0 +1,44 @@
+.custom-details .mat-dialog-container {
+  background-color: rgba(255, 190, 115, 1) !important;
+  overflow: hidden;
+}
+
+.details-info-text {
+  font-weight: bolder;
+  font-size: 30px;
+  color: black;
+  display: inline;
+}
+
+.more-details-info-text {
+  font-weight: bolder;
+  font-size: 25px;
+  color: black;
+  display: inline;
+}
+
+.details {
+  display: inline;
+  font-size: 25px;
+}
+
+.close-details-button {
+  width: 140px;
+  height: 40px;
+  font-size: 15px;
+  background-color: rgba(0, 0, 0, .70);
+  color: white;
+  border-radius: 30px;
+  top: 20px;
+}
+
+.close-details-button:hover {
+  background-color: rgba(35, 120, 0, 0.8);
+}
+
+.close-details-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10%;
+}

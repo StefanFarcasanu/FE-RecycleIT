@@ -38,6 +38,12 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import { SuccessfulPopUpComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/successful-pop-up/successful-pop-up.component';
 import {MatInputModule} from "@angular/material/input";
+import { MyVouchersComponent } from './components/main-view/my-vouchers/my-vouchers.component';
+import { VoucherObjectComponent } from './components/main-view/my-vouchers/voucher-object/voucher-object.component';
+import {MatRadioModule} from "@angular/material/radio";
+import { AddedRequestDialogComponent } from './components/main-view/main-page/added-request-dialog/added-request-dialog.component';
+import { DetailsDialogComponent } from './components/main-view/my-vouchers/voucher-object/details-dialog/details-dialog.component';
+import { CheckValidityDialogComponent } from './components/main-view/my-vouchers/voucher-object/check-validity-dialog/check-validity-dialog.component';
 
 @NgModule({
   declarations: [
@@ -67,23 +73,29 @@ import {MatInputModule} from "@angular/material/input";
     AddNewVoucherDialogComponent,
     RecyclingCompanyViewComponent,
     SuccessfulPopUpComponent,
+    MyVouchersComponent,
+    VoucherObjectComponent,
+    AddedRequestDialogComponent,
+    DetailsDialogComponent,
+    CheckValidityDialogComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    BrowserAnimationsModule,
-    MatIconModule,
-    MatListModule,
-    MatDialogModule,
-    MatButtonModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatMenuModule,
-    MatInputModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        BrowserAnimationsModule,
+        MatIconModule,
+        MatListModule,
+        MatDialogModule,
+        MatButtonModule,
+        HttpClientModule,
+        ReactiveFormsModule,
+        FormsModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatMenuModule,
+        MatInputModule,
+        MatRadioModule
+    ],
   providers: [LoginService, MainPageOperationsService],
   bootstrap: [AppComponent]
 })
