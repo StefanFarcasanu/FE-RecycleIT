@@ -1,0 +1,29 @@
+.mapdiv {
+  background: rgba(0, 0, 0, .60);
+  max-width: 70%;
+  margin: 3% auto;
+  width: 100%;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.mapdiv path {
+  fill: white;
+  stroke: #65655E;
+  stroke-width: 1px;
+  transition: fill 0.3s;
+}
+
+.mapdiv path:hover {
+  fill: green;
+  stroke: limegreen;
+  stroke-width: 1px;
+  transition: fill 0.3s;
+}
+
+@media all and (min-width: 992px) {
+  .navbar .nav-item .dropdown-menu { display: none; }
+  .navbar .nav-item:hover .nav-link {   }
+  .navbar .nav-item:hover .dropdown-menu { display: block; }
+  .navbar .nav-item .dropdown-menu { margin-top:0; }
+}
