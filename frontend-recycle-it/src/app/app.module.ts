@@ -41,6 +41,7 @@ import {MatInputModule} from "@angular/material/input";
 import {RecyclingHistoryComponent} from './components/main-view/recycling-history/recycling-history.component';
 import { NationalStatisticsComponent } from './components/main-view/national-statistics/national-statistics.component';
 import { StatisticsDialogComponent } from './components/main-view/national-statistics/statistics-dialog/statistics-dialog.component';
+import {NgChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -89,6 +90,7 @@ import { StatisticsDialogComponent } from './components/main-view/national-stati
     MatSelectModule,
     MatMenuModule,
     MatInputModule,
+    NgChartsModule,
   ],
   providers: [LoginService, MainPageOperationsService],
   bootstrap: [AppComponent]
