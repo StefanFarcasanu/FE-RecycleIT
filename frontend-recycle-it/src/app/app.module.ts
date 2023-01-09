@@ -39,6 +39,7 @@ import {MatSelectModule} from "@angular/material/select";
 import {SuccessfulPopUpComponent} from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/successful-pop-up/successful-pop-up.component';
 import {MatInputModule} from "@angular/material/input";
 import {RecyclingHistoryComponent} from './components/main-view/recycling-history/recycling-history.component';
+import { NationalStatisticsComponent } from './components/main-view/national-statistics/national-statistics.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import {RecyclingHistoryComponent} from './components/main-view/recycling-histor
     RecyclingCompanyViewComponent,
     SuccessfulPopUpComponent,
     RecyclingHistoryComponent,
+    NationalStatisticsComponent,
   ],
   imports: [
     BrowserModule,
