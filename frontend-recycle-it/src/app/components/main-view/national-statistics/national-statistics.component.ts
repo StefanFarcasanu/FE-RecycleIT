@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {CountyStatisticsModel} from "../../../models/county-statistics.model";
 import {NationalStatisticsService} from "../../../services/national-statistics.service";
-import {CompanyModel} from "../../../models/company.model";
-import {RecyclingHistoryModel} from "../../../models/recycling-history-model";
 
 @Component({
   selector: 'app-national-statistics',
@@ -45,8 +43,8 @@ export class NationalStatisticsComponent implements OnInit {
           this.allCountiesStats.push(countyStats);
         }
         console.log(this.allCountiesStats);
-    },
-    error => {
+      },
+      error => {
         alert("Could not fetch statistics data for the counties!");
       })
   }
@@ -56,7 +54,9 @@ export class NationalStatisticsComponent implements OnInit {
     this.getAllStatsForAllCounties();
   }
 
-  displayStatisticsForCounty(countyAbbr: string) {
+  displayStatisticsForCounty(event: any) {
+    let countyAbbr = event.target.attributes.id.value;
+
 
   }
 }
