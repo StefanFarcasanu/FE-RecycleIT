@@ -1,0 +1,40 @@
+.mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex {
+  border: 1px solid rgba(0,0,0,.125);
+  background-color: white;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: 4px 4px 4px 4px;
+}
+
+.mat-form-field {
+  width: 30rem;
+  border: black;
+}
+
+#close-dialog {
+  font-size: 25px;
+}
+
+.card {
+  height: 35rem;
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+}
+
+.card-footer {
+  background-color: transparent !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 6rem;
+}

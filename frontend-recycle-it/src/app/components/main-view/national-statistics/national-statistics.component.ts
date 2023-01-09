@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {CountyStatisticsModel} from "../../../models/county-statistics.model";
 import {NationalStatisticsService} from "../../../services/national-statistics.service";
+import {MatDialog} from "@angular/material/dialog";
+import {StatisticsDialogComponent} from "./statistics-dialog/statistics-dialog.component";
 
 @Component({
   selector: 'app-national-statistics',
@@ -9,9 +11,9 @@ import {NationalStatisticsService} from "../../../services/national-statistics.s
 })
 export class NationalStatisticsComponent implements OnInit {
 
-  public allCountiesStats: Array<CountyStatisticsModel> = [];
+  public allCountiesStats: Map<String, CountyStatisticsModel> = new Map();
 
-  constructor(private _nationalStatisticsService: NationalStatisticsService) {
+  constructor(private _nationalStatisticsService: NationalStatisticsService, private _statisticsDialog: MatDialog) {
   }
 
   addCountiesAbbreviations() {
@@ -40,9 +42,8 @@ export class NationalStatisticsComponent implements OnInit {
             countyStatsJSON.noVouchers,
             countyStatsJSON.noClients
           );
-          this.allCountiesStats.push(countyStats);
+          this.allCountiesStats.set(countyStats.countyAbbreviation, countyStats);
         }
-        console.log(this.allCountiesStats);
       },
       error => {
         alert("Could not fetch statistics data for the counties!");
@@ -56,7 +57,17 @@ export class NationalStatisticsComponent implements OnInit {
 
   displayStatisticsForCounty(event: any) {
     let countyAbbr = event.target.attributes.id.value;
+    let foundCounty = this.allCountiesStats.get(countyAbbr);
 
-
+    this._statisticsDialog.open(StatisticsDialogComponent, {
+      minHeight: "500px",
+      width: "1000px",
+      data: {
+        name: foundCounty!.countyName,
+        quantity: foundCounty!.quantity,
+        noVouchers: foundCounty!.noVouchers,
+        noClients: foundCounty!.noClients,
+      }
+    });
   }
 }
