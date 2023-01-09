@@ -17,6 +17,6 @@ export class SuccessfulPopUpComponent implements OnInit {
 
   onClose() {
     this._dialogRef.close();
+    window.location.reload();
   }
-
 }
