@@ -24,7 +24,6 @@ export class RecyclingHistoryComponent implements OnInit {
     this._recyclingHistoryService.getRecyclingHistory()
       .subscribe(data => {
           for (let requestJSON of data.body) {
-            console.log(data.body);
             let recyclingCompany = new CompanyModel(
               requestJSON.company.id,
               requestJSON.company.firstname,
