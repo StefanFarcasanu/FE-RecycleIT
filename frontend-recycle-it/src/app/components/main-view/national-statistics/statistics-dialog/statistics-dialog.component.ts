@@ -11,25 +11,49 @@ export class StatisticsDialogComponent implements OnInit {
 
   _countyName!: String;
 
-  _countyQuantity!: Number;
+  _countyQuantity!: number;
 
-  _countyNoVouchers!: Number;
+  _countyNoVouchers!: number;
 
-  _countyNoClients!: Number;
+  _countyNoClients!: number;
+
+  _totalQuantity!: number;
+
+  _totalNoVouchers!: number;
+
+  _totalNoClients!: number;
 
   public quantityPieChartOptions: ChartOptions<"pie"> = {
     responsive: true,
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    plugins: {
+      title: {
+        display: true,
+        text: "Quantity of waste"
+      }
+    }
   };
 
   public noVouchersPieChartOptions: ChartOptions<"pie"> = {
     responsive: true,
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    plugins: {
+      title: {
+        display: true,
+        text: "Number of vouchers"
+      }
+    }
   }
 
   public noClientsPieChartOptions: ChartOptions<"pie"> = {
     responsive: true,
-    maintainAspectRatio: false
+    maintainAspectRatio: false,
+    plugins: {
+      title: {
+        display: true,
+        text: "Number of clients"
+      }
+    }
   }
 
   public quantityPieChartLabels = ["Selected county", "Other counties"];
@@ -63,15 +87,22 @@ export class StatisticsDialogComponent implements OnInit {
     this._countyQuantity = countyData["quantity"];
     this._countyNoVouchers = countyData["noVouchers"];
     this._countyNoClients = countyData["noClients"];
+    this._totalQuantity = countyData["totalQuantity"];
+    this._totalNoVouchers = countyData["totalVouchers"];
+    this._totalNoClients = countyData["totalClients"];
+
+    console.log(this._totalNoVouchers);
+    console.log(this._totalQuantity - this._countyQuantity);
+    console.log(this._totalNoVouchers - this._countyNoVouchers);
 
     this.quantityPieChartDatasets = [{
-      data: [this._countyQuantity, 300]
+      data: [this._countyQuantity, (this._totalQuantity - this._countyQuantity)]
     }];
     this.noVouchersPieChartDatasets = [{
-      data: [this._countyNoVouchers, 300]
+      data: [this._countyNoVouchers, (this._totalNoVouchers - this._countyNoVouchers)]
     }];
     this.noClientsPieChartDatasets = [{
-      data: [this._countyNoVouchers, 300]
+      data: [this._countyNoClients, (this._totalNoClients - this._countyNoClients)]
     }];
   }
 

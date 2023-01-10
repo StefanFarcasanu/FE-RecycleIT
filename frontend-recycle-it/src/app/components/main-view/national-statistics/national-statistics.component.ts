@@ -3,6 +3,7 @@ import {CountyStatisticsModel} from "../../../models/county-statistics.model";
 import {NationalStatisticsService} from "../../../services/national-statistics.service";
 import {MatDialog} from "@angular/material/dialog";
 import {StatisticsDialogComponent} from "./statistics-dialog/statistics-dialog.component";
+import {MainPageOperationsService} from "../../../services/main-page-operations.service";
 
 @Component({
   selector: 'app-national-statistics',
@@ -13,7 +14,15 @@ export class NationalStatisticsComponent implements OnInit {
 
   public allCountiesStats: Map<String, CountyStatisticsModel> = new Map();
 
-  constructor(private _nationalStatisticsService: NationalStatisticsService, private _statisticsDialog: MatDialog) {
+  public totalQuantity!: Number;
+
+  public totalNoVouchers!: Number;
+
+  public totalNoClients!: Number;
+
+  constructor(private _nationalStatisticsService: NationalStatisticsService,
+              private _statisticsDialog: MatDialog,
+              private _mainPageOperationsService: MainPageOperationsService) {
   }
 
   addCountiesAbbreviations() {
@@ -47,12 +56,34 @@ export class NationalStatisticsComponent implements OnInit {
       },
       error => {
         alert("Could not fetch statistics data for the counties!");
-      })
+      });
+  }
+
+  getTotalStats() {
+    this._mainPageOperationsService.getTotalQuantityOfRecycledWaste().subscribe(data => {
+        this.totalQuantity = data.body;
+      },
+      error => {
+        alert("Could not fetch the total quantity value!");
+      });
+    this._mainPageOperationsService.getTotalNumberOfGeneratedVouchers().subscribe(data => {
+        this.totalNoVouchers = data.body;
+      },
+      error => {
+        alert("Could not fetch the total number of generated vouchers!");
+      });
+    this._mainPageOperationsService.getTotalNumberOfUsers().subscribe(data => {
+        this.totalNoClients = data.body;
+      },
+      error => {
+        alert("Could not fetch the total number of clients!");
+      });
   }
 
   ngOnInit(): void {
     this.addCountiesAbbreviations();
     this.getAllStatsForAllCounties();
+    this.getTotalStats();
   }
 
   displayStatisticsForCounty(event: any) {
@@ -67,6 +98,9 @@ export class NationalStatisticsComponent implements OnInit {
         quantity: foundCounty!.quantity,
         noVouchers: foundCounty!.noVouchers,
         noClients: foundCounty!.noClients,
+        totalQuantity: this.totalQuantity,
+        totalVouchers: this.totalNoVouchers,
+        totalClients: this.totalNoClients
       }
     });
   }
