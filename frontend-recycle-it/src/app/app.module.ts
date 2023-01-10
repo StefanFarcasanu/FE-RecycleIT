@@ -1,13 +1,13 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 
-import { AppRoutingModule, RoutingComponents } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { LoginComponent } from './components/login/login.component';
+import {AppRoutingModule, RoutingComponents} from './app-routing.module';
+import {AppComponent} from './app.component';
+import {LoginComponent} from './components/login/login.component';
 import {LoginService} from "./services/login-service";
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import { MainPageComponent } from './components/main-view/main-page/main-page.component';
+import {MainPageComponent} from './components/main-view/main-page/main-page.component';
 import {MainPageOperationsService} from "./services/main-page-operations.service";
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {RequestsListComponent} from './components/recycling-company-view/requests-list/requests-list.component';
@@ -22,21 +22,21 @@ import {
 } from './components/recycling-company-view/requests-list/request/request-info-dialog/request-info-dialog.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {LoadingSpinnerComponent} from './components/utils/loading-spinner/loading-spinner.component';
-import { MainNavbarComponent } from './components/main-view/main-navbar/main-navbar.component';
-import { MainViewComponent } from './components/main-view/main-view.component';
+import {MainNavbarComponent} from './components/main-view/main-navbar/main-navbar.component';
+import {MainViewComponent} from './components/main-view/main-view.component';
 import {MatMenuModule} from "@angular/material/menu";
-import { RecyclingProgressComponent } from './components/main-view/recycling-progress/recycling-progress.component';
-import { RetailerViewComponent } from './components/retailer-view/retailer-view.component';
-import { VouchersListComponent } from './components/retailer-view/vouchers-list/vouchers-list.component';
-import { VoucherComponent } from './components/retailer-view/vouchers-list/voucher/voucher.component';
-import { AddNewVoucherDialogComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component';
-import { RecyclingProgressDialogComponent } from './components/main-view/recycling-progress/recycling-progress-dialog/recycling-progress-dialog.component';
+import {RecyclingProgressComponent} from './components/main-view/recycling-progress/recycling-progress.component';
+import {RetailerViewComponent} from './components/retailer-view/retailer-view.component';
+import {VouchersListComponent} from './components/retailer-view/vouchers-list/vouchers-list.component';
+import {VoucherComponent} from './components/retailer-view/vouchers-list/voucher/voucher.component';
+import {AddNewVoucherDialogComponent} from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/add-new-voucher-dialog.component';
+import {RecyclingProgressDialogComponent} from './components/main-view/recycling-progress/recycling-progress-dialog/recycling-progress-dialog.component';
 import {RegisterComponent} from './components/register/register.component';
-import { ManageAccountComponent } from './components/main-view/manage-account/manage-account.component';
-import { SuccessfulDialogComponent } from './components/main-view/manage-account/successful-dialog/successful-dialog.component';
+import {ManageAccountComponent} from './components/main-view/manage-account/manage-account.component';
+import {SuccessfulDialogComponent} from './components/main-view/manage-account/successful-dialog/successful-dialog.component';
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
-import { SuccessfulPopUpComponent } from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/successful-pop-up/successful-pop-up.component';
+import {SuccessfulPopUpComponent} from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/successful-pop-up/successful-pop-up.component';
 import {MatInputModule} from "@angular/material/input";
 import { MyVouchersComponent } from './components/main-view/my-vouchers/my-vouchers.component';
 import { VoucherObjectComponent } from './components/main-view/my-vouchers/voucher-object/voucher-object.component';
@@ -44,6 +44,7 @@ import {MatRadioModule} from "@angular/material/radio";
 import { AddedRequestDialogComponent } from './components/main-view/main-page/added-request-dialog/added-request-dialog.component';
 import { DetailsDialogComponent } from './components/main-view/my-vouchers/voucher-object/details-dialog/details-dialog.component';
 import { CheckValidityDialogComponent } from './components/main-view/my-vouchers/voucher-object/check-validity-dialog/check-validity-dialog.component';
+import {RecyclingHistoryComponent} from './components/main-view/recycling-history/recycling-history.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import { CheckValidityDialogComponent } from './components/main-view/my-vouchers
     AddedRequestDialogComponent,
     DetailsDialogComponent,
     CheckValidityDialogComponent,
+    RecyclingHistoryComponent,
   ],
     imports: [
         BrowserModule,
@@ -95,7 +97,7 @@ import { CheckValidityDialogComponent } from './components/main-view/my-vouchers
         MatMenuModule,
         MatInputModule,
         MatRadioModule
-    ],
+  ],
   providers: [LoginService, MainPageOperationsService],
   bootstrap: [AppComponent]
 })
