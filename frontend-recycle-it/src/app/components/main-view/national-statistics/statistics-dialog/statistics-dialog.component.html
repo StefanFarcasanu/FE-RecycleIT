@@ -1,19 +1,43 @@
 <div class="card">
   <div class="card-header">
     <h2 class="card-title text-center text-uppercase">
-      Statistics for COUNTYABBR
+      Statistics for {{ _countyName }}
     </h2>
   </div>
   <div class="card-body text-center py-2">
-    <div class="pie-chart-container">
-      <canvas baseChart
-              [type]="'pie'"
-              [datasets]="pieChartDatasets"
-              [labels]="pieChartLabels"
-              [options]="pieChartOptions"
-              [plugins]="pieChartPlugins"
-              [legend]="pieChartLegend">
-      </canvas>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col">
+          <canvas class="pie-chart" baseChart
+                  [type]="'pie'"
+                  [datasets]="quantityPieChartDatasets"
+                  [labels]="quantityPieChartLabels"
+                  [options]="quantityPieChartOptions"
+                  [plugins]="quantityPieChartPlugins"
+                  [legend]="quantityPieChartLegend">
+          </canvas>
+        </div>
+        <div class="col">
+          <canvas class="pie-chart" baseChart
+                  [type]="'pie'"
+                  [datasets]="noVouchersPieChartDatasets"
+                  [labels]="noVouchersPieChartLabels"
+                  [options]="noVouchersPieChartOptions"
+                  [plugins]="noVouchersPieChartPlugins"
+                  [legend]="noVouchersPieChartLegend">
+          </canvas>
+        </div>
+        <div class="col">
+          <canvas class="pie-chart" baseChart
+                  [type]="'pie'"
+                  [datasets]="noClientsPieChartDatasets"
+                  [labels]="noClientsPieChartLabels"
+                  [options]="noClientsPieChartOptions"
+                  [plugins]="noClientsPieChartPlugins"
+                  [legend]="noClientsPieChartLegend">
+          </canvas>
+        </div>
+      </div>
     </div>
     <div class="card-footer">
       <button type="button" class="btn btn-primary" id="close-dialog" (click)="closeDialog()">Close</button>
