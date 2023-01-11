@@ -18,6 +18,7 @@ import {
 import {ManageAccountComponent} from "./components/main-view/manage-account/manage-account.component";
 import {MyVouchersComponent} from "./components/main-view/my-vouchers/my-vouchers.component";
 import {RecyclingHistoryComponent} from "./components/main-view/recycling-history/recycling-history.component";
+import {NationalStatisticsComponent} from "./components/main-view/national-statistics/national-statistics.component";
 
 const routes: Routes = [
   {
@@ -62,6 +63,10 @@ const routes: Routes = [
       {
         path: "recycling-history",
         component: RecyclingHistoryComponent,
+      },
+      {
+        path: "national-statistics",
+        component: NationalStatisticsComponent,
       }
     ]
   },
@@ -101,4 +106,5 @@ const routes: Routes = [
 export class AppRoutingModule {
 }
 
-export const RoutingComponents = [LoginComponent, MainViewComponent, MainPageComponent, RequestsListComponent, VouchersListComponent];
+export const RoutingComponents = [LoginComponent, MainViewComponent, MainPageComponent,
+  RequestsListComponent, VouchersListComponent, NationalStatisticsComponent];
