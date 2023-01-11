@@ -39,6 +39,10 @@ input[type=number] {
   border: none;
 }
 
+.card-footer {
+  background: transparent;
+}
+
 .card {
   border-radius: 0.5rem!important;
   overflow: hidden;
@@ -75,7 +79,7 @@ input[type=number] {
   content: '»';
   position: absolute;
   opacity: 0;
-  top: -60px;
+  top: -55px;
   right: -20px;
   transition: 0.5s;
   font-size: 100px;
@@ -147,14 +151,42 @@ input[type=number] {
   justify-content: center;
 }
 
+.mat-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-form-field-flex {
+  border: 1px solid rgba(0,0,0,.125);
+  background-color: white !important;
+}
+
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  border-radius: 4px 4px 4px 4px;
+  background-color: white !important;
+}
+
+.mat-form-field {
+  width: 33rem;
+  border: black;
+}
+
 .loading-spinner {
   text-align: center;
-  padding-top: 14%;
+  padding-top: 5%;
+}
+
+.sending-text {
+  font-weight: bold;
+  font-size: 10px;
 }
 
 .updating-text {
   font-weight: bold;
   font-size: 10px;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+  padding-left: 0.7rem !important;
+}
+
+input.mat-input-element {
+  padding-left: 0.5rem !important;
 }
 
 @media all and (min-width: 992px) {

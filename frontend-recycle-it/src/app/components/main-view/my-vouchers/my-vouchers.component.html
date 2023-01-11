@@ -1,0 +1,28 @@
+<div class="vouchers-list">
+  <div class="vouchers-list-title-container">
+    <h1 class="vouchers-list-title">My vouchers</h1>
+  </div>
+  <div class="no-vouchers-message-container" *ngIf="clientVouchers.length == 0">
+    <h1 class="no-vouchers-message">You don't have any vouchers currently!</h1>
+  </div>
+  <div class="container-fluid">
+    <mat-list>
+      <app-voucher-object *ngFor="let voucher of clientVouchers"
+                          [_id]="voucher.id"
+                          [_value]="voucher.value"
+                          [_details]="voucher.details"
+                          [_status]="voucher.status"
+                          [_retailerName]="voucher._retailerId.toString()">
+      </app-voucher-object>
+    </mat-list>
+    <hr style="color: white">
+    <mat-error *ngIf="showVoucherError"></mat-error>
+    <div style="display: flex; justify-content: center">
+      <button class = "btn btn-secondary w-50 mb-2" id="back-button"
+              routerLink="/main-view/main-page">
+        <mat-icon class="back-arrow">arrow_back</mat-icon>
+        Back
+      </button>
+    </div>
+  </div>
+</div>

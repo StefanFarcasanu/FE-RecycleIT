@@ -10,6 +10,8 @@ export class VouchersListService {
 
   private _vouchersUrl: string = "http://localhost:8080/vouchers/client";
 
+  token = localStorage.getItem("token");
+
   constructor(private http: HttpClient) {
   }
 
@@ -24,5 +26,19 @@ export class VouchersListService {
     };
 
     return this.http.get<HttpResponse<any>>(this._vouchersUrl, httpOptions);
+  }
+
+  useVoucher(voucherId: number) {
+    const _token: string = localStorage.getItem("token")!;
+    let url = "http://localhost:8080/vouchers/" + "";
+    const httpOptions = {
+      headers: new HttpHeaders({
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + _token
+      }),
+      observe: "response" as "body"
+    };
+
+    return this.http.put<HttpResponse<any>>(url + voucherId, null, httpOptions);
   }
 }

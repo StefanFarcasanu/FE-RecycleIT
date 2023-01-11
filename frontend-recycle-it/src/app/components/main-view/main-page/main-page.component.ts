@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {Router} from "@angular/router";
 import {MainPageOperationsService} from "../../../services/main-page-operations.service";
 import {RecycleRequestDto} from "../../../models/recycleRequestDto";
 import {UserDto} from "../../../models/userDto";
 import jwtDecode from "jwt-decode";
 import {HttpErrorResponse} from "@angular/common/http";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {SuccessfulDialogComponent} from "../manage-account/successful-dialog/successful-dialog.component";
+import {MatDialog} from "@angular/material/dialog";
+import {AddedRequestDialogComponent} from "./added-request-dialog/added-request-dialog.component";
 
 export interface JWTPayload {
   sub: number,
@@ -14,7 +18,8 @@ export interface JWTPayload {
 @Component({
   selector: 'app-main-page',
   templateUrl: './main-page.component.html',
-  styleUrls: ['./main-page.component.css']
+  styleUrls: ['./main-page.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 
 export class MainPageComponent implements OnInit {
@@ -28,8 +33,13 @@ export class MainPageComponent implements OnInit {
   errorMessage: string = "";
   success: boolean = false;
   animationTime: number = 500;
+  isLoading = false;
+  errorMessageCompany = false;
+  errorMessageQuantity = false;
+  errorMessageWasteType = false;
 
-  constructor(private router: Router, private mainService: MainPageOperationsService) { }
+  constructor(private router: Router, private mainService: MainPageOperationsService,
+              private _dialogRef: MatDialog) { }
 
   ngOnInit(): void {
     this.token = (localStorage.getItem("token")) ? localStorage.getItem("token") : "";
@@ -37,6 +47,11 @@ export class MainPageComponent implements OnInit {
     this.populateDropdown();
     this.populateStatistics();
   }
+
+  requestForm = new FormGroup({
+    selectedCompany: new FormControl('', Validators.required),
+    wasteQuantity: new FormControl('', Validators.required)
+  })
 
   animateValue(obj: any, start: any, end: any, duration: any): void {
     let startTimestamp: number | null = null;
@@ -68,9 +83,7 @@ export class MainPageComponent implements OnInit {
     this.mainService.getTotalNumberOfGeneratedVouchers().subscribe(
       data => {
         let noOfGeneratedVouchers = data.body;
-
         document.getElementById("amount-of-generated-vouchers")!.innerHTML = noOfGeneratedVouchers;
-
         this.animateValue(
           document.getElementById("amount-of-generated-vouchers")!,
           0,
@@ -83,9 +96,7 @@ export class MainPageComponent implements OnInit {
     this.mainService.getTotalQuantityOfRecycledWaste().subscribe(
       data => {
         let quantityOfWaste = data.body;
-
         document.getElementById("amount-of-kg-collected")!.innerHTML = quantityOfWaste;
-
         this.animateValue(
           document.getElementById("amount-of-kg-collected")!,
           0,
@@ -114,55 +125,68 @@ export class MainPageComponent implements OnInit {
       });
   }
 
-  closeAlert() {
-    this.success = false;
+  openSuccessDialog() {
+    this._dialogRef.open(AddedRequestDialogComponent, {
+      minHeight: "350px",
+      width: "400px"});
   }
 
-  addRecycledWaste() {
+  addRecycledWaste(form: FormGroup) {
+    let companyChoice = form.value.selectedCompany;
+    let wasteQuantity = form.value.wasteQuantity;
     let wasteType = document.querySelector('input[name="options-outlined"]:checked') as HTMLInputElement;
-    let companySelector = document.getElementById("companies") as HTMLInputElement;
-    let wasteInput = document.getElementById("input-waste-quantity") as HTMLInputElement;
-    this.recycleRequest = new RecycleRequestDto(
-      this.payload.sub,
-      this.selectedCompany,
-      this.wasteQuantity,
-      wasteType.value,
-      "PENDING"
-    );
-    console.log(this.recycleRequest);
+
+    this.errorMessageCompany = false;
+    this.errorMessageWasteType = false;
+    this.errorMessageQuantity = false;
+
+    if (companyChoice == '--' || companyChoice == null || companyChoice == "") {
+      this.errorMessageCompany = true;
+    }
+
+    if (wasteQuantity == null || wasteQuantity == "" || wasteQuantity <= 0) {
+      this.errorMessageQuantity = true;
+    }
+
+    if (wasteType == null || wasteType.value == "") {
+      this.errorMessageWasteType = true;
+    }
+
+    if (!this.errorMessageWasteType && !this.errorMessageQuantity && !this.errorMessageCompany) {
+      this.isLoading = true;
+      this.recycleRequest = new RecycleRequestDto(
+        this.payload.sub,
+        companyChoice,
+        wasteQuantity,
+        wasteType.value
+      );
+    }
 
     this.mainService.addRecycledWaste(this.recycleRequest)
       .subscribe((response) => {
         if (response) {
-          this.success = true;
+          this.isLoading = false;
           this.errorMessage = '';
-          wasteType.value = '';
-          companySelector.value = '';
-          wasteInput.value = '';
+          this.openSuccessDialog();
+          this.requestForm.reset();
         }
       },
         (err: HttpErrorResponse) => {
-          if (err.error === "Client do not exists!") {
+          let errors = err.error;
+          if (errors === "Client do not exists!") {
             this.errorMessage = err.error;
           }
-          if (err.error === "Company do not exists!") {
-            this.errorMessage = err.error;
+          if (errors === "Company do not exists!") {
+            this.errorMessageCompany = true;
           }
-          if (err.status === 500){
-            this.errorMessage = "You need to complete all the fields to make a request!";
+          if (errors === "Illegal request quantity provided! Can not be 0!") {
+            this.errorMessageQuantity = true;
           }
-          if (err.error === "Illegal request quantity provided! Can not be 0") {
-            this.errorMessage = err.error;
+          if (errors === "Illegal request type provided! Should be one of: METAL, ELECTRONICS, PAPER or PLASTIC.") {
+            this.errorMessageWasteType = true;
           }
-          if (err.error === "Illegal request type provided! Should be one of: METAL, ELECTRONICS, PAPER or PLASTIC.") {
-            this.errorMessage = err.error;
-          }
-          if (this.selectedCompany == null) {
-            document.getElementById("input-waste-quantity-tooltip")!.innerHTML = "Please select the company!";
-          }
-          if (this.wasteQuantity != 0 && this.wasteQuantity> 10000){
-            document.getElementById("input-waste-quantity-tooltip")!.innerHTML = "You can recycle a maximum amount of 10.000kgs at once!";
-          }
+
+          this.isLoading = false;
         }
       );
   }
