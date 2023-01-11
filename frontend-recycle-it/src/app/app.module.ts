@@ -38,6 +38,12 @@ import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatSelectModule} from "@angular/material/select";
 import {SuccessfulPopUpComponent} from './components/retailer-view/vouchers-list/voucher/add-new-voucher-dialog/successful-pop-up/successful-pop-up.component';
 import {MatInputModule} from "@angular/material/input";
+import { MyVouchersComponent } from './components/main-view/my-vouchers/my-vouchers.component';
+import { VoucherObjectComponent } from './components/main-view/my-vouchers/voucher-object/voucher-object.component';
+import {MatRadioModule} from "@angular/material/radio";
+import { AddedRequestDialogComponent } from './components/main-view/main-page/added-request-dialog/added-request-dialog.component';
+import { DetailsDialogComponent } from './components/main-view/my-vouchers/voucher-object/details-dialog/details-dialog.component';
+import { CheckValidityDialogComponent } from './components/main-view/my-vouchers/voucher-object/check-validity-dialog/check-validity-dialog.component';
 import {RecyclingHistoryComponent} from './components/main-view/recycling-history/recycling-history.component';
 import { NationalStatisticsComponent } from './components/main-view/national-statistics/national-statistics.component';
 import { StatisticsDialogComponent } from './components/main-view/national-statistics/statistics-dialog/statistics-dialog.component';
@@ -71,6 +77,11 @@ import {NgChartsModule} from "ng2-charts";
     AddNewVoucherDialogComponent,
     RecyclingCompanyViewComponent,
     SuccessfulPopUpComponent,
+    MyVouchersComponent,
+    VoucherObjectComponent,
+    AddedRequestDialogComponent,
+    DetailsDialogComponent,
+    CheckValidityDialogComponent,
     RecyclingHistoryComponent,
     NationalStatisticsComponent,
     StatisticsDialogComponent,
@@ -91,6 +102,7 @@ import {NgChartsModule} from "ng2-charts";
     MatMenuModule,
     MatInputModule,
     NgChartsModule,
+    MatRadioModule
   ],
   providers: [LoginService, MainPageOperationsService],
   bootstrap: [AppComponent]

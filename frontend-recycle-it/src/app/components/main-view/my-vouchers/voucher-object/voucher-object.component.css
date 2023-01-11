@@ -1,0 +1,77 @@
+.col {
+  font-size: 30px;
+  padding-left: 2rem;
+  color: white;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  height: 12vh;
+  border: 1px solid white;
+  background: rgba(1, 1, 1, 0.8);
+}
+
+.icon-display {
+  transform: scale(2);
+  color: green;
+}
+
+span.status-span.badge.rounded-pill{
+  height: 3.1rem;
+  padding-top: 1rem
+}
+
+img.emag, img.lidl, img.kaufland, img.altex, img.auchan, img.flanco, img.carrefour{
+  height: 4rem;
+  width: 4rem;
+}
+
+.voucher {
+  grid-template-columns: auto auto auto auto 40px 40px 40px;
+}
+
+.details-text {
+  min-height: 110px;
+  background: rgba(1, 1, 1, 0.8);
+  color: white;
+  line-height: 50px;
+  resize: none;
+  text-align: center;
+}
+
+.mat-icon-button {
+  background-color: forestgreen;
+  height: 3.1rem;
+  font-size: 1.5rem;
+  width: 12rem;
+}
+
+.used-voucher-button {
+  background-color: rgba(255, 190, 115, 1);
+  /*background-color: rgba(230, 135, 75, 1);*/
+}
+
+.icon-display {
+  transform: scale(2);
+  color: green;
+}
+
+.mat-success {
+  background-color: green;
+  color: #fff;
+}
+
+.mat-info {
+  background-color: white;
+  color: black;
+}
+
+
+.info-button-text {
+  font-size: 30px;
+}
+
+.icon-info {
+  transform: scale(2);
+}

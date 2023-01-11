@@ -9,7 +9,6 @@ import {MatDialogRef} from "@angular/material/dialog";
 })
 export class SuccessfulPopUpComponent implements OnInit {
 
-  success: boolean = false;
   constructor(private _dialogRef: MatDialogRef<SuccessfulPopUpComponent>) {}
 
   ngOnInit(): void {

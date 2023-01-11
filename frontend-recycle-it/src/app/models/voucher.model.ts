@@ -1,8 +1,8 @@
 export class VoucherModel {
   constructor(
-    private id: Number,
+    public id: number,
     private clientId: Number,
-    private retailerId: Number,
+    private retailerId: Number | String,
     public value: Number,
     public details: String,
     public code: String,
