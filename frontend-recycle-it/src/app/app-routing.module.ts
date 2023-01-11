@@ -59,6 +59,7 @@ const routes: Routes = [
         path: "my-vouchers",
         component: MyVouchersComponent,
       },
+      {
         path: "recycling-history",
         component: RecyclingHistoryComponent,
       }
