@@ -46,6 +46,9 @@ import { DetailsDialogComponent } from './components/main-view/my-vouchers/vouch
 import { CheckValidityDialogComponent } from './components/main-view/my-vouchers/voucher-object/check-validity-dialog/check-validity-dialog.component';
 import {RecyclingHistoryComponent} from './components/main-view/recycling-history/recycling-history.component';
 import { FooterComponent } from './components/main-view/footer/footer.component';
+import { NationalStatisticsComponent } from './components/main-view/national-statistics/national-statistics.component';
+import { StatisticsDialogComponent } from './components/main-view/national-statistics/statistics-dialog/statistics-dialog.component';
+import {NgChartsModule} from "ng2-charts";
 
 @NgModule({
   declarations: [
@@ -82,23 +85,26 @@ import { FooterComponent } from './components/main-view/footer/footer.component'
     CheckValidityDialogComponent,
     RecyclingHistoryComponent,
     FooterComponent,
+    NationalStatisticsComponent,
+    StatisticsDialogComponent,
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        BrowserAnimationsModule,
-        MatIconModule,
-        MatListModule,
-        MatDialogModule,
-        MatButtonModule,
-        HttpClientModule,
-        ReactiveFormsModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatMenuModule,
-        MatInputModule,
-        MatRadioModule
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatIconModule,
+    MatListModule,
+    MatDialogModule,
+    MatButtonModule,
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatMenuModule,
+    MatInputModule,
+    NgChartsModule,
+    MatRadioModule
   ],
   providers: [LoginService, MainPageOperationsService],
   bootstrap: [AppComponent]
