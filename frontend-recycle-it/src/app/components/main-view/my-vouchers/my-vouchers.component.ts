@@ -31,7 +31,7 @@ export class MyVouchersComponent implements OnInit {
     this.vouchersService.getAllVouchersForRetailer()
       .subscribe(data => {
         for (let voucher of data.body) {
-          this.retailerName = voucher.retailer.firstname + " " + voucher.retailer.lastname;
+          this.retailerName = voucher.retailer.firstname;
           this.clientVouchers.push(new VoucherModel(
             voucher.id,
             voucher.client.id,
