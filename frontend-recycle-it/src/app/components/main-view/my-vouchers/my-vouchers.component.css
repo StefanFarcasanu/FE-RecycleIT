@@ -24,7 +24,9 @@ body {
 
 .vouchers-list {
   max-height: 480px;
+  min-height: 42rem;
   font-size: 20px;
+  padding-top: 4vh;
 }
 
 .vouchers-list li:hover {
@@ -52,10 +54,6 @@ mat-list {
   max-height: 60vh;
   flex-grow: 1;
   overflow: auto;
-}
-
-.vouchers-list {
-  padding-top: 4vh;
 }
 
 .vouchers-list-title {
