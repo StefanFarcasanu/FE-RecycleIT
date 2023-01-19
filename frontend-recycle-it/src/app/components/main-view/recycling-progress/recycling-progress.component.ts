@@ -161,7 +161,9 @@ export class RecyclingProgressComponent implements OnInit {
             }
           },
           error => {
-            alert(error);
+            console.log("Voucher already pending");
+            this.openProgressInfoDialog(null);
+            //alert(error);
           });
     }
   }

@@ -104,10 +104,16 @@ mat-list {
   height: 3rem;
   font-size: 1.5rem;
   background: rgba(0, 0, 0, .70);
+
+  color: white;
+  background-color: darkorange;
+  border-color: darkorange;
+  border-radius: 30px;
 }
 
 #back-button:hover {
-  background-color: rgba(35, 120, 0, 0.8);
+  /*background-color: rgba(35, 120, 0, 0.8);*/
+  background-color: #e38410;
 }
 
 .mat-icon.back-arrow {
