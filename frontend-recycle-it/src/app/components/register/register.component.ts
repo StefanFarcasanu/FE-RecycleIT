@@ -3,6 +3,8 @@ import {Router} from "@angular/router";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {RegisterService} from "../../services/register-service";
 import {CountyModel} from "../../models/county.model";
+import {HttpResponse} from "@angular/common/http";
+import {UserDto} from "../../models/userDto";
 
 @Component({
   selector: 'app-register',
@@ -31,6 +33,7 @@ export class RegisterComponent implements OnInit {
   showFirstNameError = false;
   showLastNameError = false;
   showEmailError = false;
+  showExistingEmailError = false;
   showPasswordError = false;
   showCityError = false;
   showCountyError = false;
@@ -41,6 +44,7 @@ export class RegisterComponent implements OnInit {
   selectedCity = "";
   countiesList = [new CountyModel("", "County")];
   citiesList = ['City'];
+  usersList = [];
 
   onSubmit(form: FormGroup) {
     const firstName = form.value.firstName;
@@ -54,6 +58,7 @@ export class RegisterComponent implements OnInit {
     this.showFirstNameError = false;
     this.showLastNameError = false;
     this.showEmailError = false;
+    this.showExistingEmailError = false;
     this.showPasswordError = false;
     this.showCityError = false;
     this.showCountyError = false;
@@ -68,9 +73,10 @@ export class RegisterComponent implements OnInit {
       this.showLastNameError = true;
     }
 
-    if (!(email == null || email == "" || !this.emailPattern(email))) {
-    } else {
+    if (email == null || email == "" || !this.emailPattern(email)){
       this.showEmailError = true;
+    } else if (!this.existEmail(email)) {
+      this.showExistingEmailError = true;
     }
 
     if (password == null || password == "" || password.length < 8) {
@@ -161,11 +167,28 @@ export class RegisterComponent implements OnInit {
       });
   }
 
+  getAllUsers() {
+    this.registerService.getAllUsers().subscribe(
+      data => {
+        this.usersList = data.body.email;
+      }
+    )
+  }
+
+
   emailPattern(email: string) {
     return RegExp('[a-z0-9]+@[a-z]+\.[a-z]{2,3}').test(email);
   }
 
   selectCity(city: string) {
     this.selectedCity = city;
+  }
+
+  existEmail(email: string) {
+    for (var i = 0, emails = this.usersList; i < emails.length; i++) {
+      if (emails[i] === email)
+        return true;
+    }
+    return false;
   }
 }
