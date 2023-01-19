@@ -23,3 +23,16 @@ li {
   color: white;
   position: center;
 }
+
+.no-recycling-items-message {
+  color: white;
+}
+
+#back-button {
+  background-color: #fc8c04;
+  font-size: 19.75px;
+}
+
+#back-button:hover {
+  background-color: #e38410;
+}
