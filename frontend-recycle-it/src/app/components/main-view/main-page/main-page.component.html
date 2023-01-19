@@ -68,7 +68,8 @@
       <div class="card-footer">
         <div class="form-floating mb-3">
           <mat-form-field appearance="fill">
-            <mat-label>Choose the company you want</mat-label>
+            <mat-label *ngIf="companies.length!==0">Choose the company you want</mat-label>
+            <mat-label *ngIf="companies.length===0">No companies available in your county!</mat-label>
             <mat-select formControlName="selectedCompany" required [disabled]="companies.length===0">
               <mat-option>--</mat-option>
               <mat-option *ngFor="let company of companies" [value]="company.id">
@@ -90,7 +91,8 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <button type="submit" class="btn btn-primary w-100" id="recycle-button" style="font-size: 30px">Recycle now!</button>
+        <button type="submit" class="btn btn-primary w-100" id="recycle-button"
+                style="font-size: 30px" [disabled]="companies.length===0">Recycle now!</button>
       </div>
     </div>
   </form>
