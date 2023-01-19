@@ -11,6 +11,7 @@ mat-list {
 
 .requests-list {
   padding-top: 4vh;
+  padding-bottom: 4vh;
 }
 
 .requests-list-title {
