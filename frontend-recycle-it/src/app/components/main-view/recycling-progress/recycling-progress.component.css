@@ -95,6 +95,7 @@
 }
 
 #claim-voucher-button {
+  color: white;
   background-color: darkorange;
   border-color: darkorange;
   border-radius: 30px;
