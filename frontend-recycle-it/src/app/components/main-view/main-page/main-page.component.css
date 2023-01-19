@@ -102,7 +102,7 @@ input[type=number] {
 
 .total-collected-waste,.total-vouchers,.total-customers {
   margin-top: 70px;
-  margin-bottom: 70px;
+  margin-left: 45px;
 }
 
 .counter-count {
@@ -183,6 +183,12 @@ input[type=number] {
 
 input.mat-input-element {
   padding-left: 0.5rem !important;
+}
+
+.counters-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 @media all and (min-width: 992px) {
