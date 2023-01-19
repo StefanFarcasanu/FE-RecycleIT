@@ -71,6 +71,10 @@
          *ngIf="showEmailError">
     Invalid email!
   </small>
+  <small class="error-message"
+         *ngIf="showUsedEmailError">
+    Email already in use!
+  </small>
   <hr style="color: white">
   <div class="form-floating mb-3">
     <input type="password" class="form-control" id="input-password" name="input-password"

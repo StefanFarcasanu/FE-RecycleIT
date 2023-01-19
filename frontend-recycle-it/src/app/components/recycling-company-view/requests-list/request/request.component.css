@@ -1,12 +1,12 @@
 .col {
-  font-size: 40px;
+  font-size: 30px;
   color: white;
 }
 
 .row {
   display: flex;
   align-items: center;
-  height: 20vh;
+  height: 13vh;
   border: 1px solid white;
   background: rgba(1, 1, 1, 0.8);
 }

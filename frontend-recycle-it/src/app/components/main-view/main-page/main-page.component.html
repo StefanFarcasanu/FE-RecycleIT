@@ -1,24 +1,30 @@
 <div class="top-page-div" >
-  <div class="counters-container" style="display: flex; justify-content: center;" *ngIf="!isLoading">
+  <div class="counters-container" *ngIf="!isLoading">
     <div class="row">
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col">
         <div class="total-collected-waste">
           <p id="amount-of-kg-collected" class="counter-count"></p>
-          <p class="kg-collected-p">Total kilograms collected</p>
+        </div>
+        <div class="kg-collected-p-div">
+          <p class="kg-collected-p">Total kilograms of collected waste</p>
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col">
         <div class="total-vouchers">
           <p id="amount-of-generated-vouchers" class="counter-count"></p>
-          <p class="total-vouchers-p">Claimed Vouchers</p>
+        </div>
+        <div class="total-vouchers-p-div">
+          <p class="total-vouchers-p">Total generated vouchers</p>
         </div>
       </div>
 
-      <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+      <div class="col">
         <div class="total-customers">
           <p id="amount-of-customers" class="counter-count"></p>
-          <p class="total-customers-p">Customers</p>
+        </div>
+        <div class="total-customers-p-div">
+          <p class="total-customers-p">People have recycled for our cause</p>
         </div>
       </div>
     </div>
@@ -68,7 +74,8 @@
       <div class="card-footer">
         <div class="form-floating mb-3">
           <mat-form-field appearance="fill">
-            <mat-label>Choose the company you want</mat-label>
+            <mat-label *ngIf="companies.length!==0">Choose the company you want</mat-label>
+            <mat-label *ngIf="companies.length===0">No companies available in your county!</mat-label>
             <mat-select formControlName="selectedCompany" required [disabled]="companies.length===0">
               <mat-option>--</mat-option>
               <mat-option *ngFor="let company of companies" [value]="company.id">
@@ -90,7 +97,8 @@
             </mat-error>
           </mat-form-field>
         </div>
-        <button type="submit" class="btn btn-primary w-100" id="recycle-button" style="font-size: 30px">Recycle now!</button>
+        <button type="submit" class="btn btn-primary w-100" id="recycle-button"
+                style="font-size: 30px" [disabled]="companies.length===0">Recycle now!</button>
       </div>
     </div>
   </form>

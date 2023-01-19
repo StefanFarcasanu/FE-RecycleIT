@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
   showFirstNameError = false;
   showLastNameError = false;
   showEmailError = false;
+  showUsedEmailError = false
   showPasswordError = false;
   showCityError = false;
   showCountyError = false;
@@ -54,6 +55,7 @@ export class RegisterComponent implements OnInit {
     this.showFirstNameError = false;
     this.showLastNameError = false;
     this.showEmailError = false;
+    this.showUsedEmailError = false;
     this.showPasswordError = false;
     this.showCityError = false;
     this.showCountyError = false;
@@ -122,6 +124,9 @@ export class RegisterComponent implements OnInit {
           }
           if (errors.includes("email")) {
             this.showEmailError = true;
+          }
+          if (errors.includes("already used")) {
+            this.showUsedEmailError = true;
           }
           if (errors.includes("county")) {
             this.showCountyError = true;
