@@ -152,6 +152,7 @@ export class RegisterComponent implements OnInit {
         for (let i = 0; i < response.length; i++) {
           this.citiesList.push(response[i].nume)
         }
+        this.citiesList.sort();
       });
   }
 
